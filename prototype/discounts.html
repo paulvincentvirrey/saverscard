@@ -63,9 +63,33 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact"
+              <a class="nav-link js-scroll-trigger" href="#"
                 >Welcome, Patrice!</a
               >
+            </li>
+            <li class="nav-item">
+              <div class="btn-group">
+                <button
+                  class="fas fa-user-circle"
+                  type="button"
+                  id=""
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                ></button>
+                <div
+                  class="dropdown-menu dropdown-menu-right"
+                  aria-labelledby="dropdownMenu2"
+                >
+                  <a class="dropdown-item">
+                    Account Settings
+                  </a>
+                  <div class="dropdown-divider"></div>
+                  <a class="dropdown-item" href="index.html">
+                    Log out
+                  </a>
+                </div>
+              </div>
             </li>
           </ul>
         </div>
@@ -73,43 +97,89 @@
     </nav>
 
     <div class="container content">
-      <div class="row filter-section">
-        <div class="container">
-          <div class="search-box">
-            <div class="search-icon">
-              <i class="fa fa-search search-icon"></i>
-            </div>
-            <form action="" class="search-form">
-              <input
-                type="text"
-                placeholder="Search"
-                id="search"
-                autocomplete="off"
-              />
-            </form>
-            <svg
-              class="search-border"
-              version="1.1"
-              xmlns="http://www.w3.org/2000/svg"
-              xmlns:xlink="http://www.w3.org/1999/xlink"
-              xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
-              x="0px"
-              y="0px"
-              viewBox="0 0 671 111"
-              style="enable-background:new 0 0 671 111;"
-              xml:space="preserve"
+      <div class="row filter-section justify-content-between">
+        <div class="col-sm-4 row">
+          <span class="col-sm-4 fas fa-funnel-dollar"></span>
+          <div class="col-sm-8 filter-box">
+            <button
+              class="btn dropdown-toggle"
+              type="button"
+              id=""
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
             >
-              <path
-                class="border"
-                d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"
-              />
-              <path
-                class="border"
-                d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"
-              />
-            </svg>
-            <div class="go-icon"><i class="fa fa-arrow-right"></i></div>
+              Categories
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <button class="dropdown-item" type="button">Action</button>
+              <button class="dropdown-item" type="button">
+                Another action
+              </button>
+              <button class="dropdown-item" type="button">
+                Something else here
+              </button>
+            </div>
           </div>
+        </div>
+        <div class="col-sm-4 row">
+          <span class="col-sm-4 fas fa-sort-amount-up-alt"></span>
+          <div class="col-sm-8 filter-box">
+            <button
+              class="btn dropdown-toggle"
+              type="button"
+              id=""
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Sorting
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <button class="dropdown-item" type="button">Action</button>
+              <button class="dropdown-item" type="button">
+                Another action
+              </button>
+              <button class="dropdown-item" type="button">
+                Something else here
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="search-box col-sm-4">
+          <div class="search-icon">
+            <i class="fa fa-search search-icon"></i>
+          </div>
+          <form action="" class="search-form">
+            <input
+              type="text"
+              placeholder="Search"
+              id="search"
+              autocomplete="off"
+            />
+          </form>
+          <svg
+            class="search-border"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink"
+            xmlns:a="http://ns.adobe.com/AdobeSVGViewerExtensions/3.0/"
+            x="0px"
+            y="0px"
+            viewBox="0 0 671 111"
+            style="enable-background:new 0 0 671 111;"
+            xml:space="preserve"
+          >
+            <path
+              class="border"
+              d="M335.5,108.5h-280c-29.3,0-53-23.7-53-53v0c0-29.3,23.7-53,53-53h280"
+            />
+            <path
+              class="border"
+              d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"
+            />
+          </svg>
+          <div class="go-icon"><i class="fa fa-arrow-right"></i></div>
         </div>
       </div>
       <div id="products" class="row">
@@ -125,7 +195,14 @@
               <p class="card-text">
                 Get 20% off at Felipe n Sons on all goods and services.
               </p>
-              <a href="#" class="btn btn-link">View Location</a>
+              <a
+                class="btn btn-link"
+                data-toggle="modal"
+                data-target="#mapsModal"
+                data-lat="10.85"
+                data-lng="106.62"
+                >View Location</a
+              >
             </div>
           </div>
         </div>
@@ -210,8 +287,58 @@
           </div>
         </div>
       </div>
+
+      <!-- Modal -->
+      <div
+        class="modal fade"
+        id="mapsModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="mapsModalLabel"
+      >
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-label="Close"
+              >
+                <span aria-hidden="true">&times;</span>
+              </button>
+              <h4 class="modal-title" id="mapsModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+              <div class="row">
+                <div class="col-md-12 modal_body_map">
+                  <div class="location-map" id="location-map">
+                    <div
+                      style="width: 600px; height: 400px;"
+                      id="map_canvas"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    <script
+      async
+      defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_N-X52vCtw4q5scuZf07YkqWBfRHX7uo"
+      type="text/javascript"
+    ></script>
     <script src="vendor/jquery/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script src="vendor/bootstrap/js/bootstrap.min.js"></script>
     <script src="js/search.js"></script>
+    <script src="js/mapsModal.js"></script>
   </body>
 </html>
