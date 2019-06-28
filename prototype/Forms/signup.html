@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>FormWizard_v9</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="colorlib.com">
+
+		<!-- MATERIAL DESIGN ICONIC FONT -->
+		<link rel="stylesheet" href="fonts/material-design-iconic-font/css/material-design-iconic-font.css">
+
+		<!-- DATE-PICKER -->
+		<link rel="stylesheet" href="vendor/date-picker/css/datepicker.min.css">
+
+		<!-- STYLE CSS -->
+		<link rel="stylesheet" href="css/style.css">
+	</head>
+	<body>
+		<div class="wrapper">
+            <form action="" id="wizard">
+        		<!-- Account Section  -->
+                <h4></h4>
+                <section>
+                    <h3>Account Details</h3>
+                	<div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Username
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-pin-account"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Email Address
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-email"></i>
+                                <input type="email" placeholder="Input a valid email address" class="form-control" required>
+                            </div>
+                        </div>
+                	</div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Password
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-lock"></i>
+                                <input type="password" class="form-control" required>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Confirm Password
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-lock-outline"></i>
+                                <input type="password" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Profile Section -->
+                <h4></h4>
+                <section>
+                    <h3>Profile Details</h3>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Last Name
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-account-o"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Given Name
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-account-o"></i>
+                                <input type="text" class="form-control" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Birthdate
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-calendar"></i>
+                                <input type="text" class="form-control datepicker-here" data-language='en' data-date-format="dd - mm - yyyy" id="dp1">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                              Contact Number  
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-phone"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+				<!-- Address Section -->
+                <h4></h4>
+                <section>
+                    <h3>Residential address</h3>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Building / House No. / Apartment
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-home"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Street Address
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-pin"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Country
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-account-o"></i>
+                                <select name="" id="" class="form-control">
+                                    <option value="united states" class="option">United States</option>
+                                    <option value="united kingdom" class="option">United Kingdom</option>
+                                    <option value="viet nam" class="option">Viet Nam</option>
+                                </select>
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </div>
+                        </div> 
+                         <div class="form-col">
+                            <label for="">
+                                State
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-pin"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                         <div class="form-col">
+                            <label for="">
+                                Town / City
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-pin-drop"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                                Zip Code
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-my-location"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                 <!-- Payment Method Section -->
+                <h4></h4>
+                <section>
+                    <h3>Payment Method</h3>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                Subscription
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-card-membership"></i>
+                                <select name="" id="" class="form-control">
+                                    <option value="monthly" class="option">Monthly ($2/month)</option>
+                                    <option value="yearly" class="option">Yearly ($24/year)</option>
+                                </select>
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </div>
+                        </div> 
+                    </div>
+                    <div class="form-row">
+                      <div class="form-col">
+                            <label for="">
+                               Credit Card
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-card"></i>
+                                <select name="" id="" class="form-control">
+                                    <option value="monthly" class="option">American Express</option>
+                                    <option value="yearly" class="option">MasterCard</option>
+                                    <option value="yearly" class="option">Visa</option>
+                                </select>
+                                <i class="zmdi zmdi-chevron-down"></i>
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                            Card Number
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-pin"></i>
+                                <input type="text" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                            Expiration Date
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-pin"></i>
+                                <input type="text" placeholder = "MM/YY" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-col">
+                            <label for="">
+                            CV Code
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-pin"></i>
+                                <input type="text" placeholder = "CVC" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Agreement Section  -->
+                <h4></h4>
+                <section>
+                    <h3>Discount Agreement</h3>
+                    <div class="form-row">
+                        <ul style="list-style-type:disc;">
+                            <li>Subscription must be paid to activate the discount perks of card.</li>
+                            <li>Cardholder must present card at the time of purchase.</li>
+                            <li>Card is non-transferrable.</li>
+                            <li>For <b>discount disputes</b>, e-mail original receipt to <u><b>saverscardllc@gmail.com</b></u> with the short description of dispute.</li>
+                            <li>To <b>cancel subscription</b>, submit cancellation notice to <u><b>saverscardllc@gmail.com</b></u>.</li>
+                            <li>This agreement automatically renews for another year.</li>
+                        </ul>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-col">
+                            <label for="">
+                                <h5>I understand and agree with the terms and conditions.</h5>
+                            </label>
+                            <label for="">
+                                <h4>E-SIGNATURE</h4>
+                            </label>
+                            <div class="form-holder">
+                                <i class="zmdi zmdi-pin"></i>
+                                <input type="text" placeholder = "Please type your full name" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+            </form>
+		</div>
+
+		<script src="js/jquery-3.3.1.min.js"></script>
+		
+		<!-- JQUERY STEP -->
+		<script src="js/jquery.steps.js"></script>
+
+		<!-- DATE-PICKER -->
+		<script src="vendor/date-picker/js/datepicker.js"></script>
+		<script src="vendor/date-picker/js/datepicker.en.js"></script>
+
+		<script src="js/main.js"></script>
+
+<!-- Template created and distributed by Colorlib -->
+</body>
+</html>
