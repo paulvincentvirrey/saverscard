@@ -3,8 +3,8 @@
 }
 
 #mainNav img {
-  height: 100%;
-  width: 90%;
+  height: 25%;
+  width: 25%;
 }
 
 #mainNav .navbar-toggler {
@@ -81,8 +81,7 @@
 }
 
 .filter-section {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding: 20px 0 20px 15px;
 }
 
 .discount {
@@ -132,13 +131,25 @@ h2 {
   font-size: 1.25em;
   letter-spacing: -0.015em;
 }
+
 .search-box {
   position: relative;
   width: 100%;
   height: 60px;
-  border-radius: 120px;
   /* margin: 0 auto; */
 }
+
+div.search-box::before {
+  content: "";
+  position: absolute;
+  /* left: 0; */
+  bottom: 0;
+  width: 90%; /* or 100px */
+  border-bottom: 1px solid #34b6a6;
+  border-bottom-width: medium;
+  /* max-width: 60%; */
+}
+
 .search-icon,
 .go-icon {
   position: absolute;
@@ -243,7 +254,7 @@ h2 {
   color: #34b6a6;
 }
 #search {
-  font-family: "Montserrat Alternates", sans-serif;
+  font-family: "Oswald", sans-serif;
   position: absolute;
   top: 0;
   left: 0;
@@ -280,25 +291,48 @@ h2 {
   background: rgba(0, 0, 0, 0.25);
 }
 
-.filter-box .btn {
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.filtersort-box .btn {
+  font-family: "Oswald", sans-serif;
+  color: #34b6a6;
+  font-size: 1.32em;
+  font-weight: 400;
+  text-align: end;
   background-color: transparent;
-  /* border-color: #34b6a6;
-  border-radius: 120px;
-  border-width: medium; */
   width: 100%;
   height: 60px;
+}
+
+.bootstrap-select .dropdown-toggle:focus {
+  outline: none !important;
 }
 
 .fa-funnel-dollar {
   text-align: end;
   font-size: 1.5em;
   color: #34b6a6;
+  position: absolute;
+  vertical-align: middle;
+  margin-top: 17px;
+  left: 0;
 }
 
 .fa-sort-amount-up-alt {
   text-align: end;
   font-size: 1.5em;
   color: #34b6a6;
+  text-align: end;
+  font-size: 1.5em;
+  color: #34b6a6;
+  position: absolute;
+  vertical-align: middle;
+  margin-top: 17px;
+  left: 0;
 }
 
 .fa-user-circle {
@@ -307,4 +341,9 @@ h2 {
   border: none;
   padding-top: 5px;
   color: #ffffff;
+}
+
+.card-img-top {
+  height: 15vw;
+  object-fit: fill;
 }

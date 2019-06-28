@@ -46,7 +46,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
       <div class="container">
         <a class="navbar-brand js-scroll-trigger" href="index.html">
-          <img src="img/logos/logosmall.png" alt />
+          <img src="img/logo.png" alt />
         </a>
         <button
           class="navbar-toggler navbar-toggler-right"
@@ -98,9 +98,9 @@
 
     <div class="container content">
       <div class="row filter-section justify-content-between">
-        <div class="col-sm-4 row">
-          <span class="col-sm-4 fas fa-funnel-dollar"></span>
-          <div class="col-sm-8 filter-box">
+        <div class="col-sm-6 row ">
+          <div class="col-sm-4 filtersort-box">
+            <span class="fas fa-funnel-dollar"></span>
             <button
               class="btn dropdown-toggle"
               type="button"
@@ -109,7 +109,57 @@
               aria-haspopup="true"
               aria-expanded="false"
             >
-              Categories
+              Category
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <button class="dropdown-item" type="button">Antiques</button>
+              <button class="dropdown-item" type="button">
+                Apparel/Clothing
+              </button>
+              <button class="dropdown-item" type="button">Appliances</button>
+              <button class="dropdown-item" type="button">
+                Arts & Crafts
+              </button>
+              <button class="dropdown-item" type="button">
+                Automotives/Vehicles
+              </button>
+              <button class="dropdown-item" type="button">
+                Beauty & Health
+              </button>
+              <button class="dropdown-item" type="button">Books</button>
+              <button class="dropdown-item" type="button">Electronics</button>
+              <button class="dropdown-item" type="button">
+                Farm & Garden
+              </button>
+              <button class="dropdown-item" type="button">Financial</button>
+              <button class="dropdown-item" type="button">Furniture</button>
+              <button class="dropdown-item" type="button">Lessons</button>
+              <button class="dropdown-item" type="button">
+                Photo & Video
+              </button>
+              <button class="dropdown-item" type="button">
+                Professional Services
+              </button>
+              <button class="dropdown-item" type="button">
+                Skilled Services
+              </button>
+              <button class="dropdown-item" type="button">Therapeutic</button>
+              <button class="dropdown-item" type="button">
+                Travel/Vacation
+              </button>
+            </div>
+          </div>
+          <div class="col-sm-4 filtersort-box">
+            <span class="col-sm-4 fas fa-sort-amount-up-alt"></span>
+            <button
+              class="btn dropdown-toggle"
+              type="button"
+              id=""
+              data-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              Sort By
             </button>
             <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
               <button class="dropdown-item" type="button">Action</button>
@@ -122,30 +172,7 @@
             </div>
           </div>
         </div>
-        <div class="col-sm-4 row">
-          <span class="col-sm-4 fas fa-sort-amount-up-alt"></span>
-          <div class="col-sm-8 filter-box">
-            <button
-              class="btn dropdown-toggle"
-              type="button"
-              id=""
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Sorting
-            </button>
-            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-              <button class="dropdown-item" type="button">Action</button>
-              <button class="dropdown-item" type="button">
-                Another action
-              </button>
-              <button class="dropdown-item" type="button">
-                Something else here
-              </button>
-            </div>
-          </div>
-        </div>
+        <!-- <div class="col-sm-4 row"></div> -->
         <div class="search-box col-sm-4">
           <div class="search-icon">
             <i class="fa fa-search search-icon"></i>
@@ -158,7 +185,7 @@
               autocomplete="off"
             />
           </form>
-          <svg
+          <!-- <svg
             class="search-border"
             version="1.1"
             xmlns="http://www.w3.org/2000/svg"
@@ -178,22 +205,18 @@
               class="border"
               d="M335.5,108.5h280c29.3,0,53-23.7,53-53v0c0-29.3-23.7-53-53-53h-280"
             />
-          </svg>
+          </svg> -->
           <div class="go-icon"><i class="fa fa-arrow-right"></i></div>
         </div>
       </div>
       <div id="products" class="row">
         <div class="col-sm-4">
           <div class="discount card">
-            <img
-              src="http://placehold.it/400x250/34b6a6/fff"
-              class="card-img-top"
-              alt=""
-            />
+            <img src="img/stores/bestbuy.jpg" class="card-img-top" alt="" />
             <div class="card-body">
-              <h5 class="card-title">20% off at Felipe n Sons</h5>
+              <h5 class="card-title">20% off at Best Buy</h5>
               <p class="card-text">
-                Get 20% off at Felipe n Sons on all goods and services.
+                Get 20% off at Best Buy on all goods and services.
               </p>
               <a
                 class="btn btn-link"
@@ -208,15 +231,12 @@
         </div>
         <div class="col-sm-4">
           <div class="discount card">
-            <img
-              src="http://placehold.it/400x250/34b6a6/fff"
-              class="card-img-top"
-              alt=""
-            />
+            <img src="img/stores/cowboys.jpg" class="card-img-top" alt="" />
             <div class="card-body">
-              <h5 class="card-title">15% off at Vikings</h5>
+              <h5 class="card-title">15% off at Dallas Cowboys Pro Shop</h5>
               <p class="card-text">
-                Get 15% off at Felipe n Sons on all goods and services.
+                Get 15% off at Dallas Cowboys Pro Shop on all goods and
+                services.
               </p>
               <a href="#" class="btn btn-link">View Location</a>
             </div>
@@ -224,15 +244,12 @@
         </div>
         <div class="col-sm-4">
           <div class="discount card">
-            <img
-              src="http://placehold.it/400x250/34b6a6/fff"
-              class="card-img-top"
-              alt=""
-            />
+            <img src="img/stores/kohls.jpg" class="card-img-top" alt="" />
             <div class="card-body">
-              <h5 class="card-title">10% off at KoKo</h5>
+              <h5 class="card-title">10% off at Kohl's Medallion Center</h5>
               <p class="card-text">
-                Get 10% off at Felipe n Sons on all goods and services.
+                Get 10% off at Kohl's Medallion Center on all goods and
+                services.
               </p>
               <a href="#" class="btn btn-link">View Location</a>
             </div>
@@ -240,15 +257,11 @@
         </div>
         <div class="col-sm-4">
           <div class="discount card">
-            <img
-              src="http://placehold.it/400x250/34b6a6/fff"
-              class="card-img-top"
-              alt=""
-            />
+            <img src="img/stores/hm.png" class="card-img-top" alt="" />
             <div class="card-body">
-              <h5 class="card-title">20% off at Felipe n Sons</h5>
+              <h5 class="card-title">20% off at H&M</h5>
               <p class="card-text">
-                Get 20% off at Felipe n Sons on all goods and services.
+                Get 20% off at H&M on all goods and services.
               </p>
               <a href="#" class="btn btn-link">View Location</a>
             </div>
@@ -256,15 +269,11 @@
         </div>
         <div class="col-sm-4">
           <div class="discount card">
-            <img
-              src="http://placehold.it/400x250/34b6a6/fff"
-              class="card-img-top"
-              alt=""
-            />
+            <img src="img/stores/costco.jpg" class="card-img-top" alt="" />
             <div class="card-body">
-              <h5 class="card-title">15% off at Vikings</h5>
+              <h5 class="card-title">15% off at Costco</h5>
               <p class="card-text">
-                Get 15% off at Felipe n Sons on all goods and services.
+                Get 15% off at Costco on all goods and services.
               </p>
               <a href="#" class="btn btn-link">View Location</a>
             </div>
@@ -272,15 +281,11 @@
         </div>
         <div class="col-sm-4">
           <div class="discount card">
-            <img
-              src="http://placehold.it/400x250/34b6a6/fff"
-              class="card-img-top"
-              alt=""
-            />
+            <img src="img/stores/gap.jpg" class="card-img-top" alt="" />
             <div class="card-body">
-              <h5 class="card-title">10% off at KoKo</h5>
+              <h5 class="card-title">10% off at Gap</h5>
               <p class="card-text">
-                Get 10% off at Felipe n Sons on all goods and services.
+                Get 10% off at Gap on all goods and services.
               </p>
               <a href="#" class="btn btn-link">View Location</a>
             </div>
