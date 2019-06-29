@@ -118,7 +118,7 @@ img {
   color: #ccc;
   font-family: "Poppins-Medium";
 }
-.steps ul:after {
+.store .steps ul:after {
   content: "/ 6";
   font-size: 15px;
   color: #ccc;
@@ -128,6 +128,18 @@ img {
   top: 13px;
   width: 22px;
 }
+
+.user .steps ul:after {
+  content: "/ 5";
+  font-size: 15px;
+  color: #ccc;
+  font-family: "Poppins-Medium";
+  position: absolute;
+  left: 16px;
+  top: 13px;
+  width: 22px;
+}
+
 .steps ul.step-2:before {
   content: "2";
 }
@@ -366,7 +378,6 @@ h3 {
     font-size: 13px;
   }
 }
-
 
 #acknowledgement {
   text-align: justify;
