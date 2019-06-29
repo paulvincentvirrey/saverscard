@@ -174,7 +174,7 @@ img {
 h3 {
   font-family: "Poppins-SemiBold";
   font-size: 35px;
-  color: #3377c0;
+  color: #39ac9b;
   text-transform: uppercase;
   text-align: center;
   font-weight: 600;
@@ -244,7 +244,7 @@ h3 {
   } */
 }
 .form-control:focus {
-  border-color: #3377c0;
+  border-color: #39ac9b;
 }
 
 .grid {
@@ -278,7 +278,7 @@ h3 {
   letter-spacing: 1px;
 }
 .grid-item.active .heading {
-  background: #3377c0;
+  background: #39ac9b;
 }
 .grid-item:hover img {
   opacity: 0.6;
@@ -300,7 +300,7 @@ h3 {
   align-items: center;
   color: #fff;
   cursor: pointer;
-  background: #3377c0;
+  background: #39ac9b;
   text-transform: uppercase;
   justify-content: center;
   letter-spacing: 1px;
@@ -310,8 +310,8 @@ h3 {
 }
 .actions li:first-child a {
   background: none;
-  border: 1px solid #3377c0;
-  color: #3377c0;
+  border: 1px solid #39ac9b;
+  color: #39ac9b;
 }
 .actions li:first-child a:hover {
   border-color: transparent;

@@ -197,6 +197,7 @@ section#contact {
 
 section#contact .section-heading {
   color: #fff;
+  padding-bottom: 30px;
 }
 
 section#contact .form-group {
@@ -205,7 +206,7 @@ section#contact .form-group {
 
 section#contact .form-group input,
 section#contact .form-group textarea {
-  padding: 20px;
+  padding: 10px;
 }
 
 section#contact .form-group input.form-control {
@@ -213,7 +214,7 @@ section#contact .form-group input.form-control {
 }
 
 section#contact .form-group textarea.form-control {
-  height: 248px;
+  height: 187px;
 }
 
 section#contact .form-control:focus {
