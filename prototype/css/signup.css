@@ -21,7 +21,7 @@ body {
   font-size: 14px;
   margin: 0;
   color: #999;
-  background: url("../images/form-wizard-bg.jpg") no-repeat center center;
+  background: url("../img/signupBG.png") no-repeat center center;
   height: 100vh;
   background-size: cover;
   display: flex;
@@ -306,7 +306,7 @@ h3 {
   letter-spacing: 1px;
 }
 .actions li a:hover {
-  background: #3b87d9;
+  filter: brightness(85%);
 }
 .actions li:first-child a {
   background: none;
@@ -316,7 +316,7 @@ h3 {
 .actions li:first-child a:hover {
   border-color: transparent;
   color: #fff;
-  background: #3b87d9;
+  background: #39ac9b;
 }
 .actions li[aria-disabled="true"]:before {
   content: "Fill all required fields";
