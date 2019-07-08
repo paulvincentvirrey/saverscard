@@ -1,0 +1,38 @@
+#login {
+  color: #000000;
+}
+
+#login .btn-outline-primary {
+  color: white;
+  border-color: #39ac9b;
+}
+
+#login .form-group label {
+  float: left;
+}
+
+#login .nav-tabs {
+  margin-bottom: 10px;
+  border: none;
+  background: #39ac9b;
+  width: 100%;
+  float: right;
+}
+#login .nav-tabs .nav-link {
+  padding: 2%;
+  height: 34px;
+  font-weight: 600;
+  color: #fff;
+}
+#login .nav-tabs .nav-link:hover {
+  border: none;
+}
+#login .nav-tabs .nav-link.active {
+  /* width: 100px; */
+  color: #39ac9b;
+  border: 2px solid #39ac9b;
+}
+
+#login .nav-tabs .nav-item {
+  margin: 0;
+}
