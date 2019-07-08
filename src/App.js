@@ -12,8 +12,7 @@ class App extends Component {
       <React.Fragment>
         {/* <NavBar />
         <Footer /> */}
-        {/* <Login /> */}
-        <UserSignUp />
+        <Login />
       </React.Fragment>
     );
   }

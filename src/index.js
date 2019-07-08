@@ -1,12 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import Movies from "./components/movies";
 import * as serviceWorker from "./serviceWorker";
-import $ from "jquery";
-import Popper from "popper.js";
-import "bootstrap/dist/css/bootstrap.css";
-import "font-awesome/css/font-awesome.css";
 
 ReactDOM.render(<App />, document.getElementById("root"));
 
