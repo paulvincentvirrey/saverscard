@@ -3,7 +3,6 @@ import NavBar from "./components/navbar";
 import Footer from "./components/footer";
 import Login from "./components/login";
 import UserSignUp from "./components/signup_user";
-import Counters from "./components/counters";
 
 class App extends Component {
   render() {
