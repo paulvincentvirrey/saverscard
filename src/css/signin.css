@@ -2,7 +2,7 @@
   margin: 0 !important;
 }
 
-.login-title {
+.signin-title {
   margin-left: 4%;
 }
 
@@ -10,7 +10,7 @@
   margin-left: 3%;
 }
 
-.login-button {
+.signin-button {
   width: 100%;
   border-radius: 10rem;
 }

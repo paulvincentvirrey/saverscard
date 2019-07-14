@@ -1,93 +1,228 @@
-import React from "react";
+import React, { Component } from "react";
+import M from "materialize-css";
 import { Navbar, NavItem } from "react-materialize";
+import { Link } from "react-router-dom";
 import logo from "../img/logo.png";
 import "../css/navbar.css";
 
-const NavBar = () => {
-  var logoImg = (
-    <a>
-      <img src={logo} />
-    </a>
-  );
+class NavBar extends Component {
+  state = {};
 
-  return (
-    <Navbar className="main-nav" brand={logoImg} alignLinks="left" fixed>
-      <NavItem href="">Services</NavItem>
-      <NavItem href="">About</NavItem>
-      <NavItem href="">Contact Us</NavItem>
-      <NavItem href="">Sign In</NavItem>
-      <NavItem href="">Sign Up</NavItem>
-    </Navbar>
-    // <nav>
-    //   <div class="nav-wrapper container">
-    //     <a href="#" class="brand-logo">
-    //       Logo
-    //     </a>
-    //     <ul id="nav-mobile" class="right hide-on-med-and-down">
-    //       <li>
-    //         <a href="sass.html">Sass</a>
-    //       </li>
-    //       <li>
-    //         <a href="badges.html">Components</a>
-    //       </li>
-    //       <li>
-    //         <a href="collapsible.html">JavaScript</a>
-    //       </li>
-    //     </ul>
-    //   </div>
-    // </nav>
+  componentDidMount() {
+    let sideNav = document.querySelectorAll(".sidenav");
 
-    // <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
-    //   <div className="container">
-    //     <a className="navbar-brand js-scroll-trigger" href="index.html">
-    //       <img src={logo} width="100" height="100" alt="" />
-    //     </a>
-    //     <button
-    //       className="navbar-toggler"
-    //       type="button"
-    //       data-toggle="collapse"
-    //       data-target="#navbarResponsive"
-    //       aria-controls="navbarResponsive"
-    //       aria-expanded="false"
-    //       aria-label="Toggle navigation"
-    //     >
-    //       Menu
-    //       <i className="fas fa-bars" />
-    //     </button>
-    //     <div className="collapse navbar-collapse" id="navbarResponsive">
-    //       <ul className="navbar-nav text-uppercase left">
-    //         <li className="nav-item">
-    //           <a className="nav-link js-scroll-trigger" href="#services">
-    //             Services
-    //           </a>
-    //         </li>
-    //         <li className="nav-item">
-    //           <a className="nav-link js-scroll-trigger" href="#about">
-    //             About
-    //           </a>
-    //         </li>
-    //         <li className="nav-item">
-    //           <a className="nav-link js-scroll-trigger" href="#contact">
-    //             Contact
-    //           </a>
-    //         </li>
-    //       </ul>
-    //       <ul className="navbar-nav text-uppercase right ml-auto">
-    //         <li className="nav-item">
-    //           <a className="nav-link js-scroll-trigger" href="">
-    //             Log In
-    //           </a>
-    //         </li>
-    //         <li className="nav-item">
-    //           <a className="nav-link js-scroll-trigger" href="">
-    //             Sign Up
-    //           </a>
-    //         </li>
-    //       </ul>
-    //     </div>
-    //   </div>
-    // </nav>
-  );
-};
+    let options = {
+      edge: "right"
+    };
+    M.Sidenav.init(sideNav, options);
+  }
+
+  render() {
+    return (
+      <React.Fragment>
+        <div className="navbar-fixed">
+          <nav className="main-nav">
+            <div className="nav-wrapper">
+              <a href="/" className="brand-logo ">
+                <img src={logo} />
+              </a>
+              <a
+                href="#"
+                data-target="mobile-nav"
+                className="sidenav-trigger right"
+              >
+                <i className="material-icons">menu</i>
+              </a>
+              <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li>
+                  <a href="#services">Services</a>
+                </li>
+                <li>
+                  <a href="#about">About</a>
+                </li>
+                <li>
+                  <a href="#contact">Contact Us</a>
+                </li>
+                <div className="right">
+                  <li>
+                    <Link to="/signin">Sign In</Link>
+                  </li>
+                  <li>
+                    <Link to="/signup">Sign Up</Link>
+                  </li>
+                </div>
+              </ul>
+            </div>
+          </nav>
+        </div>
+        <ul id="mobile-nav" className="sidenav right right-aligned">
+          <li>
+            <a href="#services">Services</a>
+          </li>
+          <li>
+            <a href="#about">About</a>
+          </li>
+          <li>
+            <a href="#contact">Contact Us</a>
+          </li>
+          <li>
+            <Link to="/signin">Sign In</Link>
+          </li>
+          <li>
+            <Link to="/signup">Sign Up</Link>
+          </li>
+        </ul>
+      </React.Fragment>
+    );
+  }
+}
 
 export default NavBar;
+
+// const NavBar = () => {
+//   var logoImg = (
+//     <a>
+//       <img src={logo} />
+//     </a>
+//   );
+
+//   let navbarOptions = {
+//     edge: "right"
+//   };
+
+//   return (
+//     <React.Fragment>
+//       <div className="navbar-fixed">
+//         <nav className="main-nav">
+//           <div className="nav-wrapper">
+//             <a href="/" className="brand-logo">
+//               <img src={logo} />
+//             </a>
+//             <a href="#" data-target="mobile-nav" className="sidenav-trigger">
+//               <i className="material-icons">menu</i>
+//             </a>
+//             <ul id="nav-mobile" className="right hide-on-med-and-down">
+//               <li>
+//                 <a href="#services">Services</a>
+//               </li>
+//               <li>
+//                 <a href="#about">About</a>
+//               </li>
+//               <li>
+//                 <a href="#contact">Contact Us</a>
+//               </li>
+//               <li>
+//                 <a href="collapsible.html">Sign In</a>
+//               </li>
+//               <li>
+//                 <a href="collapsible.html">Sign Up</a>
+//               </li>
+//             </ul>
+//           </div>
+//         </nav>
+//       </div>
+//       <ul id="mobile-nav" className="sidenav right right-aligned">
+//         <li>
+//           <a href="#services">Services</a>
+//         </li>
+//         <li>
+//           <a href="#about">About</a>
+//         </li>
+//         <li>
+//           <a href="#contact">Contact Us</a>
+//         </li>
+//         <li>
+//           <a href="collapsible.html">Sign In</a>
+//         </li>
+//         <li>
+//           <a href="collapsible.html">Sign Up</a>
+//         </li>
+//       </ul>
+//     </React.Fragment>
+
+//     // <Navbar
+//     //   className="main-nav"
+//     //   brand={logoImg}
+//     //   alignLinks="right"
+//     //   options={navbarOptions}
+//     //   fixed
+//     // >
+//     //   <NavItem href="#services">Services</NavItem>
+//     //   <NavItem href="#about">About</NavItem>
+//     //   <NavItem href="#services">Contact Us</NavItem>
+//     //   <Link to="/signup">Sign Up</Link>
+//     //   <Link to="/signin">Sign In</Link>
+//     // </Navbar>
+//     // <nav>
+//     //   <div class="nav-wrapper container">
+//     //     <a href="#" class="brand-logo">
+//     //       Logo
+//     //     </a>
+//     //     <ul id="nav-mobile" class="right hide-on-med-and-down">
+//     //       <li>
+//     //         <a href="sass.html">Sass</a>
+//     //       </li>
+//     //       <li>
+//     //         <a href="badges.html">Components</a>
+//     //       </li>
+//     //       <li>
+//     //         <a href="collapsible.html">JavaScript</a>
+//     //       </li>
+//     //     </ul>
+//     //   </div>
+//     // </nav>
+
+//     // <nav className="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+//     //   <div className="container">
+//     //     <a className="navbar-brand js-scroll-trigger" href="index.html">
+//     //       <img src={logo} width="100" height="100" alt="" />
+//     //     </a>
+//     //     <button
+//     //       className="navbar-toggler"
+//     //       type="button"
+//     //       data-toggle="collapse"
+//     //       data-target="#navbarResponsive"
+//     //       aria-controls="navbarResponsive"
+//     //       aria-expanded="false"
+//     //       aria-label="Toggle navigation"
+//     //     >
+//     //       Menu
+//     //       <i className="fas fa-bars" />
+//     //     </button>
+//     //     <div className="collapse navbar-collapse" id="navbarResponsive">
+//     //       <ul className="navbar-nav text-uppercase left">
+//     //         <li className="nav-item">
+//     //           <a className="nav-link js-scroll-trigger" href="#services">
+//     //             Services
+//     //           </a>
+//     //         </li>
+//     //         <li className="nav-item">
+//     //           <a className="nav-link js-scroll-trigger" href="#about">
+//     //             About
+//     //           </a>
+//     //         </li>
+//     //         <li className="nav-item">
+//     //           <a className="nav-link js-scroll-trigger" href="#contact">
+//     //             Contact
+//     //           </a>
+//     //         </li>
+//     //       </ul>
+//     //       <ul className="navbar-nav text-uppercase right ml-auto">
+//     //         <li className="nav-item">
+//     //           <a className="nav-link js-scroll-trigger" href="">
+//     //             Log In
+//     //           </a>
+//     //         </li>
+//     //         <li className="nav-item">
+//     //           <a className="nav-link js-scroll-trigger" href="">
+//     //             Sign Up
+//     //           </a>
+//     //         </li>
+//     //       </ul>
+//     //     </div>
+//     //   </div>
+//     // </nav>
+//   );
+// };
+
+// export default NavBar;
