@@ -5,9 +5,10 @@ import Footer from "./components/footer";
 import SignIn from "./components/signin";
 import Vendors from "./components/vendors";
 import Filter from "./components/filter";
-import UserSignUp from "./components/signup_user";
+import UserSignUp from "./components/signupUser";
 import MapModal from "./components/mapModal";
 import Home from "./components/home";
+import MasterForm from "./components/signupUser";
 
 class App extends Component {
   render() {
@@ -19,9 +20,9 @@ class App extends Component {
           {/* <Route path="/services" component={Footer} />
           <Route path="/about" component={Login} />
           <Route path="/contact" component={Vendors} /> */}
-          <Route path="/signin" component={SignIn} />
-          <Route path="/vendors" component={Vendors} /> */}
-          <Route path="/" component={Home} />
+          <Route path="/signup" component={MasterForm} />
+          {/* <Route path="/vendors" component={Vendors} />
+          <Route path="/" component={Home} /> */}
         </Switch>
         <Footer />
       </React.Fragment>
