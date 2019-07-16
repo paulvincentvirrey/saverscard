@@ -1,6 +1,6 @@
 .page-footer {
   background: #414042;
-  padding: 4rem 0 0;
+  padding: 2rem 0 0;
   color: #fff;
   font-family: "Oswald", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
     "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
@@ -56,7 +56,6 @@ footer .social a:hover {
 
 .footer-copyright {
   text-align: center;
-  margin-top: 3rem;
   font-size: 13px;
   background: #4e4e4e !important;
   padding: 1rem;
