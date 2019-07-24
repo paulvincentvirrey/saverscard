@@ -603,4 +603,4 @@ function getPaymentDisplay(props) {
     );
   }
 }
-export default MasterForm;
+export default SignupVendor;

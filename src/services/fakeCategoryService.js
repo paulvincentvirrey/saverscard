@@ -17,6 +17,38 @@ export const categories = [
   { _id: 16, name: "Travel/Vacation" }
 ];
 
+const creditCards = [
+  { _id: 1, value: "American Express" },
+  { _id: 2, value: "MasterCard" },
+  { _id: 3, value: "Visa" }
+];
+
+const paymentMethods = [
+  { _id: 1, value: "Credit Card" },
+  { _id: 2, value: "Invoice" },
+  { _id: 3, value: "Promo Code" }
+];
+
+const cardTitles = [
+  "Account Details",
+  "Vendor Information",
+  "Store Profile",
+  "Payment",
+  "Acknowledgement"
+];
+
 export function getCategories() {
-  return categories.filter(g => g);
+  return creditCards;
+}
+
+export function getPaymentMethods() {
+  return paymentMethods;
+}
+
+export function getCardTitles() {
+  return cardTitles;
+}
+
+export function getCreditCards() {
+  return creditCards;
 }
