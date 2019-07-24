@@ -3,11 +3,34 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const vendorModel = new Schema({
-  name: { type: String },
-  category: { _id: { type: String }, name: { type: String } },
-  address: { latitude: { type: Number }, longhitude: { type: Number } },
-  discountRate: { type: Number },
-  image: { type: String }
+  accountDetails: {
+    username: String,
+    email: String,
+    password: String
+  },
+  vendorInformation: {
+    businessName: String,
+    address: String,
+    city: String,
+    state: String,
+    zip: Number,
+    telephone: String,
+    fax: String,
+    authorizedPerson: String,
+    contactEmail: String
+  },
+  storeProfile: {
+    storeType: String,
+    discountInPercent: Number,
+    discountToAll: Boolean,
+    discountExclusions: String
+  },
+  payment: {
+    method: String,
+    ccType: String,
+    subscription: Number,
+    promoCode: String
+  }
 });
 
 module.exports = mongoose.model("Vendor", vendorModel);

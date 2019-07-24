@@ -1,52 +1,50 @@
-function vendorsController(Vendor) {
+function usersController(User) {
   function insert(req, res) {
-    const vendor = new Vendor(req.body);
+    const user = new User(req.body);
 
-    vendor
+    user
       .save()
       .then(data => {
         res.send(data);
       })
       .catch(err => {
         res.status(500).send({
-          message:
-            err.message || "Some error occurred while creating the Vendor."
+          message: err.message || "Some error occurred while creating the User."
         });
       });
   }
 
   function getAll(req, res) {
-    Vendor.find()
-      .then(vendors => {
-        res.send(vendors);
+    User.find()
+      .then(users => {
+        res.send(users);
       })
       .catch(err => {
         res.status(500).send({
           message:
-            err.message ||
-            "Some error occurred while retrieving list of vendors."
+            err.message || "Some error occurred while retrieving list of users."
         });
       });
   }
 
   function get(req, res) {
-    Vendor.findById(req.params.vendorId)
-      .then(vendor => {
-        if (!vendor) {
+    User.findById(req.params.userId)
+      .then(user => {
+        if (!user) {
           return res.status(404).send({
-            message: "Vendor not found."
+            message: "User not found."
           });
         }
-        res.send(vendor);
+        res.send(user);
       })
       .catch(err => {
         if (err.kind === "ObjectId") {
           return res.status(404).send({
-            message: "Vendor not found."
+            message: "User not found."
           });
         }
         return res.status(500).send({
-          message: "Error retrieving vendor."
+          message: "Error retrieving user."
         });
       });
   }
@@ -59,49 +57,48 @@ function vendorsController(Vendor) {
     //   });
     // }
 
-    Vendor.findByIdAndUpdate(req.params.vendorId, req.body, { new: true })
-      .then(vendor => {
-        if (!vendor) {
+    User.findByIdAndUpdate(req.params.userId, req.body, { new: true })
+      .then(user => {
+        if (!user) {
           res.status(404).send({
-            message: "Vendor not found with id " + req.params.vendorId
+            message: "User not found with id " + req.params.userId
           });
         }
-        res.send(vendor);
+        res.send(user);
       })
       .catch(err => {
         if (err.kind === "ObjectId") {
           return res.status(400).send({
-            message: "Vendor not found with id " + req.params.vendorId
+            message: "User not found with id " + req.params.userId
           });
         }
 
         return res.status(500).send({
           message:
-            err.message ||
-            "Could not update vendor with id " + req.params.vendorId
+            err.message || "Could not update user with id " + req.params.userId
         });
       });
   }
 
   function remove(req, res) {
-    Vendor.findByIdAndRemove(req.params.vendorId)
-      .then(vendor => {
-        if (!vendor) {
+    User.findByIdAndRemove(req.params.userId)
+      .then(user => {
+        if (!user) {
           return res.status(400).send({
-            message: "Vendor not found with id " + req.params.vendorId
+            message: "User not found with id " + req.params.userId
           });
         }
-        res.send({ message: "Vendor deleted successfully!" });
+        res.send({ message: "User deleted successfully!" });
       })
       .catch(err => {
         if (err.kind === "ObjectId" || err.name === "NotFound") {
           return res.status(400).send({
-            message: "Vendor not vendor with id " + req.params.vendorId
+            message: "User not found with id " + req.params.userId
           });
         }
 
         return res.status(500).send({
-          message: "Could not delete vendor with id " + req.params.vendorId
+          message: "Could not delete user with id " + req.params.userId
         });
       });
   }
@@ -109,4 +106,4 @@ function vendorsController(Vendor) {
   return { insert, getAll, get, update, remove };
 }
 
-module.exports = vendorsController;
+module.exports = usersController;
