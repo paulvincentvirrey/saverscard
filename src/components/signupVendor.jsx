@@ -9,7 +9,6 @@ import {
   Icon,
   Row,
   Select,
-  Textarea,
   TextInput
 } from "react-materialize";
 import "../css/wizard.css";
@@ -25,6 +24,7 @@ class MasterForm extends Component {
   }
 
   cardTitle = [
+    "Account Details",
     "Vendor Information",
     "Store Profile",
     "Payment",
@@ -69,18 +69,17 @@ class MasterForm extends Component {
     { key: 3, value: "Promo Code" }
   ];
 
-  // handleChange = event => {
-  //   const { name, value } = event.target;
-  //   this.setState({
-  //     [name]: value
-  //   });
-  // };
+  handleChange = ({ target }) => {
+    let { name, value, type, checked } = target;
 
-  handleChange = e => {
-    let values = { ...this.state.values, [e.target.name]: e.target.value };
+    if (type === "checkbox") {
+      name = value;
+      value = checked;
+    }
+    let values = { ...this.state.values, [name]: value };
     console.log(values);
     this.setState({
-      values: { ...this.state.values, [e.target.name]: e.target.value }
+      values: { ...this.state.values, [name]: value }
     });
   };
 
@@ -91,7 +90,7 @@ class MasterForm extends Component {
 
   _next = () => {
     let currentStep = this.state.currentStep;
-    currentStep = currentStep >= 3 ? 4 : currentStep + 1;
+    currentStep = currentStep >= 4 ? 5 : currentStep + 1;
     this.setState({
       currentStep: currentStep,
       currentCardTitle: this.cardTitle[currentStep - 1]
@@ -125,7 +124,7 @@ class MasterForm extends Component {
 
   nextButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep <= 3) {
+    if (currentStep <= 4) {
       return (
         <Button
           waves="light"
@@ -141,7 +140,7 @@ class MasterForm extends Component {
 
   submitButton() {
     let currentStep = this.state.currentStep;
-    if (currentStep == 4) {
+    if (currentStep == 5) {
       return (
         <Button
           type="submit"
@@ -159,7 +158,7 @@ class MasterForm extends Component {
   render() {
     return (
       <Row>
-        <Col l={6} s={12}>
+        <Col>
           <Card
             className="card-container"
             textClassName="white-text"
@@ -174,18 +173,24 @@ class MasterForm extends Component {
               <Step2
                 currentStep={this.state.currentStep}
                 handleChange={this.handleChange}
-                descriptions={this.descriptions}
-                discounts={this.discounts}
                 values={this.state.values}
               />
               <Step3
                 currentStep={this.state.currentStep}
                 handleChange={this.handleChange}
-                paymentMethods={this.paymentMethods}
-                creditCards={this.creditCards}
+                descriptions={this.descriptions}
+                discounts={this.discounts}
                 values={this.state.values}
               />
               <Step4
+                currentStep={this.state.currentStep}
+                handleChange={this.handleChange}
+                paymentMethods={this.paymentMethods}
+                creditCards={this.creditCards}
+                selectedPayment={this.state.selectedPayment}
+                values={this.state.values}
+              />
+              <Step5
                 currentStep={this.state.currentStep}
                 handleChange={this.handleChange}
                 values={this.state.values}
@@ -206,92 +211,48 @@ function Step1(props) {
     return null;
   }
   return (
-    <div className="container" id="step">
+    <React.Fragment>
       <Row>
-        <TextInput
-          l={6}
-          icon="business"
-          label="Business Name"
-          name="Business Name"
-          onChange={props.handleChange}
-          value={props.values[props.name]}
-        />
-        <TextInput
-          l={6}
-          icon="location_on"
-          label="Address"
-          name="Address"
-          onChange={props.handleChange}
-          value={props.values[props.name]}
-        />
+        <Col>
+          <TextInput
+            icon="account_box"
+            label="Username"
+            name="Username"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+          <TextInput
+            icon="person"
+            label="Email Address"
+            name="Email Address"
+            email
+            validate
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+        </Col>
       </Row>
       <Row>
-        <TextInput
-          l={6}
-          icon="address"
-          label="City"
-          name="City"
-          onChange={props.handleChange}
-          value={props.values[props.name]}
-        />
-        <TextInput
-          l={6}
-          icon="address"
-          label="State"
-          name="State"
-          onChange={props.handleChange}
-          value={props.values[props.name]}
-        />
+        <Col>
+          <TextInput
+            icon="lock"
+            label="Password"
+            name="Password"
+            password
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+          <TextInput
+            icon="lock_outline"
+            label="Confirm Password"
+            name="Confirm Password"
+            password
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+        </Col>
       </Row>
-      <Row>
-        <TextInput
-          l={6}
-          icon="address"
-          label="Zipcode"
-          name="Zipcode"
-          onChange={props.handleChange}
-          value={props.values[props.name]}
-        />
-        <TextInput
-          l={6}
-          icon="local_phone"
-          label="Telephone"
-          name="Telephone"
-          onChange={props.handleChange}
-          value={props.values[props.name]}
-        />
-      </Row>
-      <Row>
-        <TextInput
-          l={6}
-          icon="local_printshop"
-          label="Fax"
-          name="Fax"
-          onChange={props.handleChange}
-          value={props.values[props.name]}
-        />
-        <TextInput
-          l={6}
-          icon="person"
-          label="Authorized Person"
-          name="Authorized Person"
-          onChange={props.handleChange}
-          value={props.values[props.name]}
-        />
-      </Row>
-      <Row>
-        <TextInput
-          l={6}
-          icon="contact_mail"
-          email
-          validate
-          label="Contact Email"
-          name="Contact Email"
-          onChange={props.handleChange}
-          value={props.values[props.name]}
-        />
-      </Row>
-    </div>
+    </React.Fragment>
   );
 }
 
@@ -300,7 +261,112 @@ function Step2(props) {
     return null;
   }
   return (
-    <div className="container" id="step">
+    <React.Fragment>
+      <Row>
+        <Col>
+          <TextInput
+            icon="business"
+            label="Business Name"
+            name="Business Name"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <TextInput
+            icon="location_on"
+            label="Address"
+            name="Address"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <TextInput
+            l={6}
+            icon="address"
+            label="City"
+            name="City"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+          <TextInput
+            l={6}
+            icon="address"
+            label="State"
+            name="State"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <TextInput
+            l={6}
+            icon="address"
+            label="Zipcode"
+            name="Zipcode"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+          <TextInput
+            l={6}
+            icon="local_phone"
+            label="Telephone"
+            name="Telephone"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <TextInput
+            l={6}
+            icon="local_printshop"
+            label="Fax"
+            name="Fax"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+          <TextInput
+            l={6}
+            icon="person"
+            label="Authorized Person"
+            name="Authorized Person"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+        </Col>
+      </Row>
+      <Row>
+        <Col>
+          <TextInput
+            icon="contact_mail"
+            email
+            validate
+            label="Contact Email"
+            name="Contact Email"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+          />
+        </Col>
+      </Row>
+    </React.Fragment>
+  );
+}
+
+function Step3(props) {
+  if (props.currentStep !== 3) {
+    return null;
+  }
+  return (
+    <React.Fragment>
       <Row>
         <Col>
           <Select
@@ -337,16 +403,26 @@ function Step2(props) {
               </option>
             ))}
           </Select>
+        </Col>
+      </Row>
+      <Row id="agreementBox">
+        <Col>
           <Checkbox
             name="DiscountAgreement"
             onChange={props.handleChange}
-            value={props.values[props.name]}
+            value="Discount Agreement"
             label="Discount selected will be applied to all products and services
-                    of the store. Otherwise, please indicate excluded items below."
+              of the store. Otherwise, please indicate excluded items below."
             filledIn
-            unchecked
+            unchecked={props.values[props.name]}
           />
+        </Col>
+      </Row>
+      <Row>
+        <Col s={12}>
           <TextInput
+            s={12}
+            l={8}
             icon="not_interested"
             label="Discount Exclusions"
             name="Discount Exclusions"
@@ -355,32 +431,28 @@ function Step2(props) {
           />
         </Col>
       </Row>
-      <Row>
-        <Col />
-      </Row>
-      <Row />
-    </div>
+    </React.Fragment>
   );
 }
 
-function Step3(props) {
-  if (props.currentStep !== 3) {
+function Step4(props) {
+  if (props.currentStep !== 4) {
     return null;
   }
   return (
-    <div className="container" id="step">
+    <React.Fragment>
       <Row>
-        <Col s={12}>
+        <Col>
           <Select
-            defaultValue="default"
             icon="monetization_on"
+            defaultValue="default"
             label="Payment Method"
             name="Payment Method"
             onChange={props.handleChange}
             value={props.values[props.name]}
           >
             <option key="default" value="default" disabled>
-              Payment Method
+              Choose Credit Card
             </option>
             {props.paymentMethods.map(paymentMethod => (
               <option key={paymentMethod.key} value={paymentMethod.value}>
@@ -394,21 +466,22 @@ function Step3(props) {
             label="Subscription"
             value="$5/month"
           />
-          {getPaymentDisplay(props)}
         </Col>
       </Row>
-    </div>
+      <Row>
+        <Col>{getPaymentDisplay(props)}</Col>
+      </Row>
+    </React.Fragment>
   );
 }
-
-function Step4(props) {
-  if (props.currentStep !== 4) {
+function Step5(props) {
+  if (props.currentStep !== 5) {
     return null;
   }
   return (
-    <div className="container" id="step">
-      <Row>
-        <Col s={12}>
+    <React.Fragment>
+      <Row id="agreementBox">
+        <Col s={8} className="container">
           <span>
             This agreement is being made with the VENDOR stated above and SAVERS
             CARD LLC for participation in the SAVERS CARD DISCOUNT PROGRAM. To
@@ -423,28 +496,34 @@ function Step4(props) {
           </span>
         </Col>
       </Row>
-      <Row>
-        <Col s={12}>
+      <br />
+      <Row id="agreementBox">
+        <Col>
           <Checkbox
-            value=""
             label="I understand and agree with the terms and conditions"
+            onChange={props.handleChange}
+            value="Term Agreement"
             filledIn
-            unchecked
+            unchecked={props.values[props.name]}
           />
         </Col>
       </Row>
+      <br />
       <Row>
-        <TextInput
-          s={12}
-          icon="not_interested"
-          label="Vendor Authorized e-signature"
-          placeholder="Please type your full name"
-          name="E Signature"
-          value={props.values[props.name]}
-          onChange={props.handleChange}
-        />
+        <Col s={12}>
+          <TextInput
+            s={12}
+            l={8}
+            icon="verified_user"
+            label="Vendor Authorized e-signature"
+            placeholder="Please type your full name"
+            name="E Signature"
+            value={props.values[props.name]}
+            onChange={props.handleChange}
+          />
+        </Col>
       </Row>
-    </div>
+    </React.Fragment>
   );
 }
 
@@ -453,62 +532,63 @@ function getPaymentDisplay(props) {
 
   if (paymentMethod === "Credit Card") {
     return (
-      <Row>
-        <Col s={12}>
-          <Select
-            defaultValue="default"
-            icon="credit_card"
-            name="Credit Card Type"
-            value={props.values[props.name]}
-            onChange={props.handleChange}
-          >
-            <option key="default" value="default" disabled>
-              Choose Credit Card
+      <React.Fragment>
+        <Select
+          defaultValue="default"
+          icon="credit_card"
+          name="Credit Card Type"
+          onChange={props.handleChange}
+          value={props.values[props.name]}
+        >
+          <option key="default" value="default" disabled>
+            Choose Credit Card
+          </option>
+          {props.creditCards.map(creditCard => (
+            <option key={creditCard.key} value={creditCard.value}>
+              {creditCard.value}
             </option>
-            {props.creditCards.map(creditCard => (
-              <option key={creditCard.key} value={creditCard.value}>
-                {creditCard.value}
-              </option>
-            ))}
-          </Select>
-          <TextInput
-            icon="credit_card"
-            label="Card Number"
-            name="Card Number"
-            value={props.values[props.name]}
-            onChange={props.handleChange}
-          />
-          <DatePicker icon="date_range" label="Expiration Date" />
-          <TextInput
-            icon="credit_card"
-            label="CV Code"
-            name="CV Code"
-            value={props.values[props.name]}
-            onChange={props.handleChange}
-          />
-        </Col>
-      </Row>
+          ))}
+        </Select>
+        <TextInput
+          icon="credit_card"
+          label="Card Number"
+          name="Card Number"
+          value={props.values[props.name]}
+          onChange={props.handleChange}
+        />
+
+        <Row>
+          <Col>
+            <DatePicker icon="date_range" label="Expiration Date" />
+            <TextInput
+              icon="credit_card"
+              label="CV Code"
+              name="CV Code"
+              value={props.values[props.name]}
+              onChange={props.handleChange}
+            />
+          </Col>
+        </Row>
+      </React.Fragment>
     );
   }
   if (paymentMethod === "Invoice") {
     return (
-      <Row>
-        <Col s={12}>
-          <div class="file-field input-field">
-            <Button waves="light" small>
-              <Icon>attach_file</Icon>
-              <input type="file" />
-            </Button>
-            <div class="file-path-wrapper">
-              <input
-                class="file-path validate"
-                type="text"
-                placeholder="Please upload invoice"
-              />
-            </div>
+      <React.Fragment>
+        <div class="file-field input-field">
+          <Button waves="light" small>
+            <Icon>attach_file</Icon>
+            <input type="file" />
+          </Button>
+          <div class="file-path-wrapper">
+            <input
+              class="file-path validate"
+              type="text"
+              placeholder="Please attach invoice"
+            />
           </div>
-        </Col>
-      </Row>
+        </div>
+      </React.Fragment>
     );
   }
   if (paymentMethod === "Promo Code") {

@@ -9,9 +9,9 @@ import {
   Icon,
   Row,
   Select,
-  Textarea,
   TextInput
 } from "react-materialize";
+
 import "../css/wizard.css";
 
 class MasterForm extends Component {
@@ -32,32 +32,6 @@ class MasterForm extends Component {
     "Discount Agreement"
   ];
 
-  discounts = [
-    { key: 1, item: "5%" },
-    { key: 2, item: "10%" },
-    { key: 3, item: "15%" },
-    { key: 4, item: "20%" }
-  ];
-
-  descriptions = [
-    { key: 1, item: "Antiques" },
-    { key: 2, item: "Apparel" },
-    { key: 3, item: "Appliances" },
-    { key: 4, item: "Arts & Crafts" },
-    { key: 5, item: "Automotive/Vehicles" },
-    { key: 6, item: "Beauty & Health" },
-    { key: 7, item: "Books" },
-    { key: 8, item: "Electronics" },
-    { key: 9, item: "Farming/Gardening" },
-    { key: 10, item: "Financial " },
-    { key: 11, item: "Furniture" },
-    { key: 12, item: "Lessons" },
-    { key: 13, item: "Professional Services" },
-    { key: 14, item: "Skilled Services" },
-    { key: 15, item: "Therapeutic" },
-    { key: 16, item: "Travel/Vacation" }
-  ];
-
   creditCards = [
     { key: 1, value: "American Express" },
     { key: 2, value: "MasterCard" },
@@ -72,7 +46,6 @@ class MasterForm extends Component {
 
   handleChange = ({ target }) => {
     let { name, value, type, checked } = target;
-
     if (type === "checkbox") {
       name = value;
       value = checked;
@@ -289,7 +262,16 @@ function Step2(props) {
 
       <Row>
         <Col>
-          <DatePicker s={12} m={6} l={6} icon="date_range" label="Birthdate" />
+          <DatePicker
+            s={12}
+            m={6}
+            l={6}
+            icon="date_range"
+            label="Birthdate"
+            name="Birthdate"
+            onChange={props.handleChange}
+            // value=""
+          />
           <TextInput
             s={12}
             m={6}
@@ -408,7 +390,7 @@ function Step4(props) {
     <React.Fragment>
       <Row>
         <Col>
-          {/* <ul>
+          <ul>
             <li>
               <Checkbox
                 name="DiscountAgreement"
@@ -459,7 +441,7 @@ function Step4(props) {
                 disabled
               />
             </li>
-          </ul> */}
+          </ul>
         </Col>
       </Row>
       <Row id="agreementBox">
@@ -479,7 +461,7 @@ function Step4(props) {
             s={12}
             l={8}
             icon="verified_user"
-            label="Vendor Authorized e-signature"
+            label="User e-signature"
             placeholder="Please type your full name"
             name="E Signature"
             value={props.values[props.name]}
