@@ -11,10 +11,10 @@ import {
   Select,
   TextInput
 } from "react-materialize";
-
+import M from "materialize-css";
 import "../css/wizard.css";
 
-class MasterForm extends Component {
+class SignupUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -549,4 +549,4 @@ function getPaymentDisplay(props) {
     );
   }
 }
-export default MasterForm;
+export default SignupUser;

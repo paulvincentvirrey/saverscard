@@ -13,7 +13,7 @@ import {
 } from "react-materialize";
 import "../css/wizard.css";
 
-class MasterForm extends Component {
+class SignupVendor extends Component {
   constructor(props) {
     super(props);
     this.state = {
