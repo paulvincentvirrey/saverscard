@@ -1,11 +1,15 @@
 import React, { Component } from "react";
-import M from "materialize-css";
-import { Navbar, NavItem } from "react-materialize";
 import { Link } from "react-router-dom";
-import logo from "../img/logo.png";
+import M from "materialize-css";
+import SignupModal from "./signupModal";
 import "../css/navbar.css";
+import logo from "../img/logo.png";
+import { Button, Image, Navbar, NavItem, Row, Route } from "react-materialize";
 
 class NavBar extends Component {
+  constructor(props) {
+    super(props);
+  }
   state = {};
 
   componentDidMount() {
@@ -48,7 +52,10 @@ class NavBar extends Component {
                     <Link to="/signin">Sign In</Link>
                   </li>
                   <li>
-                    <Link to="/signup">Sign Up</Link>
+                    <SignupModal
+                      userRoute="/signUpUser"
+                      vendorRoute="/signUpVendor"
+                    />
                   </li>
                 </div>
               </ul>
