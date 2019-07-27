@@ -1,101 +1,27 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import Button from "@material-ui/core/Button";
-import IconButton from "@material-ui/core/IconButton";
+import { Link as RouterLink } from "react-router-dom";
+import {
+  Container,
+  AppBar,
+  Toolbar,
+  Typography,
+  Button,
+  IconButton,
+  CssBaseline,
+  Divider,
+  Drawer,
+  Hidden,
+  List,
+  ListItem,
+  ListItemText,
+  Link,
+  makeStyles,
+  useTheme
+} from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Divider from "@material-ui/core/Divider";
-import Drawer from "@material-ui/core/Drawer";
-import Hidden from "@material-ui/core/Hidden";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import SignupModal from "./signupModal";
 import "../css/navbar.css";
 import logo from "../img/logo.png";
-import { makeStyles, useTheme } from "@material-ui/core";
-
-// class NavBar extends Component {
-//   constructor(props) {
-//     super(props);
-//   }
-//   state = {};
-
-//   componentDidMount() {
-//     let sideNav = document.querySelectorAll(".sidenav");
-
-//     let options = {
-//       edge: "right"
-//     };
-//     M.Sidenav.init(sideNav, options);
-//   }
-
-//   render() {
-//     return (
-//       <React.Fragment>
-//         <div className="navbar-fixed">
-//           <nav className="main-nav">
-//             <div className="nav-wrapper">
-//               <a href="/" className="brand-logo ">
-//                 <img src={logo} />
-//               </a>
-//               <a
-//                 href="#"
-//                 data-target="mobile-nav"
-//                 className="sidenav-trigger right"
-//               >
-//                 <i className="material-icons">menu</i>
-//               </a>
-//               <ul id="nav-mobile" className="right hide-on-med-and-down">
-//                 <li>
-//                   <a href="#services">Services</a>
-//                 </li>
-//                 <li>
-//                   <a href="#about">About</a>
-//                 </li>
-//                 <li>
-//                   <a href="#contact">Contact Us</a>
-//                 </li>
-//                 <div className="right">
-//                   <li>
-//                     <Link to="/signin">Sign In</Link>
-//                   </li>
-//                   <li>
-//                     <SignupModal
-//                       userRoute="/signUpUser"
-//                       vendorRoute="/signUpVendor"
-//                     />
-//                   </li>
-//                 </div>
-//               </ul>
-//             </div>
-//           </nav>
-//         </div>
-//         <ul id="mobile-nav" className="sidenav right right-aligned">
-//           <li>
-//             <a href="#services">Services</a>
-//           </li>
-//           <li>
-//             <a href="#about">About</a>
-//           </li>
-//           <li>
-//             <a href="#contact">Contact Us</a>
-//           </li>
-//           <li>
-//             <Link to="/signin">Sign In</Link>
-//           </li>
-//           <li>
-//             <Link to="/signup">Sign Up</Link>
-//           </li>
-//         </ul>
-//       </React.Fragment>
-//     );
-//   }
-// }
 
 const drawerWidth = 180;
 
@@ -106,14 +32,14 @@ const useStyles = makeStyles(theme => ({
   appBar: {
     backgroundColor: "#293039"
   },
+  appLogo: {
+    maxHeight: 90,
+    margin: 5
+  },
   menuButton: {
-    marginRight: theme.spacing(2),
-    color: "#ffffff"
+    marginRight: theme.spacing(2)
   },
-  menuItem: {
-    color: "#fffff2"
-  },
-  title: {
+  menu: {
     flexGrow: 1
   },
   sideNav: {
@@ -134,6 +60,8 @@ const NavBar = props => {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
+  const brand = <img src={logo} />;
+
   const handleSideNav = () => {
     setMobileOpen(!mobileOpen);
   };
@@ -149,6 +77,14 @@ const NavBar = props => {
           </ListItem>
         ))}
       </List>
+      <Divider />
+      <List>
+        {["Sign Up", "Sign In"].map((text, index) => (
+          <ListItem button key={text}>
+            <ListItemText primary={text} />
+          </ListItem>
+        ))}
+      </List>
     </div>
   );
 
@@ -156,32 +92,45 @@ const NavBar = props => {
     <div className={classes.root}>
       <CssBaseline />
       <AppBar position="static" className={classes.appBar}>
-        <Toolbar>
-          <Hidden smUp implementation="css">
-            <IconButton
-              edge="start"
-              color="inherit"
-              aria-label="menu"
-              className={classes.menuButton}
-              onClick={handleSideNav}
-            >
-              <MenuIcon />
-            </IconButton>
-          </Hidden>
-          <Typography variant="h6" className={classes.title}>
-            SaversCard
-          </Typography>
-          <Button color="#ffffff">Sign In</Button>
-          <Button color="#ffffff">Sign Up</Button>
-        </Toolbar>
+        <Container>
+          <Toolbar>
+            <Hidden mdUp>
+              <IconButton
+                edge="start"
+                color="inherit"
+                aria-label="menu"
+                className={classes.menuButton}
+                onClick={handleSideNav}
+              >
+                <MenuIcon />
+              </IconButton>
+            </Hidden>
+            <img src={logo} className={classes.appLogo} />
+            <Hidden smDown>
+              <div className={classes.menu}>
+                <Button>Services</Button>
+                <Button>About</Button>
+                <Button>Contact Us</Button>
+              </div>
+              <div className={classes.user}>
+                <Button component={RouterLink} to="/signin">
+                  Sign In
+                </Button>
+                <Button component={RouterLink} to="/signup">
+                  Sign Up
+                </Button>
+              </div>
+            </Hidden>
+          </Toolbar>
+        </Container>
       </AppBar>
       <nav className={classes.sideNav} aria-label="mailbox folders">
         {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-        <Hidden smUp implementation="css">
+        <Hidden mdUp>
           <Drawer
             container={container}
             variant="temporary"
-            anchor={theme.direction === "rtl" ? "right" : "left"}
+            anchor="left" //{theme.direction === "rtl" ? "right" : "left"}
             open={mobileOpen}
             onClose={handleSideNav}
             classes={{
@@ -194,17 +143,6 @@ const NavBar = props => {
             {sideNav}
           </Drawer>
         </Hidden>
-        {/* <Hidden xsDown implementation="css">
-          <Drawer
-            classes={{
-              paper: classes.drawerPaper
-            }}
-            variant="permanent"
-            open
-          >
-            {sideNav}
-          </Drawer>
-        </Hidden> */}
       </nav>
     </div>
   );
