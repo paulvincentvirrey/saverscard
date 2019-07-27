@@ -60,8 +60,6 @@ const NavBar = props => {
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
-  const brand = <img src={logo} />;
-
   const handleSideNav = () => {
     setMobileOpen(!mobileOpen);
   };
