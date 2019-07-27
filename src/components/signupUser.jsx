@@ -521,14 +521,14 @@ function getPaymentDisplay(props) {
   if (paymentMethod === "Invoice") {
     return (
       <React.Fragment>
-        <div class="file-field input-field">
+        <div className="file-field input-field">
           <Button waves="light" small>
             <Icon>attach_file</Icon>
             <input type="file" />
           </Button>
-          <div class="file-path-wrapper">
+          <div className="file-path-wrapper">
             <input
-              class="file-path validate"
+              className="file-path validate"
               type="text"
               placeholder="Please attach invoice"
             />
