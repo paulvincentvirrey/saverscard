@@ -5,12 +5,9 @@ import Footer from "./components/footer";
 import SignIn from "./components/signin";
 import SignUp from "./components/signup";
 import Vendors from "./components/vendors";
-import Filter from "./components/filter";
-import UserSignUp from "./components/signupUser";
-import MapModal from "./components/mapModal";
 import Home from "./components/home";
-import SignupUser from "./components/signupUser";
-import SignupVendor from "./components/signupVendor";
+import SignupUser from "./components/SignupForms/SignupUser";
+import SignupVendor from "./components/SignupForms/SignupVendor";
 
 class App extends Component {
   render() {

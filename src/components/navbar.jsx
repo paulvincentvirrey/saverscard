@@ -19,7 +19,6 @@ import {
   useTheme
 } from "@material-ui/core";
 import MenuIcon from "@material-ui/icons/Menu";
-import SignupModal from "./signupModal";
 import "../css/navbar.css";
 import logo from "../img/logo.png";
 
