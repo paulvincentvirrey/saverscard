@@ -19,7 +19,7 @@ class App extends Component {
         <NavBar />
         <Switch>
           <Route path="/services" component={Footer} />
-          {/* <Route path="/about" component={SignIn} /> */}
+          <Route path="/signin" component={SignIn} />
           <Route path="/contact" component={Vendors} />
           <Route path="/signupUser" component={SignupUser} />
           <Route path="/signupVendor" component={SignupVendor} />
