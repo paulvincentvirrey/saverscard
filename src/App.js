@@ -9,7 +9,7 @@ import UserSignUp from "./components/signupUser";
 import MapModal from "./components/mapModal";
 import Home from "./components/home";
 import SignupUser from "./components/signupUser";
-import SignupVendor from "./components/signupVendor";
+import SignupVendor from "./components/SignupVendor";
 
 class App extends Component {
   render() {
