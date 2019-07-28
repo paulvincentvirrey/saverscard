@@ -84,6 +84,15 @@ export default class SignupVendor extends Component {
     });
   };
 
+  handleDateChange = value => {
+    //setSelectedDate(date);
+    let values = { ...this.state.values, ["birthdate"]: value };
+    console.log(values);
+    this.setState({
+      values: { ...this.state.values, ["birthdate"]: value }
+    });
+  };
+
   categories = [...getCategories(), { _id: "", value: "" }];
   creditCards = [...getCreditCards(), { _id: "", value: "" }];
   discounts = [...getDiscounts(), { _id: "", value: "" }];
@@ -97,6 +106,7 @@ export default class SignupVendor extends Component {
         discounts={this.discounts}
         paymentMethods={this.paymentMethods}
         handleChange={this.handleChange}
+        handleDateChange={this.handleDateChange}
         values={this.state.values}
       />
     );
@@ -172,6 +182,7 @@ function getStepContent(step, props) {
       return (
         <UserInformationForm
           handleChange={props.handleChange}
+          handleDateChange={props.handleDateChange}
           values={props.values}
         />
       );

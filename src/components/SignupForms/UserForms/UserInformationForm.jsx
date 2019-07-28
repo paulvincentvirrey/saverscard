@@ -30,15 +30,10 @@ export default function UserInformationForm(props) {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <MaterialUIPickers />
-          {/* <TextField
-            required
-            name="birthdate"
-            label="Birthdate"
-            fullWidth
-            onChange={props.handleChange}
-            value={props.values[props.name]}
-          /> */}
+          <MaterialUIPickers
+            values={props.values}
+            handleDateChange={props.handleDateChange}
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField

@@ -24,7 +24,6 @@ export default function PaymentForm(props) {
         <Grid item xs={12} md={6}>
           <TextField
             disabled
-            id="subscription"
             name="subscription"
             label="Subscription"
             value="$5/month only"
