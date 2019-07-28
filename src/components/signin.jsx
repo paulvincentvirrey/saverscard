@@ -13,7 +13,7 @@ import {
   Link
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { withStyles, createStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import { userService } from "./../services/userService";
 
 const useStyles = theme => ({

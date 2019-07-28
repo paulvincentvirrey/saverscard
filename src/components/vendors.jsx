@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Container, CssBaseline, Grid, withStyles } from "@material-ui/core";
 import Filter from "./filter";
 import Sort from "./sort";
 import Search from "./search";
@@ -7,37 +8,102 @@ import { getCategories } from "../services/fakeCategoryService";
 import { getVendors } from "./../services/fakeVendorService";
 import "../css/vendors.css";
 
+const useStyles = theme => ({
+  container: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8)
+  },
+  functions: {
+    paddingBottom: theme.spacing(3)
+  }
+});
+
 class Vendors extends Component {
   state = {
     vendors: [],
-    categories: []
+    categories: [],
+    category: "",
+    sortBy: "",
+    search: ""
   };
 
   componentDidMount() {
-    const categories = [{ _id: 0, name: "All Categories" }, ...getCategories()];
+    const categories = [
+      { _id: 0, value: "All Categories" },
+      ...getCategories()
+    ];
     this.setState({ vendors: getVendors(), categories });
   }
 
+  handleChange = ({ target }) => {
+    const { name, value } = target;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  getProcessedData = () => {
+    const { category, sortBy, search, vendors: allVendors } = this.state;
+
+    console.log(allVendors);
+
+    let filtered = allVendors;
+    if (search) {
+      filtered = filtered.filter(v =>
+        v.name.toLowerCase().startsWith(search.toLowerCase())
+      );
+    }
+
+    if (category) {
+      if (category !== "All Categories") {
+        filtered = filtered.filter(v =>
+          v.category.toLowerCase().startsWith(category.toLowerCase())
+        );
+      }
+    }
+
+    return { data: filtered };
+  };
+
   render() {
+    const { classes } = this.props;
+    const { categories, category, sortBy, search } = this.state;
+
+    const { data: vendors } = this.getProcessedData();
+
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col l2 m12 s12">
-            <Filter categories={this.state.categories} />
-          </div>
-          <div className="col l2 m12 s12">
-            <Sort />
-          </div>
-          <div className="col l4 offset-l4 m12 s12 ">
-            <Search />
-          </div>
-        </div>
-        <div className="row">
-          <VendorGrid vendors={this.state.vendors} />
-        </div>
-      </div>
+      <Container className={classes.container} maxWidth="lg">
+        <CssBaseline />
+        <Grid container spacing={3} className={classes.functions}>
+          <Grid item xs={12} md={4}>
+            <Filter
+              name="category"
+              title="Category"
+              items={categories}
+              value={category}
+              handleChange={this.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Sort
+              name="sortBy"
+              title="Sort By"
+              value={sortBy}
+              handleChange={this.handleChange}
+            />
+          </Grid>
+          <Grid item xs={12} md={4}>
+            <Search
+              name="search"
+              value={search}
+              handleChange={this.handleChange}
+            />
+          </Grid>
+        </Grid>
+        <VendorGrid vendors={vendors} />
+      </Container>
     );
   }
 }
 
-export default Vendors;
+export default withStyles(useStyles)(Vendors);
