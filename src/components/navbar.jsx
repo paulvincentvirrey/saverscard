@@ -78,7 +78,12 @@ const NavBar = props => {
       <Divider />
       <List>
         {["Sign Up", "Sign In"].map((text, index) => (
-          <ListItem button key={text}>
+          <ListItem
+            button
+            key={text}
+            component={RouterLink}
+            to={text === "Sign Up" ? "/signup" : "signin"}
+          >
             <ListItemText primary={text} />
           </ListItem>
         ))}
