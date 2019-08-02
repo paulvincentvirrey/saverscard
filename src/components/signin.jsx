@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { withRouter } from "react-router-dom";
 import {
   Avatar,
   Button,
@@ -14,7 +13,8 @@ import {
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { withStyles } from "@material-ui/core/styles";
-import { userService } from "./../services/userService";
+import { authenticationService } from "./../services/authenticationService";
+import { withRouter } from "react-router-dom";
 
 const useStyles = theme => ({
   paper: {
@@ -41,8 +41,6 @@ class SignIn extends Component {
   constructor(props) {
     super(props);
 
-    userService.logout();
-
     this.state = {
       email: "",
       password: "",
@@ -51,16 +49,18 @@ class SignIn extends Component {
       error: ""
     };
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+    // redirect to home if already logged in
+    if (authenticationService.currentUserValue) {
+      this.props.history.push("/");
+    }
   }
 
-  handleChange(e) {
-    const { name, value } = e.target;
+  handleChange = ({ target }) => {
+    const { name, value } = target;
     this.setState({ [name]: value });
-  }
+  };
 
-  handleSubmit(e) {
+  handleSubmit = e => {
     e.preventDefault();
 
     this.setState({ submitted: true });
@@ -72,16 +72,16 @@ class SignIn extends Component {
     }
 
     this.setState({ loading: true });
-    userService.login(email, password).then(
+    authenticationService.login(email, password).then(
       user => {
-        const { from } = this.props.location.state || {
+        const { from } = this.props.history.location.state || {
           from: { pathname: "/vendors" }
         };
         this.props.history.push(from);
       },
       error => this.setState({ error, loading: false })
     );
-  }
+  };
   render() {
     const { classes } = this.props;
     const { email, password, submitted, loading, error } = this.state;
@@ -99,7 +99,6 @@ class SignIn extends Component {
             </Typography>
             <form className={classes.form} onSubmit={this.handleSubmit}>
               <TextField
-                variant="outlined"
                 margin="normal"
                 required
                 fullWidth
@@ -112,7 +111,6 @@ class SignIn extends Component {
                 value={email}
               />
               <TextField
-                variant="outlined"
                 margin="normal"
                 required
                 fullWidth
@@ -157,4 +155,4 @@ class SignIn extends Component {
   }
 }
 
-export default withStyles(useStyles)(SignIn);
+export default withStyles(useStyles)(withRouter(SignIn));

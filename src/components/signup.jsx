@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
+  Button,
   ButtonBase,
   Paper,
   Typography,
@@ -9,6 +10,8 @@ import {
   Container,
   Link
 } from "@material-ui/core";
+import SignupVendor from "./SignupForms/SignupVendor";
+import SignupUser from "./SignupForms/SignupUser";
 import userIcon from "../img/header-bg.jpg";
 
 const useStyles = makeStyles(theme => ({
@@ -91,18 +94,27 @@ const images = [
     url: "../img/header-bg.jpg",
     title: "Sign Up as a User",
     width: "100%",
-    redirectLink: "/signupUser"
+    component: "SignUpUser"
   },
   {
     url: "../img/vendor-icon.jpg",
     title: "Sign Up as a Vendor",
     width: "100%",
-    redirectLink: "/signupVendor"
+    component: "SignUpVendor"
   }
 ];
 
 const SignUp = () => {
   const classes = useStyles();
+  const [signup, setSignup] = React.useState(<div />);
+  const [isSigningUp, setIsSigningUp] = React.useState(false);
+
+  function handleClick(component) {
+    if (component === "SignUpUser") setSignup(<SignupUser />);
+    else setSignup(<SignupVendor />);
+
+    setIsSigningUp(!isSigningUp);
+  }
 
   return (
     <Container maxWidth="md">
@@ -113,40 +125,42 @@ const SignUp = () => {
         className={classes.root}
         spacing={2}
       >
-        {images.map(image => (
-          <Grid item xs={12} md={6} key={image.title}>
-            <ButtonBase
-              focusRipple
-              key={image.title}
-              className={classes.image}
-              focusVisibleClassName={classes.focusVisible}
-              style={{
-                width: image.width
-              }}
-              component={RouterLink}
-              to={image.redirectLink}
-            >
-              <span
-                className={classes.imageSrc}
+        {signup}
+        {!isSigningUp &&
+          images.map(image => (
+            <Grid item xs={12} key={image.title}>
+              <ButtonBase
+                focusRipple
+                key={image.title}
+                className={classes.image}
+                focusVisibleClassName={classes.focusVisible}
                 style={{
-                  backgroundImage: `url(${image.url})`
+                  width: image.width
                 }}
-              />
-              <span className={classes.imageBackdrop} />
-              <span className={classes.imageButton}>
-                <Typography
-                  component="span"
-                  variant="subtitle1"
-                  color="inherit"
-                  className={classes.imageTitle}
-                >
-                  {image.title}
-                  <span className={classes.imageMarked} />
-                </Typography>
-              </span>
-            </ButtonBase>
-          </Grid>
-        ))}
+                component={Button}
+                onClick={() => handleClick(image.component)}
+              >
+                <span
+                  className={classes.imageSrc}
+                  style={{
+                    backgroundImage: `url(${image.url})`
+                  }}
+                />
+                <span className={classes.imageBackdrop} />
+                <span className={classes.imageButton}>
+                  <Typography
+                    component="span"
+                    variant="subtitle1"
+                    color="inherit"
+                    className={classes.imageTitle}
+                  >
+                    {image.title}
+                    <span className={classes.imageMarked} />
+                  </Typography>
+                </span>
+              </ButtonBase>
+            </Grid>
+          ))}
       </Grid>
     </Container>
   );
