@@ -67,7 +67,9 @@ const useStyles = theme => ({
     }
   },
   title: {
-    flexGrow: 1
+    flexGrow: 1,
+    textDecoration: "none",
+    color: "white"
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
