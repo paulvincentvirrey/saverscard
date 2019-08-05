@@ -1,3 +1,10 @@
+const appStatus = [
+  { _id: 1, value: "Approved" },
+  { _id: 2, value: "For Review" },
+  { _id: 3, value: "Pending Requirements" },
+  { _id: 4, value: "Rejected" }
+];
+
 const cardTitles = [
   "Account Details",
   "Vendor Information",
@@ -43,6 +50,10 @@ const paymentMethods = [
   { _id: 2, value: "Invoice" },
   { _id: 3, value: "Promo Code" }
 ];
+
+export function getAppStatus() {
+  return appStatus;
+}
 
 export function getCardTitles() {
   return cardTitles;

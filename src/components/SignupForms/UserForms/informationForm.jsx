@@ -1,6 +1,6 @@
 import React from "react";
 import { Grid, TextField, Typography } from "@material-ui/core";
-import { MaterialUIPickers } from "../DatePicker";
+import { MaterialUIPickers } from "../datePicker";
 
 export default function UserInformationForm(props) {
   return (
