@@ -1,8 +1,8 @@
 import React, { Component } from "react";
-import AccountDetailsForm from "./GeneralForms/AccountDetailsForm";
-import UserInformationForm from "./UserForms/UserInformationForm";
-import PaymentForm from "./GeneralForms/PaymentForm";
-import AgreementForm from "./UserForms/AgreementForm";
+import AccountDetailsForm from "./generalForms/accountDetailsForm";
+import UserInformationForm from "./userForms/informationForm";
+import PaymentForm from "./generalForms/paymentForm";
+import AgreementForm from "./userForms/agreementForm";
 import {
   getCategories,
   getCreditCards,

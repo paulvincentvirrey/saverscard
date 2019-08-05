@@ -10,8 +10,8 @@ import {
   Container,
   Link
 } from "@material-ui/core";
-import SignupVendor from "./SignupForms/SignupVendor";
-import SignupUser from "./SignupForms/SignupUser";
+import SignupVendor from "./signupForms/signupVendor";
+import SignupUser from "./signupForms/signupUser";
 import userIcon from "../img/header-bg.jpg";
 
 const useStyles = makeStyles(theme => ({

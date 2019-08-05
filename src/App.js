@@ -6,8 +6,9 @@ import SignIn from "./components/signin";
 import SignUp from "./components/signup";
 import Vendors from "./components/vendors";
 import Home from "./components/home";
-import SignupUser from "./components/SignupForms/SignupUser";
-import SignupVendor from "./components/SignupForms/SignupVendor";
+import SignupUser from "./components/signupForms/signupUser";
+import SignupVendor from "./components/signupForms/signupVendor";
+import Admin from "./components/admin/admin";
 import PrivateRoute from "./components/privateRoute";
 import { history } from "./helpers/history";
 
@@ -29,6 +30,7 @@ class App extends Component {
             <Route path="/signup" component={SignUp} />
             <Route path="/signupUser" component={SignupUser} />
             <Route path="/signupVendor" component={SignupVendor} />
+            <Route path="/admin" component={Admin} />
             <Route path="/" component={Home} />
           </Switch>
           {/* <Footer /> */}
