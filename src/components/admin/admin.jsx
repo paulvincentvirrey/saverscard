@@ -1,13 +1,6 @@
 import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
-import {
-  Chip,
-  Card,
-  Container,
-  Paper,
-  Typography,
-  Button
-} from "@material-ui/core";
+import { Chip, Card, Grid } from "@material-ui/core";
 // import { withStyles } from "@material-ui/core/styles";
 import { getVendors, getVendor } from "../../services/fakeVendorService";
 import VendorStatus from "./vendorStatus";
@@ -44,7 +37,7 @@ class Admin extends Component {
         }
       },
       {
-        name: "",
+        name: "name",
         label: "Company Name",
         options: {
           filter: true,
@@ -68,6 +61,14 @@ class Admin extends Component {
         }
       },
       {
+        name: "paymentMethod",
+        label: "Payment Method",
+        options: {
+          filter: true,
+          sort: true
+        }
+      },
+      {
         name: "status",
         label: "Application Status",
         options: {
@@ -76,6 +77,14 @@ class Admin extends Component {
           customBodyRender: (value, tableMeta) => {
             return <VendorStatus value={value} index={tableMeta.columnIndex} />;
           }
+        }
+      },
+      {
+        name: "remarks",
+        label: "Remarks",
+        options: {
+          filter: true,
+          sort: false
         }
       },
       {
@@ -116,18 +125,17 @@ class Admin extends Component {
     };
     return (
       <React.Fragment>
-        <Paper>
-          <Container>
-            <Card raised>
-              <MUIDataTable
-                title={"Vendor Consolidation"}
-                data={this.state.data}
-                columns={columns}
-                options={options}
-              />
-            </Card>
-          </Container>
-        </Paper>
+        <Grid container justify="center">
+          <Card raised>
+            <MUIDataTable
+              title={"Vendor Consolidation"}
+              data={this.state.data}
+              columns={columns}
+              options={options}
+            />
+          </Card>
+        </Grid>
+        >
       </React.Fragment>
     );
   }

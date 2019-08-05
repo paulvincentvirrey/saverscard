@@ -2,20 +2,32 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Button,
+  Card,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
   FormControl,
-  Grid,
   MenuItem,
   IconButton,
-  Input,
-  TextField
+  InputAdornment,
+  Paper,
+  TextField,
+  Container,
+  Grid
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
+import { makeStyles } from "@material-ui/styles";
 import VendorInformation from "../signupForms/vendorForms/informationForm";
+import { getAppStatus } from "../../services/fakeCategoryService";
+
+const useStyles = makeStyles(theme => ({
+  dialog: {
+    width: "100%",
+    padding: "2rem"
+  }
+}));
 
 class EditButton extends Component {
   static propTypes = {
@@ -30,6 +42,8 @@ class EditButton extends Component {
     };
   }
 
+  appStatus = getAppStatus();
+
   handleChange = data => {
     // editVendor(data);
     console.log(data);
@@ -42,11 +56,7 @@ class EditButton extends Component {
 
   render() {
     const { data } = this.props;
-    const appStatus = [
-      { _id: 1, value: "Approved" },
-      { _id: 2, value: "Pending Requirements" },
-      { _id: 3, value: "Rejected" }
-    ];
+
     return (
       <FormControl>
         <IconButton aria-label="edit" onClick={() => this.handleChange(data)}>
@@ -56,7 +66,7 @@ class EditButton extends Component {
           data={data}
           isDialogOpen={this.state.isDialogOpen}
           handleClose={this.handleClose}
-          statusList={appStatus}
+          statusList={this.appStatus}
         />
       </FormControl>
     );
@@ -64,34 +74,71 @@ class EditButton extends Component {
 }
 
 function DisplayDialog(props) {
+  const classes = useStyles();
+
   const { isDialogOpen, handleClose, data, statusList } = props;
   return (
     <Dialog
+      className={classes.table}
       open={isDialogOpen}
       onClose={handleClose}
       aria-labelledby="form-dialog-title"
     >
       <DialogTitle id="form-dialog-title">Application Review</DialogTitle>
       <DialogContent>
-        <Grid>
-          <TextField
-            autoFocus
-            label="Business Name"
-            value={data.name}
-            fullWidth
-          />
+        <Container>
+          <Grid>
+            <TextField
+              required
+              name="businessName"
+              label="Business Name"
+              fullWidth
+              // onChange={props.handleChange}
+              value={data.name}
+            />
+          </Grid>
+          <Grid>
+            <TextField
+              required
+              name="discountRate"
+              label="Discount Rate"
+              fullWidth
+              // onChange={props.handleChange}
+              value={data.discountRate}
+            />
+          </Grid>
+          <Grid>
+            <TextField
+              required
+              disabled
+              name="paymentMethod"
+              label="Payment Method"
+              fullWidth
+              // onChange={props.handleChange}
+              value={data.paymentMethod}
+            />
+          </Grid>
           <TextField
             select
             required
             label="Application Status"
             //onChange={props.handleChange}
-            // value={props.values["paymentMethod"]}
             value={data.status}
             fullWidth
           >
             {renderMenuItems(statusList)}
           </TextField>
-        </Grid>
+          <Grid>
+            <TextField
+              required
+              name="remarks"
+              label="Remarks"
+              fullWidth
+              // onChange={props.handleChange}
+              value={data.remarks}
+            />
+          </Grid>
+        </Container>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">

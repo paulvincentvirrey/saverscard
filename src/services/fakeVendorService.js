@@ -7,7 +7,11 @@ const vendors = [
     category: "Appliances",
     address: { latitude: 0, longhitude: 0 },
     discountRate: 20,
-    image: "/img/stores/bestbuy.jpg"
+    image: "/img/stores/bestbuy.jpg",
+    status: "Rejected",
+    paymentMethod: "Credit Card",
+    postmark: "04/29/2019",
+    remarks: "Scam"
   },
   {
     _id: "5b21ca3eeb7f6fbccd471816",
@@ -15,7 +19,11 @@ const vendors = [
     category: "Apparel",
     address: { latitude: 0, longhitude: 0 },
     discountRate: 15,
-    image: "/img/stores/bestbuy.jpg"
+    image: "/img/stores/bestbuy.jpg",
+    status: "Pending Requirements",
+    paymentMethod: "Promo Code",
+    postmark: "04/29/2019",
+    remarks: "Missing ID"
   },
   {
     _id: "5b21ca3eeb7f6fbccd471817",
@@ -23,7 +31,11 @@ const vendors = [
     category: "Apparel",
     address: { latitude: 0, longhitude: 0 },
     discountRate: 10,
-    image: "/img/stores/bestbuy.jpg"
+    image: "/img/stores/bestbuy.jpg",
+    status: "For Review",
+    paymentMethod: "Credit Card",
+    postmark: "04/29/2019",
+    remarks: ""
   },
   {
     _id: "5b21ca3eeb7f6fbccd471818",
@@ -31,7 +43,11 @@ const vendors = [
     category: "Apparel",
     address: { latitude: 0, longhitude: 0 },
     discountRate: 20,
-    image: "/img/stores/bestbuy.jpg"
+    image: "/img/stores/bestbuy.jpg",
+    status: "Rejected",
+    paymentMethod: "Invoice",
+    postmark: "04/29/2019",
+    remarks: "Invalid invoice"
   },
   {
     _id: "5b21ca3eeb7f6fbccd471819",
@@ -39,7 +55,11 @@ const vendors = [
     category: "Lessons",
     address: { latitude: 0, longhitude: 0 },
     discountRate: 15,
-    image: "/img/stores/bestbuy.jpg"
+    image: "/img/stores/bestbuy.jpg",
+    status: "Approved",
+    paymentMethod: "Credit Card",
+    postmark: "04/29/2019",
+    remarks: ""
   },
   {
     _id: "5b21ca3eeb7f6fbccd471820",
@@ -47,15 +67,23 @@ const vendors = [
     category: "Apparel",
     address: { latitude: 0, longhitude: 0 },
     discountRate: 10,
-    image: "/img/stores/bestbuy.jpg"
+    image: "/img/stores/bestbuy.jpg",
+    status: "Approved",
+    paymentMethod: "Invoice",
+    postmark: "04/29/2019",
+    remarks: ""
   },
   {
     _id: "5b21ca3eeb7f6fbccd471821",
     name: "Forever 21",
-    category: "Beauty & Health",
+    category: "Apparel",
     address: { latitude: 0, longhitude: 0 },
     discountRate: 20,
-    image: "/img/stores/bestbuy.jpg"
+    image: "/img/stores/bestbuy.jpg",
+    status: "Pending Requirements",
+    paymentMethod: "Invoice",
+    postmark: "04/29/2019",
+    remarks: "Missing ID"
   },
   {
     _id: "5b21ca3eeb7f6fbccd471822",
@@ -63,7 +91,11 @@ const vendors = [
     category: "Electronics",
     address: { latitude: 0, longhitude: 0 },
     discountRate: 10,
-    image: "/img/stores/bestbuy.jpg"
+    image: "/img/stores/bestbuy.jpg",
+    status: "For Review",
+    paymentMethod: "Promo Code",
+    postmark: "04/29/2019",
+    remarks: ""
   },
   {
     _id: "5b21ca3eeb7f6fbccd471823",
@@ -71,7 +103,35 @@ const vendors = [
     category: "Electronics",
     address: { latitude: 0, longhitude: 0 },
     discountRate: 10,
-    image: "/img/stores/bestbuy.jpg"
+    image: "/img/stores/bestbuy.jpg",
+    status: "Pending Requirements",
+    paymentMethod: "Invoice",
+    postmark: "04/29/2019",
+    remarks: "Missing ID"
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd471012",
+    name: "Zara",
+    category: "Apparel",
+    address: { latitude: 0, longhitude: 0 },
+    discountRate: 10,
+    image: "/img/stores/bestbuy.jpg",
+    status: "Pending Requirements",
+    paymentMethod: "Invoice",
+    postmark: "04/10/2019",
+    remarks: "Missing ID"
+  },
+  {
+    _id: "5b21ca3eeb7f6fbccd471888",
+    name: "Mango",
+    category: "Apparel",
+    address: { latitude: 0, longhitude: 0 },
+    discountRate: 10,
+    image: "/img/stores/bestbuy.jpg",
+    status: "For Review",
+    paymentMethod: "Invoice",
+    postmark: "04/10/2019",
+    remarks: ""
   }
 ];
 
