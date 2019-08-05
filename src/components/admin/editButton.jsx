@@ -86,8 +86,8 @@ function DisplayDialog(props) {
     >
       <DialogTitle id="form-dialog-title">Application Review</DialogTitle>
       <DialogContent>
-        <Container>
-          <Grid>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={12}>
             <TextField
               required
               name="businessName"
@@ -97,17 +97,7 @@ function DisplayDialog(props) {
               value={data.name}
             />
           </Grid>
-          <Grid>
-            <TextField
-              required
-              name="discountRate"
-              label="Discount Rate"
-              fullWidth
-              // onChange={props.handleChange}
-              value={data.discountRate}
-            />
-          </Grid>
-          <Grid>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               disabled
@@ -118,17 +108,30 @@ function DisplayDialog(props) {
               value={data.paymentMethod}
             />
           </Grid>
-          <TextField
-            select
-            required
-            label="Application Status"
-            //onChange={props.handleChange}
-            value={data.status}
-            fullWidth
-          >
-            {renderMenuItems(statusList)}
-          </TextField>
-          <Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              required
+              name="discountRate"
+              label="Discount Rate"
+              fullWidth
+              // onChange={props.handleChange}
+              value={data.discountRate}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <TextField
+              select
+              required
+              label="Application Status"
+              //onChange={props.handleChange}
+              value={data.status}
+              fullWidth
+            >
+              {renderMenuItems(statusList)}
+            </TextField>
+          </Grid>
+          <Grid item xs={12} md={6}>
             <TextField
               required
               name="remarks"
@@ -138,7 +141,7 @@ function DisplayDialog(props) {
               value={data.remarks}
             />
           </Grid>
-        </Container>
+        </Grid>
       </DialogContent>
       <DialogActions>
         <Button onClick={handleClose} color="primary">
