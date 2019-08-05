@@ -16,19 +16,30 @@ import {
 import Carousel from "./carousel";
 import SignIn from "./signin";
 import SignUp from "./signup";
+import logo from "../img/logo.png";
 import Footer from "./footer";
 
 const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     height: "100vh",
-    paddingTop: theme.spacing(20)
+    paddingTop: theme.spacing(5)
+  },
+  appLogo: {
+    maxHeight: 90,
+    margin: "auto",
+    marginTop: 5,
+    marginBottom: 5,
+    justifyContent: "center"
   },
   info: {
     width: 60
   },
   signin: {
     width: 40
+  },
+  tabs: {
+    marginTop: theme.spacing(8)
   },
   tabName: {
     fontSize: 20
@@ -95,12 +106,16 @@ const Home = props => {
 
       <Grid item lg={4} md={12} className={classes.root}>
         <Container>
+          <Box display="flex" justifyContent="center">
+            <img src={logo} className={classes.appLogo} />
+          </Box>
           <Tabs
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
             textColor="primary"
             centered
+            className={classes.tabs}
             // variant="fullWidth"
             // aria-label="full width tabs example"
           >

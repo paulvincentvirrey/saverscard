@@ -7,6 +7,7 @@ import {
   Toolbar,
   Typography,
   Button,
+  Box,
   IconButton,
   CssBaseline,
   Divider,
@@ -26,7 +27,6 @@ import { Role } from "../helpers/role";
 import { authenticationService } from "../services/authenticationService";
 import { history } from "../helpers/history";
 import Menu from "./menuButton";
-import logo from "../img/logo.png";
 import avatar from "../img/gray.jpg";
 
 const drawerWidth = "60%";
@@ -55,8 +55,7 @@ const useStyles = theme => ({
     height: "60%"
   },
   menuButton: {
-    marginRight: theme.spacing(2),
-    position: "absolute"
+    marginRight: theme.spacing(2)
   },
   menu: {
     flexGrow: 1
@@ -66,6 +65,9 @@ const useStyles = theme => ({
       width: drawerWidth,
       flexShrink: 0
     }
+  },
+  title: {
+    flexGrow: 1
   },
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
@@ -108,53 +110,16 @@ class NavBar extends Component {
   render() {
     const { container, classes } = this.props;
     const { mobileOpen, currentUser, isAdmin } = this.state;
-    let userFunction;
-
-    if (currentUser) {
-      userFunction = (
-        <div className={classes.user}>
-          <Menu />
-        </div>
-      );
-    }
-    //  else {
-    //   userFunction = (
-    //     <div className={classes.user}>
-    //       <Button component={RouterLink} to="/signin">
-    //         Sign In
-    //       </Button>
-    //       <Button component={RouterLink} to="/signup">
-    //         Sign Up
-    //       </Button>
-    //     </div>
-    //   );
-    // }
 
     const sideNav = (
       <div>
         {/* <div className={classes.toolbar} /> */}
-        {!currentUser ? (
-          <Typography component="h1" variant="h5" className={classes.appName}>
+
+        <Typography component="h1" variant="h5" className={classes.appName}>
+          <Link component={RouterLink} variant="h5" to="/vendors">
             Saverscard
-          </Typography>
-        ) : (
-          <Grid
-            container
-            justify="center"
-            alignItems="center"
-            className={classes.profile}
-          >
-            {/* <div className=> */}
-            <Avatar src={avatar} className={classes.avatar} />
-            <Typography component="h1" variant="h5">
-              Carmela Pare
-            </Typography>
-            <Typography component="h6" variant="h6">
-              carmelapare@gmail.com
-            </Typography>
-            {/* </div> */}
-          </Grid>
-        )}
+          </Link>
+        </Typography>
 
         <Divider />
         <List>
@@ -164,23 +129,6 @@ class NavBar extends Component {
             </ListItem>
           ))}
         </List>
-        {/* {!currentUser && (
-          <React.Fragment>
-            <Divider />
-            <List>
-              {["Sign Up", "Sign In"].map((text, index) => (
-                <ListItem
-                  button
-                  key={text}
-                  component={RouterLink}
-                  to={text === "Sign Up" ? "/signup" : "/signin"}
-                >
-                  <ListItemText primary={text} />
-                </ListItem>
-              ))}
-            </List>
-          </React.Fragment>
-        )} */}
       </div>
     );
 
@@ -190,27 +138,30 @@ class NavBar extends Component {
         <AppBar position="static" className={classes.appBar}>
           <Container>
             <Toolbar>
-              {/* <Hidden mdUp> */}
-              <IconButton
-                edge="start"
-                color="inherit"
-                aria-label="menu"
-                className={classes.menuButton}
-                onClick={this.handleSideNav}
+              <Hidden lgUp>
+                {!currentUser && (
+                  <IconButton
+                    edge="start"
+                    color="inherit"
+                    aria-label="menu"
+                    className={classes.menuButton}
+                    onClick={this.handleSideNav}
+                  >
+                    <MenuIcon />
+                  </IconButton>
+                )}
+              </Hidden>
+              <Typography
+                className={classes.title}
+                variant="h6"
+                component={RouterLink}
+                to="/vendors"
               >
-                <MenuIcon />
-              </IconButton>
-              {/* </Hidden> */}
-              <img src={logo} className={classes.appLogo} />
-              {/* <Hidden smDown>
-                <div className={classes.menu}>
-                  <Button>Services</Button>
-                  <Button>About</Button>
-                  <Button>Contact Us</Button>
-                </div> */}
-              <Hidden mdDown>{userFunction}</Hidden>
-
-              {/* </Hidden> */}
+                {/* <Link component={RouterLink} to="/vendors"> */}
+                Saverscard
+                {/* </Link> */}
+              </Typography>
+              {currentUser && <Menu />}
             </Toolbar>
           </Container>
         </AppBar>
@@ -230,7 +181,7 @@ class NavBar extends Component {
                 keepMounted: true // Better open performance on mobile.
               }}
             >
-              {sideNav}
+              {!currentUser && sideNav}
             </Drawer>
           </Hidden>
         </nav>

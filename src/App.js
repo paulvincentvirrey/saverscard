@@ -6,6 +6,7 @@ import SignIn from "./components/signin";
 import SignUp from "./components/signup";
 import Vendors from "./components/vendors";
 import Home from "./components/home";
+import Account from "./components/account";
 import SignupUser from "./components/SignupForms/SignupUser";
 import SignupVendor from "./components/SignupForms/SignupVendor";
 import PrivateRoute from "./components/privateRoute";
@@ -23,6 +24,7 @@ class App extends Component {
           <NavBar />
           <Switch>
             <PrivateRoute path="/vendors" component={Vendors} />
+            <PrivateRoute path="/account" component={Account} />
             <Route path="/services" component={Footer} />
             <Route path="/signin" component={SignIn} />
             <Route path="/contact" component={Vendors} />

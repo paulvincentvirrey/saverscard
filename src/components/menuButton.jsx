@@ -1,18 +1,22 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import {
   Avatar,
+  Divider,
   IconButton,
   Menu,
   MenuItem,
   makeStyles
 } from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
 import { authenticationService } from "../services/authenticationService";
 import { history } from "../helpers/history";
 
 const useStyles = makeStyles({
   avatar: {
-    width: 60,
-    height: 60
+    width: 50,
+    height: 50,
+    color: "white"
   }
 });
 
@@ -37,7 +41,7 @@ const MenuButton = ({ name }) => {
   return (
     <div>
       <IconButton onClick={handleClick}>
-        <Avatar className={classes.avatar} />
+        <AccountCircle className={classes.avatar} />
       </IconButton>
       <Menu
         id={name}
@@ -55,8 +59,11 @@ const MenuButton = ({ name }) => {
           horizontal: "center"
         }}
       >
-        <MenuItem onClick={handleClose}>My Account</MenuItem>
-        <MenuItem onClick={handleClose}>Account Settings</MenuItem>
+        <MenuItem disabled>Hi, Carmela Pare!</MenuItem>
+        <Divider />
+        <MenuItem onClick={handleClose} component={RouterLink} to="/account">
+          My Account
+        </MenuItem>
         <MenuItem onClick={logout}>Sign out</MenuItem>
       </Menu>
     </div>

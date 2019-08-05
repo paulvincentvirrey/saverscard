@@ -18,15 +18,11 @@ import { withRouter } from "react-router-dom";
 
 const useStyles = theme => ({
   paper: {
-    marginTop: theme.spacing(8),
+    // marginTop: theme.spacing(8),
     marginBottom: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
     alignItems: "center"
-  },
-  avatar: {
-    margin: theme.spacing(1),
-    backgroundColor: "#39ac9b"
   },
   form: {
     width: "100%", // Fix IE 11 issue.
@@ -51,7 +47,7 @@ class SignIn extends Component {
 
     // redirect to home if already logged in
     if (authenticationService.currentUserValue) {
-      this.props.history.push("/");
+      this.props.history.push("/vendors");
     }
   }
 
@@ -91,12 +87,6 @@ class SignIn extends Component {
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign In
-            </Typography>
             <form className={classes.form} onSubmit={this.handleSubmit}>
               <TextField
                 margin="normal"
