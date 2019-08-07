@@ -2,7 +2,8 @@ import { BehaviorSubject } from "rxjs";
 import { handleResponse } from "../helpers/handleResponse";
 
 const config = {
-  apiUrl: "http://saverscardapi.azurewebsites.net"
+  // apiUrl: "http://saverscardapi.azurewebsites.net"
+  apiUrl: "http://localhost:4000"
 };
 
 const currentUserSubject = new BehaviorSubject(

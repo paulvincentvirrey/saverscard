@@ -97,12 +97,19 @@ export default function VendorInformationForm(props) {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="fax" name="fax" label="Fax" fullWidth />
+          <TextField
+            id="fax"
+            name="fax"
+            label="Fax"
+            onChange={props.handleChange}
+            value={props.values[props.name]}
+            fullWidth
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            name="email"
+            name="authorizedPersonEmail"
             label="E-mail Address"
             fullWidth
             onChange={props.handleChange}

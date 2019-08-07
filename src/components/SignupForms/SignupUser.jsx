@@ -9,6 +9,7 @@ import {
   getDiscounts,
   getPaymentMethods
 } from "../../services/fakeCategoryService";
+import { userService } from "../../services/userService";
 import {
   Button,
   CssBaseline,
@@ -78,10 +79,42 @@ export default class SignupVendor extends Component {
       value = checked;
     }
     let values = { ...this.state.values, [name]: value };
-    console.log(values);
+    console.log(name);
+    // console.log(values);
     this.setState({
       values: { ...this.state.values, [name]: value }
     });
+  };
+
+  handleSubmit = async () => {
+    const { values } = this.state;
+    const filledForm = {
+      accountDetails: {
+        username: values["username"],
+        email: values["email"],
+        password: values["password"]
+      },
+      userProfile: {
+        firstName: values["firstName"],
+        lastName: values["lastName"],
+        birthday: values["birthdate"].toString(),
+        contactNumber: values["contactNumber"],
+        address1: values["addressLine1"],
+        address2: values["addressLine2"],
+        city: values["city"],
+        state: "Texas",
+        zip: values["zip"]
+      },
+      payment: {
+        method: values["paymentMethod"],
+        ccType: values["creditCardType"],
+        subscription: 5.0,
+        promoCode: values["promoCode"]
+      }
+    };
+
+    const user = await userService.createUser(filledForm);
+    console.log(user);
   };
 
   handleDateChange = value => {
@@ -93,10 +126,10 @@ export default class SignupVendor extends Component {
     });
   };
 
-  categories = [...getCategories(), { _id: "", value: "" }];
-  creditCards = [...getCreditCards(), { _id: "", value: "" }];
-  discounts = [...getDiscounts(), { _id: "", value: "" }];
-  paymentMethods = [...getPaymentMethods(), { _id: "", value: "" }];
+  categories = [{ _id: "", value: "" }, ...getCategories()];
+  creditCards = [...getCreditCards()];
+  discounts = [{ _id: "", value: "" }, ...getDiscounts()];
+  paymentMethods = [...getPaymentMethods()];
 
   render() {
     return (
@@ -106,6 +139,7 @@ export default class SignupVendor extends Component {
         discounts={this.discounts}
         paymentMethods={this.paymentMethods}
         handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
         handleDateChange={this.handleDateChange}
         values={this.state.values}
       />
@@ -117,7 +151,8 @@ function Checkout(props) {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
-  const handleNext = () => {
+  const handleNext = e => {
+    if (activeStep === steps.length - 1) props.handleSubmit();
     setActiveStep(activeStep + 1);
   };
 
@@ -153,6 +188,7 @@ function Checkout(props) {
                   )}
                   <Button
                     variant="contained"
+                    type="submit"
                     color="primary"
                     onClick={handleNext}
                     className={classes.button}

@@ -15,7 +15,9 @@ export default function PaymentForm(props) {
             label="Payment Method"
             name="paymentMethod"
             onChange={props.handleChange}
-            value={props.values["paymentMethod"]}
+            value={
+              props.values["paymentMethod"] ? props.values["paymentMethod"] : ""
+            }
             fullWidth
           >
             {renderMenuItems(props.paymentMethods)}
@@ -56,7 +58,11 @@ function getPaymentDisplay(props) {
             label="Credit Card Type"
             name="creditCardType"
             onChange={props.handleChange}
-            value={props.values["creditCardType"]}
+            value={
+              props.values["creditCardType"]
+                ? props.values["creditCardType"]
+                : ""
+            }
             fullWidth
           >
             {renderMenuItems(props.creditCards)}
@@ -79,8 +85,8 @@ function getPaymentDisplay(props) {
         <Grid item xs={12} md={6}>
           <TextField
             required
-            id="cvv"
-            label="CVV"
+            id="cvc"
+            label="CVC"
             helperText="Last three digits on signature strip"
             onChange={props.handleChange}
             value={props.values[props.name]}

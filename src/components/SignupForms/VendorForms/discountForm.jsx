@@ -22,7 +22,11 @@ export default function VendorDiscountForm(props) {
             label="Business Category"
             name="businessCategory"
             onChange={props.handleChange}
-            value={props.values["businessCategory"]}
+            value={
+              props.values["businessCategory"]
+                ? props.values["businessCategory"]
+                : ""
+            }
             fullWidth
           >
             {renderMenuItems(props.categories)}
@@ -35,7 +39,9 @@ export default function VendorDiscountForm(props) {
             name="discountOffer"
             label="Discount Offer"
             onChange={props.handleChange}
-            value={props.values["discountOffer"]}
+            value={
+              props.values["discountOffer"] ? props.values["discountOffer"] : ""
+            }
             fullWidth
           >
             {renderMenuItems(props.discounts)}
@@ -62,7 +68,7 @@ export default function VendorDiscountForm(props) {
 function renderMenuItems(items) {
   return items.map(item => (
     <MenuItem key={item._id} value={item.value}>
-      {item.value}
+      {item.label}
     </MenuItem>
   ));
 }

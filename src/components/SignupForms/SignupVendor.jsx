@@ -10,6 +10,7 @@ import {
   getDiscounts,
   getPaymentMethods
 } from "../../services/fakeCategoryService";
+import { vendorService } from "../../services/vendorService";
 import {
   Button,
   CssBaseline,
@@ -86,10 +87,50 @@ export default class SignupVendor extends Component {
     });
   };
 
-  categories = [...getCategories(), { _id: "", value: "" }];
-  creditCards = [...getCreditCards(), { _id: "", value: "" }];
-  discounts = [...getDiscounts(), { _id: "", value: "" }];
-  paymentMethods = [...getPaymentMethods(), { _id: "", value: "" }];
+  handleSubmit = async () => {
+    const { values } = this.state;
+    const filledForm = {
+      accountDetails: {
+        username: values["username"],
+        email: values["email"],
+        password: values["password"]
+      },
+      vendorInformation: {
+        businessName: values["businessName"],
+        website: values["website"],
+        address1: values["address1"],
+        address2: values["address2"],
+        city: values["city"],
+        state: "Texas",
+        zip: values["zip"],
+        telephone: values["telephone"],
+        fax: values["fax"],
+        authorizedPerson: values["authorizedPerson"],
+        authorizedPersonPhone: values["authorizedPersonPhone"],
+        authorizedPersonEmail: values["authorizedPersonEmail"]
+      },
+      vendorProfile: {
+        vendorCategory: values["businessCategory"],
+        discountInPercent: values["discountOffer"],
+        discountToAll: values["discountCheck"],
+        discountExclusions: values["discountExclusion"]
+      },
+      payment: {
+        method: values["paymentMethod"],
+        ccType: values["creditCardType"],
+        subscription: 5,
+        promoCode: values["promoCode"]
+      }
+    };
+
+    const vendor = await vendorService.createVendor(filledForm);
+    console.log(vendor);
+  };
+
+  categories = [...getCategories()];
+  creditCards = [...getCreditCards()];
+  discounts = [...getDiscounts()];
+  paymentMethods = [...getPaymentMethods()];
 
   render() {
     return (
@@ -99,6 +140,7 @@ export default class SignupVendor extends Component {
         discounts={this.discounts}
         paymentMethods={this.paymentMethods}
         handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
         values={this.state.values}
       />
     );
@@ -110,6 +152,7 @@ function Checkout(props) {
   const [activeStep, setActiveStep] = React.useState(0);
 
   const handleNext = () => {
+    if (activeStep === steps.length - 1) props.handleSubmit();
     setActiveStep(activeStep + 1);
   };
 

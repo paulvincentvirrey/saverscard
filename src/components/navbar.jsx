@@ -112,6 +112,9 @@ class NavBar extends Component {
   render() {
     const { container, classes } = this.props;
     const { mobileOpen, currentUser, isAdmin } = this.state;
+    // const { userProfile } = currentUser;
+
+    console.log(currentUser);
 
     const sideNav = (
       <div>

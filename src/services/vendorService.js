@@ -6,36 +6,36 @@ const config = {
   apiUrl: "http://localhost:4000/api"
 };
 
-export const userService = {
+export const vendorService = {
   getAll,
   getById,
-  createUser
+  createVendor
 };
 
 function getAll() {
   const requestOptions = { method: "GET", headers: authHeader() };
-  return fetch(`${config.apiUrl}/api/users`, requestOptions).then(
+  return fetch(`${config.apiUrl}/api/vendors`, requestOptions).then(
     handleResponse
   );
 }
 
 function getById(id) {
   const requestOptions = { method: "GET", headers: authHeader() };
-  return fetch(`${config.apiUrl}/api/users/${id}`, requestOptions).then(
+  return fetch(`${config.apiUrl}/api/vendors/${id}`, requestOptions).then(
     handleResponse
   );
 }
 
-function createUser(user) {
+function createVendor(vendor) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(user)
+    body: JSON.stringify(vendor)
   };
 
-  return fetch(`${config.apiUrl}/users`, requestOptions)
+  return fetch(`${config.apiUrl}/vendors`, requestOptions)
     .then(handleResponse)
-    .then(user => {
-      return user;
+    .then(vendor => {
+      return vendor;
     });
 }

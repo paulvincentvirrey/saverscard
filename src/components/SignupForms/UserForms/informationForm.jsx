@@ -100,17 +100,6 @@ export default function UserInformationForm(props) {
             value={props.values[props.name]}
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="email"
-            name="email"
-            label="E-mail Address"
-            fullWidth
-            onChange={props.handleChange}
-            value={props.values[props.name]}
-          />
-        </Grid>
       </Grid>
     </React.Fragment>
   );
