@@ -70,8 +70,15 @@ class SignIn extends Component {
     this.setState({ loading: true });
     authenticationService.login(email, password).then(
       user => {
+        let newRoute = "";
+        if (user.role === "Admin") {
+          newRoute = "/admin";
+        } else {
+          newRoute = "/vendors";
+        }
+
         const { from } = this.props.history.location.state || {
-          from: { pathname: "/vendors" }
+          from: { pathname: newRoute }
         };
         this.props.history.push(from);
       },

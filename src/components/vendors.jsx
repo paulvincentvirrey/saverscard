@@ -6,6 +6,7 @@ import Search from "./search";
 import VendorGrid from "./vendorGrid";
 import { getCategories } from "../services/fakeCategoryService";
 import { getVendors } from "./../services/fakeVendorService";
+import { vendorService } from "./../services/vendorService";
 import "../css/vendors.css";
 
 const useStyles = theme => ({
@@ -32,7 +33,13 @@ class Vendors extends Component {
       { _id: 0, value: "All Categories" },
       ...getCategories()
     ];
-    this.setState({ vendors: getVendors(), categories });
+    let vendorList = [];
+    vendorService.getAll().then(vendors => {
+      this.setState({ vendors });
+    });
+
+    this.setState({ categories });
+    // console.log(vendorList);
   }
 
   handleChange = ({ target }) => {
@@ -44,20 +51,18 @@ class Vendors extends Component {
 
   getProcessedData = () => {
     const { category, sortBy, search, vendors: allVendors } = this.state;
-
     console.log(allVendors);
-
     let filtered = allVendors;
     if (search) {
       filtered = filtered.filter(v =>
-        v.name.toLowerCase().startsWith(search.toLowerCase())
+        v.businessName.toLowerCase().startsWith(search.toLowerCase())
       );
     }
 
     if (category) {
       if (category !== "All Categories") {
         filtered = filtered.filter(v =>
-          v.category.toLowerCase().startsWith(category.toLowerCase())
+          v.vendorCategory.toLowerCase().startsWith(category.toLowerCase())
         );
       }
     }

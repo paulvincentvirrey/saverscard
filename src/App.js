@@ -26,13 +26,13 @@ class App extends Component {
           <Switch>
             <PrivateRoute path="/vendors" component={Vendors} />
             <PrivateRoute path="/account" component={Account} />
+            <PrivateRoute path="/admin" roles={["Admin"]} component={Admin} />
             <Route path="/services" component={Footer} />
             <Route path="/signin" component={SignIn} />
             <Route path="/contact" component={Vendors} />
             <Route path="/signup" component={SignUp} />
             <Route path="/signupUser" component={SignupUser} />
             <Route path="/signupVendor" component={SignupVendor} />
-            <Route path="/admin" component={Admin} />
             <Route path="/" component={Home} />
           </Switch>
           {/* <Footer /> */}

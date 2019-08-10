@@ -92,7 +92,7 @@ class NavBar extends Component {
     authenticationService.currentUser.subscribe(x =>
       this.setState({
         currentUser: x,
-        isAdmin: x && x.role === Role.Admin
+        isAdmin: x !== null ? x.isAdmin : false
       })
     );
   }
@@ -109,17 +109,39 @@ class NavBar extends Component {
     });
   };
 
-  render() {
-    const { container, classes } = this.props;
-    const { mobileOpen, currentUser, isAdmin } = this.state;
-    // const { userProfile } = currentUser;
+  showSideNavContent() {
+    const { classes } = this.props;
+    const { isAdmin } = this.state;
 
-    console.log(currentUser);
+    if (isAdmin) {
+      return (
+        <div>
+          <Typography component="h1" variant="h5" className={classes.appName}>
+            <Link component={RouterLink} variant="h5" to="/vendors">
+              Saverscard
+            </Link>
+          </Typography>
 
-    const sideNav = (
+          <Divider />
+          <List>
+            <ListItem button key="Vendors">
+              <ListItemText primary="Vendors" />
+            </ListItem>
+            <ListItem button key="Users">
+              <ListItemText primary="Users" />
+            </ListItem>
+            {/* {["Home", "Services", "About", "Contact Us"].map((text, index) => (
+              <ListItem button key={text}>
+                <ListItemText primary={text} />
+              </ListItem>
+            ))} */}
+          </List>
+        </div>
+      );
+    }
+
+    return (
       <div>
-        {/* <div className={classes.toolbar} /> */}
-
         <Typography component="h1" variant="h5" className={classes.appName}>
           <Link component={RouterLink} variant="h5" to="/vendors">
             Saverscard
@@ -136,6 +158,13 @@ class NavBar extends Component {
         </List>
       </div>
     );
+  }
+
+  render() {
+    const { container, classes } = this.props;
+    const { mobileOpen, currentUser, isAdmin } = this.state;
+
+    const sideNav = this.showSideNavContent();
 
     const navbar = (
       <div className={classes.root}>
@@ -144,7 +173,7 @@ class NavBar extends Component {
           <Container>
             <Toolbar>
               <Hidden lgUp>
-                {!currentUser && (
+                {(!currentUser || currentUser.isAdmin) && (
                   <IconButton
                     edge="start"
                     color="inherit"
@@ -186,7 +215,7 @@ class NavBar extends Component {
                 keepMounted: true // Better open performance on mobile.
               }}
             >
-              {!currentUser && sideNav}
+              {(!currentUser || currentUser.isAdmin) && sideNav}
             </Drawer>
           </Hidden>
         </nav>

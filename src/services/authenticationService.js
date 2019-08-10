@@ -2,8 +2,8 @@ import { BehaviorSubject } from "rxjs";
 import { handleResponse } from "../helpers/handleResponse";
 
 const config = {
-  // apiUrl: "http://saverscardapi.azurewebsites.net"
-  apiUrl: "http://localhost:4000"
+  apiUrl: "http://saverscardapi.azurewebsites.net"
+  // apiUrl: "http://localhost:4000"
 };
 
 const currentUserSubject = new BehaviorSubject(
@@ -30,6 +30,7 @@ function login(email, password) {
     .then(handleResponse)
     .then(user => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
+      user.role = user.isAdmin ? "Admin" : "User";
       localStorage.setItem("currentUser", JSON.stringify(user));
       currentUserSubject.next(user);
 

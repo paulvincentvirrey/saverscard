@@ -62,21 +62,22 @@ const VendorGrid = ({ vendors }) => {
               <CardHeader
                 avatar={
                   <Avatar className={classes.avatar}>
-                    {vendor.discountRate}%
+                    {vendor.discountInPercent}%
                   </Avatar>
                 }
-                title={vendor.name}
-                subheader={vendor.category}
+                title={vendor.businessName}
+                subheader={vendor.vendorCategory}
               />
               <CardMedia
                 className={classes.media}
-                image={window.location.origin + vendor.image}
-                title={vendor.name}
+                image={window.location.origin + vendor.logoPath}
+                // image={window.location.origin + vendor.image}
+                title={vendor.businessName}
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  Get {vendor.discountRate}% off at {vendor.name} on all goods
-                  and services.
+                  Get {vendor.discountInPercent}% off at {vendor.businessName}{" "}
+                  on all goods and services.
                 </Typography>
               </CardContent>
               <CardActions disableSpacing>
