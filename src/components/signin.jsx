@@ -69,14 +69,16 @@ class SignIn extends Component {
 
     this.setState({ loading: true });
     authenticationService.login(email, password).then(
-      user => {
+      x => {
+        const { user } = x;
+
         let newRoute = "";
         if (user.role === "Admin") {
           newRoute = "/admin";
         } else {
           newRoute = "/vendors";
         }
-
+        console.log(newRoute);
         const { from } = this.props.history.location.state || {
           from: { pathname: newRoute }
         };

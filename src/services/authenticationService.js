@@ -28,13 +28,12 @@ function login(email, password) {
 
   return fetch(`${config.apiUrl}/auth/login`, requestOptions)
     .then(handleResponse)
-    .then(user => {
+    .then(x => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
-      user.role = user.isAdmin ? "Admin" : "User";
-      localStorage.setItem("currentUser", JSON.stringify(user));
-      currentUserSubject.next(user);
-
-      return user;
+      x.user.role = x.user.isAdmin ? "Admin" : "User";
+      localStorage.setItem("currentUser", JSON.stringify(x));
+      currentUserSubject.next(x);
+      return x;
     });
 }
 
