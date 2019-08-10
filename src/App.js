@@ -13,6 +13,7 @@ import AdminUsers from "./components/admin/adminUsers";
 import Account from "./components/account";
 import PrivateRoute from "./components/privateRoute";
 import { history } from "./helpers/history";
+import Password from "./components/changePassword";
 
 class App extends Component {
   constructor(props) {
@@ -28,6 +29,7 @@ class App extends Component {
             <PrivateRoute path="/vendors" component={Vendors} />
             <PrivateRoute path="/account" component={Account} />
             <PrivateRoute path="/admin" roles={["Admin"]} component={Admin} />
+            <PrivateRoute path="/changePassword" component={Password} />
             <Route path="/services" component={Footer} />
             <Route path="/signin" component={SignIn} />
             <Route path="/contact" component={Vendors} />
