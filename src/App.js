@@ -9,6 +9,7 @@ import Home from "./components/home";
 import SignupUser from "./components/signupForms/signupUser";
 import SignupVendor from "./components/signupForms/signupVendor";
 import Admin from "./components/admin/admin";
+import AdminUsers from "./components/admin/adminUsers";
 import Account from "./components/account";
 import PrivateRoute from "./components/privateRoute";
 import { history } from "./helpers/history";

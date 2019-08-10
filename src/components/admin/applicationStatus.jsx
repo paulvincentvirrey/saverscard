@@ -2,12 +2,12 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { Chip, FormControl } from "@material-ui/core";
 
-class VendorStatus extends Component {
+class ApplicationStatus extends Component {
   static propTypes = {
     value: PropTypes.string.isRequired
   };
 
-  getChip(value, classes) {
+  getChip(value) {
     let result;
     if (value === "Approved") {
       result = (
@@ -46,4 +46,4 @@ class VendorStatus extends Component {
   }
 }
 
-export default VendorStatus;
+export default ApplicationStatus;

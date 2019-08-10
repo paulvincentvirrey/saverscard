@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
 import { Card, Grid } from "@material-ui/core";
-import { getVendors, getVendor } from "../../services/fakeVendorService";
+import { getUsers, getUser } from "../../services/fakeUserService";
 import ApplicationStatus from "./applicationStatus";
-import EditButton from "./editButton";
+import EditButton2 from "./editButton2";
 
-class Admin extends Component {
+class AdminUsers extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -15,12 +15,12 @@ class Admin extends Component {
 
   componentDidMount() {
     this.setState({
-      data: getVendors()
+      data: getUsers()
     });
   }
 
   render() {
-    const tableTitle = ["Vendor List"];
+    const tableTitle = ["Users List"];
     const { data } = this.state;
 
     console.log(data);
@@ -35,27 +35,19 @@ class Admin extends Component {
         }
       },
       {
-        name: "name",
-        label: "Company Name",
+        name: "lastName",
+        label: "Last Name",
         options: {
           filter: true,
           sort: true
         }
       },
       {
-        name: "category",
-        label: "Category",
+        name: "firstName",
+        label: "First Name",
         options: {
           filter: true,
           sort: true
-        }
-      },
-      {
-        name: "discountRate",
-        label: "Discount Rate",
-        options: {
-          filter: true,
-          sort: false
         }
       },
       {
@@ -104,10 +96,8 @@ class Admin extends Component {
 
           customBodyRender: (value, tableMeta, updateValue) => {
             return (
-              <EditButton
-                data={getVendor(
-                  tableMeta.rowData ? tableMeta.rowData[0] : null
-                )}
+              <EditButton2
+                data={getUser(tableMeta.rowData ? tableMeta.rowData[0] : null)}
               />
             );
           }
@@ -129,7 +119,7 @@ class Admin extends Component {
         <Grid container justify="center">
           <Card raised>
             <MUIDataTable
-              title={"Vendor Consolidation"}
+              title={"Users Consolidation Table"}
               data={this.state.data}
               columns={columns}
               options={options}
@@ -141,4 +131,4 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+export default AdminUsers;

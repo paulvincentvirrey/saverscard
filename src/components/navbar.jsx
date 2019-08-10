@@ -2,32 +2,24 @@ import React, { Component } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import {
   AppBar,
-  Avatar,
   Container,
   Toolbar,
   Typography,
-  Button,
-  Box,
   IconButton,
   CssBaseline,
   Divider,
   Drawer,
-  Grid,
   Hidden,
   List,
   ListItem,
   ListItemText,
-  Link,
-  makeStyles,
-  useTheme
+  Link
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
-import { Role } from "../helpers/role";
 import { authenticationService } from "../services/authenticationService";
 import { history } from "../helpers/history";
 import Menu from "./menuButton";
-import avatar from "../img/gray.jpg";
 
 const drawerWidth = "60%";
 

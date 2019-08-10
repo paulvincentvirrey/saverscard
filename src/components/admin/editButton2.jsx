@@ -2,18 +2,24 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import {
   Button,
+  Card,
   Dialog,
   DialogActions,
   DialogContent,
+  DialogContentText,
   DialogTitle,
   FormControl,
   MenuItem,
   IconButton,
+  InputAdornment,
+  Paper,
   TextField,
+  Container,
   Grid
 } from "@material-ui/core";
 import EditIcon from "@material-ui/icons/Edit";
 import { makeStyles } from "@material-ui/styles";
+import VendorInformation from "../signupForms/vendorForms/informationForm";
 import { getAppStatus } from "../../services/fakeCategoryService";
 
 const useStyles = makeStyles(theme => ({
@@ -23,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-class EditButton extends Component {
+class EditButton2 extends Component {
   static propTypes = {
     data: PropTypes.object,
     onClick: PropTypes.func
@@ -46,12 +52,14 @@ class EditButton extends Component {
       value = checked;
     }
     let values = { ...this.state.values, [name]: value };
+    console.log(values);
     this.setState({
       values: { ...this.state.values, [name]: value }
     });
   };
 
   handleOpen = data => {
+    console.log(data);
     this.setState({ isDialogOpen: true });
   };
 
@@ -92,14 +100,24 @@ function DisplayDialog(props) {
       <DialogTitle id="form-dialog-title">Application Review</DialogTitle>
       <DialogContent>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={12}>
+          <Grid item xs={12} md={6}>
             <TextField
               required
-              name="businessName"
-              label="Business Name"
+              name="lastName"
+              label="Last Name"
               fullWidth
               onChange={props.handleChange}
-              value={data.name}
+              value={data.lastName}
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
+              required
+              name="firstName"
+              label="First Name"
+              fullWidth
+              onChange={props.handleChange}
+              value={data.firstName}
             />
           </Grid>
           <Grid item xs={12} md={6}>
@@ -109,20 +127,10 @@ function DisplayDialog(props) {
               name="paymentMethod"
               label="Payment Method"
               fullWidth
+              // onChange={props.handleChange}
               value={data.paymentMethod}
             />
           </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              required
-              name="discountRate"
-              label="Discount Rate"
-              fullWidth
-              // onChange={props.handleChange}
-              value={data.discountRate}
-            />
-          </Grid>
-
           <Grid item xs={12} md={6}>
             <TextField
               select
@@ -165,4 +173,4 @@ function renderMenuItems(items) {
   ));
 }
 
-export default EditButton;
+export default EditButton2;

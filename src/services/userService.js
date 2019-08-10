@@ -14,14 +14,12 @@ export const userService = {
 
 function getAll() {
   const requestOptions = { method: "GET", headers: authHeader() };
-  return fetch(`${config.apiUrl}/api/users`, requestOptions).then(
-    handleResponse
-  );
+  return fetch(`${config.apiUrl}/users`, requestOptions).then(handleResponse);
 }
 
 function getById(id) {
   const requestOptions = { method: "GET", headers: authHeader() };
-  return fetch(`${config.apiUrl}/api/users/${id}`, requestOptions).then(
+  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(
     handleResponse
   );
 }
