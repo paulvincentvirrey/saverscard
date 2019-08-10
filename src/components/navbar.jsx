@@ -83,8 +83,8 @@ class NavBar extends Component {
   componentDidMount() {
     authenticationService.currentUser.subscribe(x =>
       this.setState({
-        currentUser: x,
-        isAdmin: x !== null ? x.isAdmin : false
+        currentUser: x !== null ? x.user : null,
+        isAdmin: x !== null ? x.user.isAdmin : false
       })
     );
   }
@@ -187,7 +187,11 @@ class NavBar extends Component {
                 Saverscard
                 {/* </Link> */}
               </Typography>
-              {currentUser && <Menu />}
+              {currentUser && (
+                <Menu
+                  name={currentUser.firstName + " " + currentUser.lastName}
+                />
+              )}
             </Toolbar>
           </Container>
         </AppBar>

@@ -9,7 +9,8 @@ const config = {
 export const userService = {
   getAll,
   getById,
-  createUser
+  createUser,
+  updateUser
 };
 
 function getAll() {
@@ -27,11 +28,25 @@ function getById(id) {
 function createUser(user) {
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: authHeader(),
     body: JSON.stringify(user)
   };
 
   return fetch(`${config.apiUrl}/users`, requestOptions)
+    .then(handleResponse)
+    .then(user => {
+      return user;
+    });
+}
+
+function updateUser(id, user) {
+  const requestOptions = {
+    method: "PATCH",
+    headers: authHeader(),
+    body: JSON.stringify(user)
+  };
+
+  return fetch(`${config.apiUrl}/users/${id}`, requestOptions)
     .then(handleResponse)
     .then(user => {
       return user;

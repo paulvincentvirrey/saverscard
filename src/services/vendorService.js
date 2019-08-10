@@ -27,7 +27,7 @@ function getById(id) {
 function createVendor(vendor) {
   const requestOptions = {
     method: "POST",
-    headers: { "Content-Type": "application/json" },
+    headers: authHeader(),
     body: JSON.stringify(vendor)
   };
 

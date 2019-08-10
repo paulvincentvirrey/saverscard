@@ -59,7 +59,7 @@ const MenuButton = ({ name }) => {
           horizontal: "center"
         }}
       >
-        <MenuItem disabled>Hi, Carmela Pare!</MenuItem>
+        <MenuItem disabled>{"Hi, " + name + "!"}</MenuItem>
         <Divider />
         <MenuItem onClick={handleClose} component={RouterLink} to="/account">
           My Account
