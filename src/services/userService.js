@@ -10,7 +10,8 @@ export const userService = {
   getAll,
   getById,
   createUser,
-  updateUser
+  updateUser,
+  updatePassword
 };
 
 function getAll() {
@@ -50,5 +51,19 @@ function updateUser(id, user) {
     .then(handleResponse)
     .then(user => {
       return user;
+    });
+}
+
+function updatePassword(id, password) {
+  const requestOptions = {
+    method: "PATCH",
+    headers: authHeader(),
+    body: JSON.stringify(password)
+  };
+
+  return fetch(`${config.apiUrl}/users/updatepassword/${id}`, requestOptions)
+    .then(handleResponse)
+    .then(m => {
+      return m;
     });
 }
