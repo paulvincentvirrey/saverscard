@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import { Grid, MenuItem, TextField, Typography } from "@material-ui/core";
-import { StripeNumberTextField } from "./../../stripeNumberTextField";
-import { StripeExpiryTextField } from "./../../stripeExpiryTextField";
-import { StripeCVCTextField } from "./../../stripeCVCTextField";
+import { StripeNumberTextField } from "../../stripeNumberTextField";
+import { StripeExpiryTextField } from "../../stripeExpiryTextField";
+import { StripeCVCTextField } from "../../stripeCVCTextField";
 
 class PaymentForm extends Component {
   constructor(props) {

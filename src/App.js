@@ -8,7 +8,8 @@ import Vendors from "./components/vendors";
 import Home from "./components/home";
 import SignupUser from "./components/signupForms/signupUser";
 import SignupVendor from "./components/signupForms/signupVendor";
-import Admin from "./components/admin/admin";
+import AdminVendors from "./components/admin/adminVendors";
+import AdminUsers from "./components/admin/adminUsers";
 import CheckoutForm from "./components/CheckoutForm";
 import Account from "./components/account";
 import PrivateRoute from "./components/privateRoute";
@@ -28,7 +29,16 @@ class App extends Component {
           <Switch>
             <PrivateRoute path="/vendors" component={Vendors} />
             <PrivateRoute path="/account" component={Account} />
-            <PrivateRoute path="/admin" roles={["Admin"]} component={Admin} />
+            <PrivateRoute
+              path="/admin-v"
+              roles={["Admin"]}
+              component={AdminVendors}
+            />
+            <PrivateRoute
+              path="/admin-u"
+              roles={["Admin"]}
+              component={AdminUsers}
+            />
             <PrivateRoute path="/changePassword" component={Password} />
             <Route path="/services" component={Footer} />
             <Route path="/signin" component={SignIn} />

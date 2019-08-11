@@ -1,30 +1,34 @@
 import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
 import { Card, Grid } from "@material-ui/core";
-import { getUsers, getUser } from "../../services/fakeUserService";
+import { userService } from "../../services/userService";
 import ApplicationStatus from "./applicationStatus";
-import EditButton2 from "./editButton2";
+import SummaryFormUsers from "./summaryFormUsers";
 
 class AdminUsers extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      users: []
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      data: getUsers()
+  async componentDidMount() {
+    await userService.getAll().then(users => {
+      this.setState({ users });
     });
+
+    // add this to filter admin users.find(v => !v.isAdmin)
   }
+
+  getUser = id => {
+    return this.state.users.find(v => v._id === id);
+  };
 
   render() {
     const tableTitle = ["Users List"];
-    const { data } = this.state;
-
-    console.log(data);
-
+    const { users } = this.state;
+    console.log(users);
     const columns = [
       {
         name: "_id",
@@ -59,7 +63,7 @@ class AdminUsers extends Component {
         }
       },
       {
-        name: "status",
+        name: "accountStatus",
         label: "Application Status",
         options: {
           filter: true,
@@ -80,7 +84,15 @@ class AdminUsers extends Component {
         }
       },
       {
-        name: "postmark",
+        name: "dateCreated",
+        label: "Memeber Since",
+        options: {
+          filter: true,
+          sort: false
+        }
+      },
+      {
+        name: "dateModified",
         label: "Date Modified",
         options: {
           filter: true,
@@ -93,13 +105,11 @@ class AdminUsers extends Component {
         options: {
           filter: false,
           sort: false,
-
           customBodyRender: (value, tableMeta, updateValue) => {
-            return (
-              <EditButton2
-                data={getUser(tableMeta.rowData ? tableMeta.rowData[0] : null)}
-              />
-            );
+            const { rowData } = tableMeta;
+            if (rowData) {
+              return <SummaryFormUsers data={this.getUser(rowData[0])} />;
+            }
           }
         }
       }
@@ -108,9 +118,10 @@ class AdminUsers extends Component {
     const options = {
       filterType: "dropdown",
       responsive: "scroll",
+      print: false,
       onRowsDelete: rowsDeleted => {
-        rowsDeleted.data.map(rowDeleted =>
-          console.log(this.state.data[rowDeleted.dataIndex])
+        rowsDeleted.users.map(rowDeleted =>
+          console.log(this.state.users[rowDeleted.dataIndex])
         );
       }
     };
@@ -120,7 +131,7 @@ class AdminUsers extends Component {
           <Card raised>
             <MUIDataTable
               title={"Users Consolidation Table"}
-              data={this.state.data}
+              data={this.state.users}
               columns={columns}
               options={options}
             />
