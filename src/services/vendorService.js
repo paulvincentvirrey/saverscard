@@ -9,7 +9,8 @@ const config = {
 export const vendorService = {
   getAll,
   getById,
-  createVendor
+  createVendor,
+  updateVendor
 };
 
 function getAll() {
@@ -32,6 +33,20 @@ function createVendor(vendor) {
   };
 
   return fetch(`${config.apiUrl}/vendors`, requestOptions)
+    .then(handleResponse)
+    .then(vendor => {
+      return vendor;
+    });
+}
+
+function updateVendor(id, vendor) {
+  const requestOptions = {
+    method: "PATCH",
+    headers: authHeader(),
+    body: JSON.stringify(vendor)
+  };
+
+  return fetch(`${config.apiUrl}/vendors/${id}`, requestOptions)
     .then(handleResponse)
     .then(vendor => {
       return vendor;

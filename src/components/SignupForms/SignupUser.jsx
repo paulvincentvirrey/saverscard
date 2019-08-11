@@ -17,6 +17,7 @@ import {
   Paper,
   Typography
 } from "@material-ui/core";
+import { injectStripe } from "react-stripe-elements";
 import { blue } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(theme => ({
@@ -61,16 +62,22 @@ const steps = [
   { _id: 3, name: "Terms and Agreement" }
 ];
 
-export default class SignupVendor extends Component {
+class SignupUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
       values: []
     };
+    console.log(this.props);
   }
 
-  handleChange = ({ target }) => {
-    let { name, value, type, checked } = target;
+  testChange = e => {
+    console.log(e);
+  };
+
+  handleChange = e => {
+    console.log(this.props);
+    let { name, value, type, checked } = e.target;
     if (type === "checkbox") {
       name = value;
       value = checked;
@@ -85,33 +92,34 @@ export default class SignupVendor extends Component {
 
   handleSubmit = async () => {
     const { values } = this.state;
-    const filledForm = {
-      accountDetails: {
-        username: values["username"],
-        email: values["email"],
-        password: values["password"]
-      },
-      userProfile: {
-        firstName: values["firstName"],
-        lastName: values["lastName"],
-        birthday: values["birthdate"].toString(),
-        contactNumber: values["contactNumber"],
-        address1: values["addressLine1"],
-        address2: values["addressLine2"],
-        city: values["city"],
-        state: "Texas",
-        zip: values["zip"]
-      },
-      payment: {
-        method: values["paymentMethod"],
-        ccType: values["creditCardType"],
-        subscription: 5.0,
-        promoCode: values["promoCode"]
-      }
-    };
+    // const filledForm = {
+    //   accountDetails: {
+    //     username: values["username"],
+    //     email: values["email"],
+    //     password: values["password"]
+    //   },
+    //   userProfile: {
+    //     firstName: values["firstName"],
+    //     lastName: values["lastName"],
+    //     birthday: values["birthdate"].toString(),
+    //     contactNumber: values["contactNumber"],
+    //     address1: values["addressLine1"],
+    //     address2: values["addressLine2"],
+    //     city: values["city"],
+    //     state: "Texas",
+    //     zip: values["zip"]
+    //   },
+    //   payment: {
+    //     method: values["paymentMethod"],
+    //     ccType: values["creditCardType"],
+    //     subscription: 5.0,
+    //     promoCode: values["promoCode"]
+    //   }
+    // };
 
-    const user = await userService.createUser(filledForm);
-    console.log(user);
+    // const user = await userService.createUser(filledForm);
+    // console.log(user);
+    console.log(this.props.stripe);
   };
 
   handleDateChange = value => {
@@ -139,6 +147,7 @@ export default class SignupVendor extends Component {
         handleSubmit={this.handleSubmit}
         handleDateChange={this.handleDateChange}
         values={this.state.values}
+        testChange={this.testChange}
       />
     );
   }
@@ -221,13 +230,18 @@ function getStepContent(step, props) {
       );
     case 2:
       return (
+        // <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
+        //   <Elements>
         <PaymentForm
           handleChange={props.handleChange}
           values={props.values}
           categories={props.categories}
           creditCards={props.creditCards}
           paymentMethods={props.paymentMethods}
+          setFormComplete={() => {}}
         />
+        //   </Elements>
+        // </StripeProvider>
       );
     case 3:
       return (
@@ -240,3 +254,5 @@ function getStepContent(step, props) {
       throw new Error("Unknown step");
   }
 }
+
+export default injectStripe(SignupUser, { withRef: true });

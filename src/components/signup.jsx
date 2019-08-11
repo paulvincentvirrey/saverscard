@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core";
 import SignupVendor from "./signupForms/signupVendor";
 import SignupUser from "./signupForms/signupUser";
-import userIcon from "../img/header-bg.jpg";
+import { Elements, StripeProvider } from "react-stripe-elements";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -104,13 +104,20 @@ const images = [
   }
 ];
 
-const SignUp = () => {
+const SignUp = props => {
   const classes = useStyles();
   const [signup, setSignup] = React.useState(<div />);
   const [isSigningUp, setIsSigningUp] = React.useState(false);
 
   function handleClick(component) {
-    if (component === "SignUpUser") setSignup(<SignupUser />);
+    if (component === "SignUpUser")
+      setSignup(
+        <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
+          <Elements>
+            <SignupUser ref={props.innerRef} />
+          </Elements>
+        </StripeProvider>
+      );
     else setSignup(<SignupVendor />);
 
     setIsSigningUp(!isSigningUp);
