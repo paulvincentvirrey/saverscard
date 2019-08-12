@@ -9,6 +9,9 @@ import {
 } from "@material-ui/core";
 
 export default function VendorDiscountForm(props) {
+  const { businessCategory, discountOffer } = props.errors;
+  const businessCategoryError = businessCategory ? true : false;
+  const discountOfferError = discountOffer ? true : false;
   return (
     <React.Fragment>
       <Typography variant="h5" paragraph gutterBottom>
@@ -17,9 +20,12 @@ export default function VendorDiscountForm(props) {
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <TextField
+            error={businessCategoryError}
             select
             required
-            label="Business Category"
+            label={
+              businessCategoryError ? businessCategory : "Business Category"
+            }
             name="businessCategory"
             onChange={props.handleChange}
             value={
@@ -34,10 +40,11 @@ export default function VendorDiscountForm(props) {
         </Grid>
         <Grid item xs={12} md={6}>
           <TextField
+            error={discountOfferError}
             select
             required
             name="discountOffer"
-            label="Discount Offer"
+            label={discountOfferError ? discountOffer : "Discount Offer"}
             onChange={props.handleChange}
             value={
               props.values["discountOffer"] ? props.values["discountOffer"] : ""
@@ -74,15 +81,20 @@ function renderMenuItems(items) {
 }
 
 function getDiscountDisplay(props) {
+  const { discountExclusion } = props.errors;
+  const discountExclusionError = discountExclusion ? true : false;
   const checked = props.values["discountCheck"];
   if (!checked) {
     return (
       <React.Fragment>
         <Grid item xs={12} sm={12}>
           <TextField
+            error={discountExclusionError}
             required
             name="discountExclusion"
-            label="Discount Exclusion"
+            label={
+              discountExclusionError ? discountExclusion : "Discount Exclusion"
+            }
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}

@@ -114,11 +114,18 @@ const SignUp = props => {
       setSignup(
         <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
           <Elements>
-            <SignupUser ref={props.innerRef} />
+            <SignupUser />
           </Elements>
         </StripeProvider>
       );
-    else setSignup(<SignupVendor />);
+    else
+      setSignup(
+        <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
+          <Elements>
+            <SignupVendor />
+          </Elements>
+        </StripeProvider>
+      );
 
     setIsSigningUp(!isSigningUp);
   }

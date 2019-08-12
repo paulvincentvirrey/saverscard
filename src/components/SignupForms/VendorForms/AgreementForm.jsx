@@ -8,6 +8,9 @@ import {
 } from "@material-ui/core";
 
 export default function AgreementForm(props) {
+  const { agreementCheck, esignature } = props.errors;
+  const agreementCheckError = agreementCheck ? true : false;
+  const esignatureError = esignature ? true : false;
   return (
     <React.Fragment>
       <Typography variant="h5" paragraph gutterBottom>
@@ -42,9 +45,10 @@ export default function AgreementForm(props) {
         </Grid>
         <Grid item xs={12}>
           <TextField
+            error={esignatureError}
             required
             name="esignature"
-            label="E-signature"
+            label={esignatureError ? esignature : "E-signature"}
             helperText="Please enter your full name"
             fullWidth
             onChange={props.handleChange}

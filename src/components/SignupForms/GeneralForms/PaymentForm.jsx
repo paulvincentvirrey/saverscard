@@ -108,7 +108,6 @@ class PaymentForm extends Component {
               fullWidth
             />
           </Grid>
-          <button onClick={this.submit}>Send</button>
         </React.Fragment>
       );
     }
