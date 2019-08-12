@@ -83,17 +83,15 @@ class NavBar extends Component {
 
   componentDidMount() {
     authenticationService.currentUser.subscribe(x => {
-      if (x) {
-        this.setState({
-          currentUser: x.account,
-          isAdmin: x.account.isAdmin,
-          loginType: x.loginType
-        });
-      }
+      this.setState({
+        currentUser: x !== null ? x.account : null,
+        isAdmin: x !== null ? x.account.isAdmin : false,
+        loginType: x !== null ? x.loginType : "user"
+      });
     });
   }
 
-  logout() {
+  handleLogout() {
     console.log("LOG OUT!");
     authenticationService.logout();
     history.push("/");
@@ -196,7 +194,13 @@ class NavBar extends Component {
                 Saverscard
                 {/* </Link> */}
               </Typography>
-              {currentUser && <Menu name={displayName} loginType={loginType} />}
+              {currentUser && (
+                <Menu
+                  name={displayName}
+                  loginType={loginType}
+                  handleLogout={this.handleLogout}
+                />
+              )}
             </Toolbar>
           </Container>
         </AppBar>

@@ -20,15 +20,9 @@ const useStyles = makeStyles({
   }
 });
 
-const MenuButton = ({ name, loginType }) => {
+const MenuButton = ({ name, loginType, handleLogout }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
-
-  function logout() {
-    console.log("LOG OUT!");
-    authenticationService.logout();
-    history.push("/");
-  }
 
   function handleClick(event) {
     setAnchorEl(event.currentTarget);
@@ -76,7 +70,7 @@ const MenuButton = ({ name, loginType }) => {
         >
           My Account
         </MenuItem>
-        <MenuItem onClick={logout}>Sign out</MenuItem>
+        <MenuItem onClick={handleLogout}>Sign out</MenuItem>
       </Menu>
     </div>
   );
