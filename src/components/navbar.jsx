@@ -83,8 +83,8 @@ class NavBar extends Component {
   componentDidMount() {
     authenticationService.currentUser.subscribe(x =>
       this.setState({
-        currentUser: x !== null ? x.user : null,
-        isAdmin: x !== null ? x.user.isAdmin : false
+        currentUser: x !== null ? x.account : null,
+        isAdmin: x !== null ? x.account.isAdmin : false
       })
     );
   }
@@ -155,7 +155,12 @@ class NavBar extends Component {
   render() {
     const { container, classes } = this.props;
     const { mobileOpen, currentUser, isAdmin } = this.state;
-
+    let displayName;
+    if (currentUser) {
+      displayName = currentUser.businessName
+        ? currentUser.businessName
+        : currentUser.firstName + " " + currentUser.lastName;
+    }
     const sideNav = this.showSideNavContent();
 
     const navbar = (
@@ -187,11 +192,7 @@ class NavBar extends Component {
                 Saverscard
                 {/* </Link> */}
               </Typography>
-              {currentUser && (
-                <Menu
-                  name={currentUser.firstName + " " + currentUser.lastName}
-                />
-              )}
+              {currentUser && <Menu name={displayName} />}
             </Toolbar>
           </Container>
         </AppBar>

@@ -51,11 +51,11 @@ class Password extends Component {
 
   componentDidMount() {
     authenticationService.currentUser.subscribe(x => {
-      const { user } = x;
+      const { account } = x;
 
       this.setState({
-        id: user["_id"],
-        oldOrigPassword: user["password"]
+        id: account["_id"],
+        oldOrigPassword: account["password"]
       });
     });
   }

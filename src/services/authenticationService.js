@@ -30,7 +30,7 @@ function login(loginAs, email, password) {
     .then(handleResponse)
     .then(x => {
       // store user details and jwt token in local storage to keep user logged in between page refreshes
-      x.user.role = x.user.isAdmin ? "Admin" : "User";
+      x.account.role = x.account.isAdmin ? "Admin" : "User";
       localStorage.setItem("currentUser", JSON.stringify(x));
       currentUserSubject.next(x);
       return x;

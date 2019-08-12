@@ -90,21 +90,21 @@ class Account extends Component {
 
   componentDidMount() {
     authenticationService.currentUser.subscribe(x => {
-      const { user } = x;
+      const { account } = x;
 
       this.setState({
-        id: user._id,
-        status: user.accountStatus,
-        lastName: user.lastName,
-        firstName: user.firstName,
-        dateModified: user.dateModified,
-        username: user.username,
-        email: user.email,
-        addr1: user.address1,
-        addr2: user.address2,
-        city: user.city,
-        zipCode: user.zip,
-        contactNumber: user.contactNumber
+        id: account._id,
+        status: account.accountStatus,
+        lastName: account.lastName,
+        firstName: account.firstName,
+        dateModified: account.dateModified,
+        username: account.username,
+        email: account.email,
+        addr1: account.address1,
+        addr2: account.address2,
+        city: account.city,
+        zipCode: account.zip,
+        contactNumber: account.contactNumber
       });
     });
   }

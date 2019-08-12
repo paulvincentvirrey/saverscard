@@ -99,19 +99,19 @@ class SignIn extends Component {
     this.setState({ loading: true });
     authenticationService.login(loginAs, email, password).then(
       x => {
-        const { user } = x;
-
+        const { account } = x;
         let newRoute = "";
-        if (user.role === "Admin") {
+        if (account.role === "Admin") {
           newRoute = "/admin-v";
         } else {
           newRoute = "/vendors";
         }
-        console.log(newRoute);
+        console.log(account);
         const { from } = this.props.history.location.state || {
           from: { pathname: newRoute }
         };
         this.props.history.push(from);
+        console.log(account);
       },
       error => this.setState({ error, loading: false })
     );
