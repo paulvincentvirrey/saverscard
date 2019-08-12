@@ -218,7 +218,7 @@ class SummaryFormUsers extends Component {
                   required
                   label="Application Status"
                   onChange={this.handleChange}
-                  value={this.state.status}
+                  value={this.state.status ? this.state.status : ""}
                   fullWidth
                 >
                   {renderMenuItems(getAppStatus())}

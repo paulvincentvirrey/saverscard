@@ -115,27 +115,36 @@ class Account extends Component {
   handleValidation() {
     let formIsValid = true;
     const { username, contactNumber, addr1, addr2, zipCode, city } = this.state;
+
+    // Username
     if (typeof username !== "undefined") {
       if (!username.match(/^\w+$/)) {
         this.state.errors["username"] = "Invalid username";
       }
+    } else {
+      this.state.errors["username"] = "Invalid username";
     }
 
+    // Contact Number
     if (typeof contactNumber !== "undefined") {
       if (
         !contactNumber.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)
       ) {
         this.state.errors["contactNumber"] = "Invalid contact number";
       }
+    } else {
+      this.state.errors["contactNumber"] = "Invalid contact number";
     }
 
+    // Zip code
     if (typeof zipCode !== "undefined") {
       console.log(typeof zipCode);
       if (!zipCode.toString().match(/^[7|8][0-9]{0,5}$/)) {
         this.state.errors["zipCode"] = "Invalid zip code";
       }
+    } else {
+      this.state.errors["contactNumber"] = "Invalid contact number";
     }
-    console.log(this.state.errors);
 
     if (Object.keys(this.state.errors).length > 0) {
       formIsValid = false;

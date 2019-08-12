@@ -90,12 +90,12 @@ class VendorAccount extends Component {
       zip: "",
       telephone: "",
       fax: "",
-      authorizedPerson: "",
-      authorizedPersonPhone: "",
-      authorizedPersonEmail: "",
-      // logoPath: "/img/stores/hm.png",
+      authPersonName: "",
+      authPersonPhone: "",
+      authPersonEmail: "",
       vendorCategory: "",
       discountInPercent: "",
+      discountToAll: "",
       discountToAll: "",
       applicationStatus: "",
       //dateCreated: dateCreated,
@@ -107,6 +107,13 @@ class VendorAccount extends Component {
     authenticationService.currentUser.subscribe(x => {
       if (x) {
         const { account } = x;
+        let discountExclusions = account.discountExclusions;
+        if (account.discountToAll) {
+          console.log("here: discounttoAll");
+          console.log(account.discountToAll);
+          discountExclusions =
+            "None (Discount applies to all products/services)";
+        }
 
         this.setState({
           id: account._id,
@@ -121,18 +128,17 @@ class VendorAccount extends Component {
           zip: account.zip,
           telephone: account.telephone,
           fax: account.fax,
-          authorizedPerson: account.authorizedPerson,
-          authorizedPersonPhone: account.authorizedPersonPhone,
-          authorizedPersonEmail: account.authorizedPersonEmail,
-          // logoPath: "/img/stores/hm.png",
-          accountCategory: account.accountCategory,
+          authPersonName: account.authorizedPerson,
+          authPersonPhone: account.authorizedPersonPhone,
+          authPersonEmail: account.authorizedPersonEmail,
+          vendorCategory: account.vendorCategory,
           discountInPercent: account.discountInPercent,
           discountToAll: account.discountToAll,
           paymentMethod: account.paymentMethod,
           ccType: account.ccType,
           applicationStatus: account.applicationStatus,
-          //dateCreated: dateCreated,
-          discountExclusions: account.discountExclusions
+          //dateCreated: account.dateCreated,
+          discountExclusions: discountExclusions
         });
       }
     });
@@ -266,7 +272,7 @@ class VendorAccount extends Component {
       zip,
       telephone,
       fax,
-      authPerson,
+      authPersonName,
       authPersonPhone,
       authPersonEmail,
       // logoPath: "/img/stores/hm.png",
@@ -283,6 +289,13 @@ class VendorAccount extends Component {
     });
 
     if (this.handleValidation()) {
+      var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var yyyy = today.getFullYear();
+
+      today = mm + "/" + dd + "/" + yyyy;
+
       const updatedForm = {
         _id: id,
         username: username,
@@ -296,21 +309,22 @@ class VendorAccount extends Component {
         zip: zip,
         telephone: telephone,
         fax: fax,
-        authorizedPerson: authPerson,
+        authorizedPerson: authPersonName,
         authorizedPersonPhone: authPersonPhone,
         authorizedPersonEmail: authPersonEmail,
-        // logoPath: "/img/stores/hm.png",
         vendorCategory: vendorCategory,
         discountInPercent: discountInPercent,
         discountToAll: discountToAll,
         applicationStatus: applicationStatus,
+        dateModified: today,
         //dateCreated: dateCreated,
         discountExclusions: discountExclusions
       };
-      //   const user = await userService.updateUser(id, updatedForm);
+      //const vendor = await vendorService.updateVendor(id, updatedForm);
       console.log(updatedForm);
     }
     this.handleClose();
+    //this.handleClose2();
   };
 
   handleOpen = data => {
@@ -456,11 +470,11 @@ class VendorAccount extends Component {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      name="zipCode"
+                      name="zip"
                       label="Zip Code"
                       fullWidth
                       onChange={this.handleChange}
-                      value={this.state.zipCode}
+                      value={this.state.zip}
                     />
                   </Grid>
                   <Grid item xs={12} sm={6}>
@@ -514,7 +528,11 @@ class VendorAccount extends Component {
                       required
                       label="Vendor Category"
                       onChange={this.handleChange}
-                      value={this.state.category}
+                      value={
+                        this.state.vendorCategory
+                          ? this.state.vendorCategory
+                          : ""
+                      }
                       fullWidth
                     >
                       {renderMenuItems(getCategories())}
@@ -526,7 +544,11 @@ class VendorAccount extends Component {
                       required
                       label="Discount Offer"
                       onChange={this.handleChange}
-                      value={this.state.discount}
+                      value={
+                        this.state.discountInPercent
+                          ? this.state.discountInPercent
+                          : ""
+                      }
                       fullWidth
                     >
                       {renderMenuItems(getDiscounts())}
@@ -534,7 +556,6 @@ class VendorAccount extends Component {
                   </Grid>
                   <Grid item xs={12} sm={12}>
                     <TextField
-                      disabled
                       name="discountExclusions"
                       label="Discount Exclusions"
                       fullWidth

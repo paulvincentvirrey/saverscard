@@ -10,7 +10,8 @@ export const vendorService = {
   getAll,
   getById,
   createVendor,
-  updateVendor
+  updateVendor,
+  updatePassword
 };
 
 function getAll() {
