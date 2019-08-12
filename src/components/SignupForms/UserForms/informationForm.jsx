@@ -58,7 +58,6 @@ export default function UserInformationForm(props) {
         </Grid>
         <Grid item xs={12}>
           <TextField
-            required
             name="addressLine2"
             label="Address Line 2"
             fullWidth

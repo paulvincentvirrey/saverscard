@@ -69,12 +69,14 @@ class Password extends Component {
       confirmPassword
     } = this.state;
 
+    // Old Password
     if (typeof oldPassword !== "undefined" && confirmPassword !== "") {
       if (oldPassword !== oldOrigPassword) {
         this.state.errors["oldPassword"] = "Old password is incorrect";
       }
     }
 
+    // New Password
     if (typeof newPassword !== "undefined" && newPassword !== "") {
       if (newPassword !== oldOrigPassword) {
         if (!newPassword.match(/^(?=.*\d).{8,16}$/)) {
@@ -86,6 +88,7 @@ class Password extends Component {
       }
     }
 
+    // Confirm Password
     if (typeof confirmPassword !== "undefined" && confirmPassword !== "") {
       if (confirmPassword !== newPassword) {
         this.state.errors["confirmPassword"] = "Password did not match";

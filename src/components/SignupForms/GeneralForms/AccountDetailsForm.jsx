@@ -34,7 +34,6 @@ export default function AccountDetailsForm(props) {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="standard-password-input"
             type="password"
             name="password"
             label="Password"
@@ -46,7 +45,6 @@ export default function AccountDetailsForm(props) {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="standard-password-input"
             type="password"
             label="Confirm Password"
             name="confirmPassword"
