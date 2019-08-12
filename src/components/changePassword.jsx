@@ -5,6 +5,9 @@ import {
   CardActions,
   CardContent,
   CssBaseline,
+  Dialog,
+  DialogActions,
+  DialogContent,
   Grid,
   TextField,
   Typography
@@ -12,8 +15,7 @@ import {
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import { authenticationService } from "../services/authenticationService";
-import { userService } from "../services/userService";
-import moment from "react-moment";
+import { vendorService } from "../services/vendorService";
 
 const useStyles = theme => ({
   card: {
@@ -51,12 +53,14 @@ class Password extends Component {
 
   componentDidMount() {
     authenticationService.currentUser.subscribe(x => {
-      const { account } = x;
+      if (x) {
+        const { account } = x;
 
-      this.setState({
-        id: account["_id"],
-        oldOrigPassword: account["password"]
-      });
+        this.setState({
+          id: account["_id"],
+          oldOrigPassword: account["password"]
+        });
+      }
     });
   }
 
@@ -117,7 +121,6 @@ class Password extends Component {
     this.setState({
       errors: {}
     });
-    console.log(this.state.errors);
 
     if (this.handleValidation()) {
       console.log("Congrats no errors!");
@@ -125,8 +128,17 @@ class Password extends Component {
         currentPassword: oldOrigPassword,
         newPassword: newPassword
       };
-      const user = await userService.updatePassword(id, updatedForm);
+      const vendor = await vendorService.updatePassword(id, updatedForm);
     }
+    this.handleClose();
+  };
+
+  handleOpen = data => {
+    this.setState({ isDialogOpen: true });
+  };
+
+  handleClose = () => {
+    this.setState({ isDialogOpen: false });
   };
 
   render() {
@@ -188,11 +200,41 @@ class Password extends Component {
                 variant="contained"
                 type="submit"
                 color="primary"
-                onClick={this.handleSubmit}
+                onClick={this.handleOpen}
                 className={classes.button}
               >
                 Save
               </Button>
+              <div>
+                <Dialog
+                  className={classes.table}
+                  open={this.state.isDialogOpen}
+                  onClose={this.handleClose}
+                >
+                  <DialogContent>
+                    <Typography variant="h6" component="p">
+                      Do you want to save changes?
+                    </Typography>
+                  </DialogContent>
+                  <DialogActions>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      type="submit"
+                      onClick={this.handleSubmit}
+                    >
+                      Save
+                    </Button>
+                    <Button
+                      variant="contained"
+                      color="secondary"
+                      onClick={this.handleClose}
+                    >
+                      Cancel
+                    </Button>
+                  </DialogActions>
+                </Dialog>
+              </div>
             </CardActions>
           </Card>
         </main>
