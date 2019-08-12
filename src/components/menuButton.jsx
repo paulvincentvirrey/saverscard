@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   }
 });
 
-const MenuButton = ({ name }) => {
+const MenuButton = ({ name, loginType }) => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -36,6 +36,14 @@ const MenuButton = ({ name }) => {
 
   function handleClose() {
     setAnchorEl(null);
+  }
+
+  function renderMenu() {
+    if (loginType === "user") {
+      return "/account";
+    }
+
+    return "/account-v";
   }
 
   return (
@@ -59,9 +67,13 @@ const MenuButton = ({ name }) => {
           horizontal: "center"
         }}
       >
-        <MenuItem disabled>{"Hi, " + name + "!"}</MenuItem>
+        <MenuItem disabled>{"Welcome, " + name + "!"}</MenuItem>
         <Divider />
-        <MenuItem onClick={handleClose} component={RouterLink} to="/account">
+        <MenuItem
+          onClick={handleClose}
+          component={RouterLink}
+          to={renderMenu()}
+        >
           My Account
         </MenuItem>
         <MenuItem onClick={logout}>Sign out</MenuItem>

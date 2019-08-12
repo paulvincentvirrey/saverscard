@@ -105,7 +105,6 @@ class SummaryForm extends Component {
       zipCode,
       telephone,
       fax,
-      authPersonName,
       authPersonEmail,
       authPersonPhone
     } = this.state;
@@ -119,6 +118,8 @@ class SummaryForm extends Component {
       ) {
         this.state.errors["website"] = "Invalid website";
       }
+    } else {
+      this.state.errors["website"] = "Invalid website";
     }
 
     // Email Address
@@ -126,6 +127,8 @@ class SummaryForm extends Component {
       if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
         this.state.errors["email"] = "Invalid e-mail address";
       }
+    } else {
+      this.state.errors["email"] = "Invalid e-mail address";
     }
 
     // Fax
@@ -137,6 +140,8 @@ class SummaryForm extends Component {
       ) {
         this.state.errors["fax"] = "Invalid fax number";
       }
+    } else {
+      this.state.errors["fax"] = "Invalid fax number";
     }
 
     // Telphone
@@ -144,6 +149,8 @@ class SummaryForm extends Component {
       if (!telephone.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)) {
         this.state.errors["telephone"] = "Invalid telephone number";
       }
+    } else {
+      this.state.errors["telephone"] = "Invalid telephone number";
     }
 
     // Zip Code
@@ -156,17 +163,8 @@ class SummaryForm extends Component {
       ) {
         this.state.errors["zipCode"] = "Invalid zip code";
       }
-    }
-
-    // Authorized Person Name
-    if (typeof authPersonName !== "undefined") {
-      if (
-        !authPersonName
-          .toString()
-          .match(/^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/)
-      ) {
-        this.state.errors["authPersonName"] = "Invalid authorized person name";
-      }
+    } else {
+      this.state.errors["zipCode"] = "Invalid zip code";
     }
 
     // Authorized Person Email
@@ -179,6 +177,9 @@ class SummaryForm extends Component {
         this.state.errors["authPersonEmail"] =
           "Invalid authorized person e-mail address";
       }
+    } else {
+      this.state.errors["authPersonEmail"] =
+        "Invalid authorized person e-mail address";
     }
 
     // Authorized Person Phone
@@ -191,7 +192,11 @@ class SummaryForm extends Component {
         this.state.errors["authPersonPhone"] =
           "Invalid authorized person contact number";
       }
+    } else {
+      this.state.errors["authPersonPhone"] =
+        "Invalid authorized person contact number";
     }
+
     console.log(this.state.errors);
     if (Object.keys(this.state.errors).length > 0) {
       formIsValid = false;

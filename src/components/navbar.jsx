@@ -75,6 +75,7 @@ class NavBar extends Component {
 
     this.state = {
       currentUser: null,
+      loginType: "user",
       isAdmin: false,
       mobileOpen: false
     };
@@ -85,7 +86,8 @@ class NavBar extends Component {
       if (x) {
         this.setState({
           currentUser: x.account,
-          isAdmin: x.account.isAdmin
+          isAdmin: x.account.isAdmin,
+          loginType: x.loginType
         });
       }
     });
@@ -156,7 +158,7 @@ class NavBar extends Component {
 
   render() {
     const { container, classes } = this.props;
-    const { mobileOpen, currentUser, isAdmin } = this.state;
+    const { mobileOpen, currentUser, loginType, isAdmin } = this.state;
     let displayName;
     if (currentUser) {
       displayName = currentUser.businessName
@@ -194,7 +196,7 @@ class NavBar extends Component {
                 Saverscard
                 {/* </Link> */}
               </Typography>
-              {currentUser && <Menu name={displayName} />}
+              {currentUser && <Menu name={displayName} loginType={loginType} />}
             </Toolbar>
           </Container>
         </AppBar>
