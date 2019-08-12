@@ -52,3 +52,17 @@ function updateVendor(id, vendor) {
       return vendor;
     });
 }
+
+function updatePassword(id, password) {
+  const requestOptions = {
+    method: "PATCH",
+    headers: authHeader(),
+    body: JSON.stringify(password)
+  };
+
+  return fetch(`${config.apiUrl}/vendors/updatepassword/${id}`, requestOptions)
+    .then(handleResponse)
+    .then(m => {
+      return m;
+    });
+}
