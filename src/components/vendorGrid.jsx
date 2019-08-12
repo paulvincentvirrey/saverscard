@@ -7,6 +7,7 @@ import {
   CardMedia,
   CardContent,
   CardActions,
+  Collapse,
   Typography,
   IconButton,
   CssBaseline,
@@ -15,9 +16,10 @@ import {
 import {
   Favorite as FavoriteIcon,
   Share as ShareIcon,
-  Place as PlaceIcon
+  Place as PlaceIcon,
+  ChevronLeft as ChevronLeftIcon
 } from "@material-ui/icons";
-import MapModal from "./mapModal";
+import MapComponent from "./map";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -42,6 +44,9 @@ const useStyles = makeStyles(theme => ({
   map: {
     marginLeft: "auto"
   },
+  mapContent: {
+    position: "inherit"
+  },
   avatar: {
     backgroundColor: "#39ac9b",
     fontSize: 15
@@ -50,6 +55,11 @@ const useStyles = makeStyles(theme => ({
 
 const VendorGrid = ({ vendors }) => {
   const classes = useStyles();
+  const [expanded, setExpanded] = React.useState(false);
+
+  function handleExpandClick() {
+    setExpanded(!expanded);
+  }
 
   return (
     <React.Fragment>
@@ -68,29 +78,50 @@ const VendorGrid = ({ vendors }) => {
                 title={vendor.businessName}
                 subheader={vendor.vendorCategory}
               />
-              <CardMedia
-                className={classes.media}
-                image={window.location.origin + vendor.logoPath}
-                // image={window.location.origin + vendor.image}
-                title={vendor.businessName}
-              />
-              <CardContent>
-                <Typography variant="body2" color="textSecondary" component="p">
-                  Get {vendor.discountInPercent}% off at {vendor.businessName}{" "}
-                  on all goods and services.
-                </Typography>
-              </CardContent>
-              <CardActions disableSpacing>
-                <IconButton aria-label="Add to favorites">
-                  <FavoriteIcon />
+              {!expanded && (
+                <React.Fragment>
+                  <CardMedia
+                    className={classes.media}
+                    image={window.location.origin + vendor.logoPath}
+                    // image={window.location.origin + vendor.image}
+                    title={vendor.businessName}
+                  />
+                  <CardContent>
+                    <Typography
+                      variant="body2"
+                      color="textSecondary"
+                      component="p"
+                    >
+                      Get {vendor.discountInPercent}% off at{" "}
+                      {vendor.businessName} on all goods and services.
+                    </Typography>
+                  </CardContent>
+                  <CardActions disableSpacing>
+                    <IconButton aria-label="Add to favorites">
+                      <FavoriteIcon />
+                    </IconButton>
+                    <IconButton aria-label="Share">
+                      <ShareIcon />
+                    </IconButton>
+                    <IconButton
+                      aria-label="Location"
+                      className={classes.map}
+                      onClick={handleExpandClick}
+                    >
+                      <PlaceIcon />
+                    </IconButton>
+                  </CardActions>
+                </React.Fragment>
+              )}
+
+              <Collapse in={expanded} timeout="auto" unmountOnExit>
+                <CardContent>
+                  <MapComponent className={classes.mapContent} />
+                </CardContent>
+                <IconButton onClick={handleExpandClick}>
+                  <ChevronLeftIcon />
                 </IconButton>
-                <IconButton aria-label="Share">
-                  <ShareIcon />
-                </IconButton>
-                <IconButton aria-label="Location" className={classes.map}>
-                  <PlaceIcon />
-                </IconButton>
-              </CardActions>
+              </Collapse>
             </Card>
           </Grid>
         ))}
