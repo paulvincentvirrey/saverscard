@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { Card, Grid } from "@material-ui/core";
 import { userService } from "../../services/userService";
 import ApplicationStatus from "./applicationStatus";
@@ -21,6 +22,67 @@ class AdminUsers extends Component {
     // add this to filter admin users.find(v => !v.isAdmin)
   }
 
+  // handleDelete = async () => {
+  //   const {
+  //     id,
+  //     status,
+  //     username,
+  //     email,
+  //     businessName,
+  //     website,
+  //     address1,
+  //     address2,
+  //     city,
+  //     zipCode,
+  //     telephone,
+  //     fax,
+  //     authPersonName,
+  //     authPersonEmail,
+  //     authPersonPhone,
+  //     category,
+  //     discount,
+  //     remarks
+  //   } = this.state;
+
+  //   this.setState({
+  //     errors: {}
+  //   });
+
+  //   if (this.handleValidation()) {
+  //     var today = new Date();
+  //     var dd = String(today.getDate()).padStart(2, "0");
+  //     var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+  //     var yyyy = today.getFullYear();
+
+  //     today = mm + "/" + dd + "/" + yyyy;
+
+  //     const updatedForm = {
+  //       applicationStatus: status,
+  //       username: username,
+  //       email: email,
+  //       businessName: businessName,
+  //       website: website,
+  //       address1: address1,
+  //       address2: address2,
+  //       city: city,
+  //       zip: zipCode,
+  //       telephone: telephone,
+  //       fax: fax,
+  //       authorizedPerson: authPersonName,
+  //       authorizedPersonEmail: authPersonEmail,
+  //       authorizedPersonPhone: authPersonPhone,
+  //       vendorCategory: category,
+  //       discountInPercent: discount,
+  //       remarks: remarks,
+  //       dateModified: today
+  //     };
+  //     const vendor = await vendorService.updateVendor(id, updatedForm);
+  //     console.log(vendor);
+  //   }
+  //   this.handleClose();
+  //   this.handleClose2();
+  // };
+
   getUser = id => {
     return this.state.users.find(v => v._id === id);
   };
@@ -29,6 +91,17 @@ class AdminUsers extends Component {
     const tableTitle = ["Users List"];
     const { users } = this.state;
     console.log(users);
+
+    const muiDatatableTheme = createMuiTheme({
+      overrides: {
+        MUIDataTable: {
+          responsiveScroll: {
+            maxHeight: "720px"
+          }
+        }
+      }
+    });
+
     const columns = [
       {
         name: "_id",
@@ -85,7 +158,7 @@ class AdminUsers extends Component {
       },
       {
         name: "dateCreated",
-        label: "Memeber Since",
+        label: "Member Since",
         options: {
           filter: true,
           sort: false
@@ -129,12 +202,14 @@ class AdminUsers extends Component {
       <React.Fragment>
         <Grid container justify="center">
           <Card raised>
-            <MUIDataTable
-              title={"Users Consolidation Table"}
-              data={this.state.users}
-              columns={columns}
-              options={options}
-            />
+            <MuiThemeProvider theme={muiDatatableTheme}>
+              <MUIDataTable
+                title={"Users Consolidation Table"}
+                data={this.state.users}
+                columns={columns}
+                options={options}
+              />
+            </MuiThemeProvider>
           </Card>
         </Grid>
       </React.Fragment>

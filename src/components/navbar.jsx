@@ -207,6 +207,7 @@ class NavBar extends Component {
         </AppBar>
         <nav className={classes.sideNav} aria-label="mailbox folders">
           {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+
           <Hidden lgUp>
             <Drawer
               container={container}

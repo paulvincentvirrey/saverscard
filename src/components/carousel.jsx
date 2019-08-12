@@ -1,6 +1,6 @@
 import React from "react";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import { Button, MobileStepper, Paper, Typography } from "@material-ui/core";
+import { Button, MobileStepper, Icon } from "@material-ui/core";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
 
@@ -10,10 +10,6 @@ const appInfo = [
   {
     label: "Home",
     imgPath: window.location + "/img/home.png"
-  },
-  {
-    label: "Services",
-    imgPath: window.location + "/img/services.png"
   },
   {
     label: "About Us",
@@ -86,12 +82,16 @@ const Carousel = () => {
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
-            Next
+            <Icon color="primary" fontSize="large">
+              navigate_next
+            </Icon>
           </Button>
         }
         backButton={
           <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            Back
+            <Icon color="primary" fontSize="large">
+              navigate_before
+            </Icon>
           </Button>
         }
       />

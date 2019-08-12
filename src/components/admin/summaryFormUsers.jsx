@@ -143,6 +143,7 @@ class SummaryFormUsers extends Component {
       remarks
     } = this.state;
 
+    console.log(remarks);
     this.setState({
       errors: {}
     });

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
 import { Card, Grid } from "@material-ui/core";
+import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { vendorService } from "../../services/vendorService";
 import ApplicationStatus from "./applicationStatus";
 import SummaryFormVendors from "./summaryFormVendors";
@@ -24,8 +25,17 @@ class AdminVendors extends Component {
   };
 
   render() {
-    const tableTitle = ["Vendor List"];
     const { vendors } = this.state;
+
+    const muiDatatableTheme = createMuiTheme({
+      overrides: {
+        MUIDataTable: {
+          responsiveScroll: {
+            maxHeight: "720px"
+          }
+        }
+      }
+    });
 
     const columns = [
       {
@@ -90,6 +100,14 @@ class AdminVendors extends Component {
         }
       },
       {
+        name: "dateCreated",
+        label: "Member Since",
+        options: {
+          filter: true,
+          sort: false
+        }
+      },
+      {
         name: "dateModified",
         label: "Date Modified",
         options: {
@@ -118,6 +136,7 @@ class AdminVendors extends Component {
       filterType: "dropdown",
       responsive: "scroll",
       print: false,
+      viewColumns: false,
       onRowsDelete: rowsDeleted => {
         rowsDeleted.vendors.map(rowDeleted =>
           console.log(vendors[rowDeleted.dataIndex])
@@ -128,12 +147,14 @@ class AdminVendors extends Component {
       <React.Fragment>
         <Grid container justify="center">
           <Card raised>
-            <MUIDataTable
-              title={"Vendor Consolidation"}
-              data={vendors}
-              columns={columns}
-              options={options}
-            />
+            <MuiThemeProvider theme={muiDatatableTheme}>
+              <MUIDataTable
+                title={"Vendor Consolidation Table"}
+                data={vendors}
+                columns={columns}
+                options={options}
+              />
+            </MuiThemeProvider>
           </Card>
         </Grid>
       </React.Fragment>
