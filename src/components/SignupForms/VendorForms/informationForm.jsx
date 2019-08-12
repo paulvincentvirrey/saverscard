@@ -1,11 +1,5 @@
 import React, { useState } from "react";
-import {
-  Checkbox,
-  FormControlLabel,
-  Grid,
-  TextField,
-  Typography
-} from "@material-ui/core";
+import { Grid, TextField, Typography } from "@material-ui/core";
 
 export default function VendorInformationForm(props) {
   return (

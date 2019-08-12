@@ -14,7 +14,6 @@ import { withRouter } from "react-router-dom";
 import { authenticationService } from "../services/authenticationService";
 import { userService } from "../services/userService";
 import moment from "react-moment";
-import { async } from "q";
 
 const useStyles = theme => ({
   card: {

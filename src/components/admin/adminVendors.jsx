@@ -1,29 +1,31 @@
 import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
 import { Card, Grid } from "@material-ui/core";
-import { getVendors, getVendor } from "../../services/fakeVendorService";
+import { vendorService } from "../../services/vendorService";
 import ApplicationStatus from "./applicationStatus";
-import EditButton from "./editButton";
+import SummaryFormVendors from "./summaryFormVendors";
 
-class Admin extends Component {
+class AdminVendors extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: []
+      vendors: []
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      data: getVendors()
+  async componentDidMount() {
+    await vendorService.getAll().then(vendors => {
+      this.setState({ vendors });
     });
   }
 
+  getVendor = id => {
+    return this.state.vendors.find(v => v._id === id);
+  };
+
   render() {
     const tableTitle = ["Vendor List"];
-    const { data } = this.state;
-
-    console.log(data);
+    const { vendors } = this.state;
 
     const columns = [
       {
@@ -35,7 +37,7 @@ class Admin extends Component {
         }
       },
       {
-        name: "name",
+        name: "businessName",
         label: "Company Name",
         options: {
           filter: true,
@@ -43,7 +45,7 @@ class Admin extends Component {
         }
       },
       {
-        name: "category",
+        name: "vendorCategory",
         label: "Category",
         options: {
           filter: true,
@@ -51,7 +53,7 @@ class Admin extends Component {
         }
       },
       {
-        name: "discountRate",
+        name: "discountInPercent",
         label: "Discount Rate",
         options: {
           filter: true,
@@ -67,7 +69,7 @@ class Admin extends Component {
         }
       },
       {
-        name: "status",
+        name: "applicationStatus",
         label: "Application Status",
         options: {
           filter: true,
@@ -88,7 +90,7 @@ class Admin extends Component {
         }
       },
       {
-        name: "postmark",
+        name: "dateModified",
         label: "Date Modified",
         options: {
           filter: true,
@@ -103,13 +105,10 @@ class Admin extends Component {
           sort: false,
 
           customBodyRender: (value, tableMeta, updateValue) => {
-            return (
-              <EditButton
-                data={getVendor(
-                  tableMeta.rowData ? tableMeta.rowData[0] : null
-                )}
-              />
-            );
+            const { rowData } = tableMeta;
+            if (rowData) {
+              return <SummaryFormVendors data={this.getVendor(rowData[0])} />;
+            }
           }
         }
       }
@@ -118,9 +117,10 @@ class Admin extends Component {
     const options = {
       filterType: "dropdown",
       responsive: "scroll",
+      print: false,
       onRowsDelete: rowsDeleted => {
-        rowsDeleted.data.map(rowDeleted =>
-          console.log(this.state.data[rowDeleted.dataIndex])
+        rowsDeleted.vendors.map(rowDeleted =>
+          console.log(vendors[rowDeleted.dataIndex])
         );
       }
     };
@@ -130,7 +130,7 @@ class Admin extends Component {
           <Card raised>
             <MUIDataTable
               title={"Vendor Consolidation"}
-              data={this.state.data}
+              data={vendors}
               columns={columns}
               options={options}
             />
@@ -141,4 +141,4 @@ class Admin extends Component {
   }
 }
 
-export default Admin;
+export default AdminVendors;

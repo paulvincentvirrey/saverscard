@@ -23,7 +23,6 @@ import { authenticationService } from "../services/authenticationService";
 import { userService } from "../services/userService";
 import ApplicationStatus from "./admin/applicationStatus";
 import moment from "react-moment";
-import { async } from "q";
 
 const useStyles = theme => ({
   card: {
@@ -94,63 +93,42 @@ class Account extends Component {
       const { user } = x;
 
       this.setState({
-        id: user["_id"],
-        status: user["accountStatus"],
-        lastName: user["lastName"],
-        firstName: user["firstName"],
-        dateModified: user["dateModified"],
-        username: user["username"],
-        email: user["email"],
-        password: user["password"],
-        addr1: user["address1"],
-        addr2: user["address2"],
-        city: user["city"],
-        zipCode: user["zip"],
-        contactNumber: user["contactNumber"]
+        id: user._id,
+        status: user.accountStatus,
+        lastName: user.lastName,
+        firstName: user.firstName,
+        dateModified: user.dateModified,
+        username: user.username,
+        email: user.email,
+        addr1: user.address1,
+        addr2: user.address2,
+        city: user.city,
+        zipCode: user.zip,
+        contactNumber: user.contactNumber
       });
     });
   }
 
   handleValidation() {
     let formIsValid = true;
-    const { contactNumber, addr1, addr2, zipCode, city } = this.state;
-    // if (typeof username !== "undefined") {
-    //   if (!username.match(/^\w+$/)) {
-    //     this.state.errors["username"] = "Invalid username";
-    //   }
-    // }
-    // if (typeof password !== "undefined") {
-    //   if (!password.length > 8) {
-    //     if (!password.match(/^\w{8}$/)) {
-    //       this.state.errors["password"] = "Invalid password";
-    //     }
-    //   } else {
-    //     this.state.errors["password"] = "Password exceeded limit";
-    //   }
-    // }
-    // if (typeof email !== "undefined") {
-    //   if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-    //     this.state.errors["email"] = "Invalid e-mail address";
-    //   }
-    // }
+    const { username, contactNumber, addr1, addr2, zipCode, city } = this.state;
+    if (typeof username !== "undefined") {
+      if (!username.match(/^\w+$/)) {
+        this.state.errors["username"] = "Invalid username";
+      }
+    }
+
     if (typeof contactNumber !== "undefined") {
-      if (!contactNumber.match(/^[0-9]+$/)) {
+      if (
+        !contactNumber.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)
+      ) {
         this.state.errors["contactNumber"] = "Invalid contact number";
       }
     }
-    if (typeof addr1 !== "undefined") {
-      if (!addr1.match(/^\s*\S+(?:\s+\S+){2}/)) {
-        this.state.errors["addr1"] = "Address Line 1 exceeded limit";
-      }
-    }
-    if (typeof addr2 !== "undefined" && addr1 !== "") {
-      if (!addr2.match(/^\s*\S+(?:\s+\S+){2}/)) {
-        this.state.errors["addr2"] = "Address Line 2 exceeded limit";
-      }
-    }
+
     if (typeof zipCode !== "undefined") {
       console.log(typeof zipCode);
-      if (!zipCode.toString().match(/^[7|8][0-9]{4}$/)) {
+      if (!zipCode.toString().match(/^[7|8][0-9]{0,5}$/)) {
         this.state.errors["zipCode"] = "Invalid zip code";
       }
     }
@@ -171,15 +149,23 @@ class Account extends Component {
   };
 
   handleSubmit = async () => {
-    const { contactNumber, addr1, addr2, city, zipCode, id } = this.state;
+    const {
+      username,
+      contactNumber,
+      addr1,
+      addr2,
+      city,
+      zipCode,
+      id
+    } = this.state;
 
     this.setState({
       errors: {}
     });
 
     if (this.handleValidation()) {
-      console.log("Congrats no errors!");
       const updatedForm = {
+        username: username,
         contactNumber: contactNumber,
         address1: addr1,
         address2: addr2,
@@ -188,11 +174,8 @@ class Account extends Component {
       };
       const user = await userService.updateUser(id, updatedForm);
       console.log(user);
-    } else {
-      console.log("You have an error");
-      console.log(this.state.errors);
-      this.handleClose();
     }
+    this.handleClose();
   };
 
   handleOpen = data => {
@@ -242,12 +225,12 @@ class Account extends Component {
                 <Grid container spacing={3}>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      disabled
                       required
                       name="username"
                       label="Username"
                       fullWidth
                       autoComplete="username"
+                      onChange={this.handleChange}
                       value={this.state.username}
                     />
                   </Grid>
