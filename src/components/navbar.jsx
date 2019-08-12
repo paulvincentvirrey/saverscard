@@ -171,8 +171,8 @@ class NavBar extends Component {
         <AppBar position="static" className={classes.appBar}>
           <Container>
             <Toolbar>
-              <Hidden lgUp>
-                {(!currentUser || currentUser.isAdmin) && (
+              {(!currentUser || isAdmin) && (
+                <Hidden lgUp>
                   <IconButton
                     edge="start"
                     color="inherit"
@@ -182,8 +182,9 @@ class NavBar extends Component {
                   >
                     <MenuIcon />
                   </IconButton>
-                )}
-              </Hidden>
+                </Hidden>
+              )}
+
               <Typography
                 className={classes.title}
                 variant="h6"
@@ -220,7 +221,7 @@ class NavBar extends Component {
                 keepMounted: true // Better open performance on mobile.
               }}
             >
-              {(!currentUser || currentUser.isAdmin) && sideNav}
+              {(!currentUser || isAdmin) && sideNav}
             </Drawer>
           </Hidden>
         </nav>
