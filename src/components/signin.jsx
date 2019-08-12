@@ -38,6 +38,7 @@ class SignIn extends Component {
     super(props);
 
     this.state = {
+      loginAs: "user",
       email: "",
       password: "",
       submitted: false,
@@ -60,15 +61,15 @@ class SignIn extends Component {
     e.preventDefault();
 
     this.setState({ submitted: true });
-    const { email, password, returnUrl } = this.state;
+    const { email, password, loginAs } = this.state;
 
     // stop here if form is invalid
-    if (!(email && password)) {
+    if (!(loginAs && email && password)) {
       return;
     }
 
     this.setState({ loading: true });
-    authenticationService.login(email, password).then(
+    authenticationService.login(loginAs, email, password).then(
       x => {
         const { user } = x;
 

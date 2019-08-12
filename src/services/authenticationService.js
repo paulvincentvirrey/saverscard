@@ -2,7 +2,7 @@ import { BehaviorSubject } from "rxjs";
 import { handleResponse } from "../helpers/handleResponse";
 
 const config = {
-  apiUrl: "http://saverscardapi.azurewebsites.net"
+  apiUrl: "https://saverscardapi.azurewebsites.net"
   // apiUrl: "http://localhost:4000"
 };
 
@@ -19,11 +19,11 @@ export const authenticationService = {
   }
 };
 
-function login(email, password) {
+function login(loginAs, email, password) {
   const requestOptions = {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ email, password })
+    body: JSON.stringify({ loginAs, email, password })
   };
 
   return fetch(`${config.apiUrl}/auth/login`, requestOptions)
