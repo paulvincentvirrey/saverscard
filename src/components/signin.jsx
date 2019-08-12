@@ -8,11 +8,15 @@ import {
   FormControlLabel,
   Checkbox,
   Grid,
-  Typography,
+  Switch,
+  InputLabel,
+  Select,
+  MenuItem,
   Link
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { withStyles } from "@material-ui/core/styles";
+import { blue } from "@material-ui/core/colors";
 import { authenticationService } from "./../services/authenticationService";
 import { withRouter } from "react-router-dom";
 
@@ -32,6 +36,20 @@ const useStyles = theme => ({
     margin: theme.spacing(3, 0, 2)
   }
 });
+
+const BlueSwitch = withStyles({
+  switchBase: {
+    color: blue[300],
+    "&$checked": {
+      color: blue[500]
+    },
+    "&$checked + $track": {
+      backgroundColor: blue[500]
+    }
+  },
+  checked: {},
+  track: {}
+})(Switch);
 
 class SignIn extends Component {
   constructor(props) {
@@ -55,6 +73,16 @@ class SignIn extends Component {
   handleChange = ({ target }) => {
     const { name, value } = target;
     this.setState({ [name]: value });
+  };
+
+  handleSwitch = ({ target }) => {
+    const { checked } = target;
+    console.log(checked);
+    let value;
+    if (checked) value = "vendor";
+    else value = "user";
+
+    this.setState({ loginAs: value });
   };
 
   handleSubmit = e => {
@@ -90,7 +118,7 @@ class SignIn extends Component {
   };
   render() {
     const { classes } = this.props;
-    const { email, password, submitted, loading, error } = this.state;
+    const { email, password, loginAs, submitted, loading, error } = this.state;
 
     return (
       <React.Fragment>
@@ -98,6 +126,19 @@ class SignIn extends Component {
           <CssBaseline />
           <div className={classes.paper}>
             <form className={classes.form} onSubmit={this.handleSubmit}>
+              <Grid
+                component="label"
+                container
+                alignItems="center"
+                justify="flex-end"
+                spacing={1}
+              >
+                <Grid item>User</Grid>
+                <Grid item>
+                  <BlueSwitch onChange={this.handleSwitch} />
+                </Grid>
+                <Grid item>Vendor</Grid>
+              </Grid>
               <TextField
                 margin="normal"
                 required

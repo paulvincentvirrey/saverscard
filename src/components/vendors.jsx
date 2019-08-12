@@ -3,7 +3,7 @@ import { Container, CssBaseline, Grid, withStyles } from "@material-ui/core";
 import Filter from "./filter";
 import Sort from "./sort";
 import Search from "./search";
-import VendorGrid from "./vendorGrid";
+import VendorCard from "./vendorCard";
 import { getCategories } from "../services/fakeCategoryService";
 import { getVendors } from "./../services/fakeVendorService";
 import { vendorService } from "./../services/vendorService";
@@ -105,7 +105,13 @@ class Vendors extends Component {
             />
           </Grid>
         </Grid>
-        <VendorGrid vendors={vendors} />
+        <Grid container spacing={4}>
+          {vendors.map(vendor => (
+            <Grid item key={vendor._id} xs={12} sm={6} md={4}>
+              <VendorCard vendor={vendor} />
+            </Grid>
+          ))}
+        </Grid>
       </Container>
     );
   }

@@ -116,7 +116,14 @@ const VendorGrid = ({ vendors }) => {
 
               <Collapse in={expanded} timeout="auto" unmountOnExit>
                 <CardContent>
-                  <MapComponent className={classes.mapContent} />
+                  <MapComponent
+                    isMarkerShown
+                    className={classes.mapContent}
+                    googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyC_N-X52vCtw4q5scuZf07YkqWBfRHX7uo&v=3.exp&libraries=geometry,drawing,places"
+                    loadingElement={<div style={{ height: `100%` }} />}
+                    containerElement={<div style={{ height: `200px` }} />}
+                    mapElement={<div style={{ height: `100%` }} />}
+                  />
                 </CardContent>
                 <IconButton onClick={handleExpandClick}>
                   <ChevronLeftIcon />
