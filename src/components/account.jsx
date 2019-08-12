@@ -89,23 +89,26 @@ class Account extends Component {
   }
 
   componentDidMount() {
+    console.log(this.props);
     authenticationService.currentUser.subscribe(x => {
-      const { account } = x;
+      if (x) {
+        const { account } = x;
 
-      this.setState({
-        id: account._id,
-        status: account.accountStatus,
-        lastName: account.lastName,
-        firstName: account.firstName,
-        dateModified: account.dateModified,
-        username: account.username,
-        email: account.email,
-        addr1: account.address1,
-        addr2: account.address2,
-        city: account.city,
-        zipCode: account.zip,
-        contactNumber: account.contactNumber
-      });
+        this.setState({
+          id: account._id,
+          status: account.accountStatus,
+          lastName: account.lastName,
+          firstName: account.firstName,
+          dateModified: account.dateModified,
+          username: account.username,
+          email: account.email,
+          addr1: account.address1,
+          addr2: account.address2,
+          city: account.city,
+          zipCode: account.zip,
+          contactNumber: account.contactNumber
+        });
+      }
     });
   }
 
