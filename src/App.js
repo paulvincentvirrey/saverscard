@@ -31,12 +31,12 @@ class App extends Component {
             <PrivateRoute path="/vendors" component={Vendors} />
             <PrivateRoute path="/account" component={Account} />
             <PrivateRoute
-              path="/admin-v"
+              path="/v/admin"
               roles={["Admin"]}
               component={AdminVendors}
             />
             <PrivateRoute
-              path="/admin-u"
+              path="/u/admin"
               roles={["Admin"]}
               component={AdminUsers}
             />
