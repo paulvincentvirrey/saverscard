@@ -67,3 +67,10 @@ function updatePassword(id, password) {
       return m;
     });
 }
+
+function deleteUser(id) {
+  const requestOptions = { method: "DELETE", headers: authHeader() };
+  return fetch(`${config.apiUrl}/users/${id}`, requestOptions).then(
+    handleResponse
+  );
+}
