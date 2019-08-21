@@ -12,11 +12,16 @@ import {
   Hidden,
   List,
   ListItem,
+  ListItemIcon,
   ListItemText,
   Link
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
+import {
+  Menu as MenuIcon,
+  Store as StoreIcon,
+  People as PeopleIcon
+} from "@material-ui/icons/";
 import { authenticationService } from "../services/authenticationService";
 import { history } from "../helpers/history";
 import Menu from "./menuButton";
@@ -25,10 +30,12 @@ const drawerWidth = "60%";
 
 const useStyles = theme => ({
   root: {
+    display: "flex",
     flexGrow: 1
   },
   appBar: {
-    backgroundColor: "#293039"
+    backgroundColor: "#293039",
+    zIndex: theme.zIndex.drawer + 1
   },
   appLogo: {
     maxHeight: 90,
@@ -66,6 +73,13 @@ const useStyles = theme => ({
   toolbar: theme.mixins.toolbar,
   drawerPaper: {
     width: drawerWidth
+  },
+  drawerPaperAdmin: {
+    width: 250
+  },
+  icon: {
+    color: "#293039",
+    fontSize: "2rem"
   }
 });
 
@@ -103,55 +117,106 @@ class NavBar extends Component {
     });
   };
 
-  showSideNavContent() {
-    const { classes } = this.props;
-    const { isAdmin } = this.state;
+  showSideNav() {
+    const { container, classes } = this.props;
+    const { mobileOpen, isAdmin, currentUser } = this.state;
 
-    if (isAdmin) {
+    const adminContent = (
+      <React.Fragment>
+        <div className={classes.toolbar} />
+        <Divider style={{ marginBottom: 10 }} />
+        <List>
+          <ListItem
+            button
+            key="Vendors"
+            component={RouterLink}
+            to="/v/admin"
+            className={classes.adminSideNav}
+          >
+            <ListItemIcon>
+              <StoreIcon className={classes.icon} />
+            </ListItemIcon>
+            <ListItemText primary="Vendors" />
+          </ListItem>
+          <ListItem button key="Users" component={RouterLink} to="/u/admin">
+            <ListItemIcon>
+              <PeopleIcon className={classes.icon} />
+            </ListItemIcon>
+            <ListItemText primary="Users" />
+          </ListItem>
+        </List>
+      </React.Fragment>
+    );
+
+    if (!currentUser) {
       return (
-        <div>
-          <Typography component="h1" variant="h5" className={classes.appName}>
-            <Link component={RouterLink} variant="h5" to="/vendors">
-              Saverscard
-            </Link>
-          </Typography>
+        <Hidden lgUp>
+          <Drawer
+            container={container}
+            variant="temporary"
+            anchor="left" //{theme.direction === "rtl" ? "right" : "left"}
+            open={mobileOpen}
+            onClose={this.handleSideNav}
+            classes={{
+              paper: classes.drawerPaper
+            }}
+            ModalProps={{
+              keepMounted: true // Better open performance on mobile.
+            }}
+          >
+            <Typography component="h1" variant="h5" className={classes.appName}>
+              <Link component={RouterLink} variant="h5" to="/vendors">
+                Saverscard
+              </Link>
+            </Typography>
 
-          <Divider />
-          <List>
-            <ListItem button key="Vendors">
-              <ListItemText primary="Vendors" />
-            </ListItem>
-            <ListItem button key="Users">
-              <ListItemText primary="Users" />
-            </ListItem>
-            {/* {["Home", "Services", "About", "Contact Us"].map((text, index) => (
-              <ListItem button key={text}>
-                <ListItemText primary={text} />
-              </ListItem>
-            ))} */}
-          </List>
-        </div>
+            <Divider />
+            <List>
+              {["Home", "Services", "About", "Contact Us"].map(
+                (text, index) => (
+                  <ListItem button key={text}>
+                    <ListItemText primary={text} />
+                  </ListItem>
+                )
+              )}
+            </List>
+          </Drawer>
+        </Hidden>
+      );
+    } else if (isAdmin) {
+      return (
+        <React.Fragment>
+          <Hidden lgUp>
+            <Drawer
+              container={container}
+              variant="temporary"
+              anchor="left" //{theme.direction === "rtl" ? "right" : "left"}
+              open={mobileOpen}
+              onClose={this.handleSideNav}
+              classes={{
+                paper: classes.drawerPaperAdmin
+              }}
+              ModalProps={{
+                keepMounted: true // Better open performance on mobile.
+              }}
+            >
+              {adminContent}
+            </Drawer>
+          </Hidden>
+          <Hidden mdDown>
+            <Drawer
+              classes={{
+                paper: classes.drawerPaperAdmin
+              }}
+              variant="permanent"
+              open
+            >
+              {adminContent}
+            </Drawer>
+          </Hidden>
+        </React.Fragment>
       );
     }
-
-    return (
-      <div>
-        <Typography component="h1" variant="h5" className={classes.appName}>
-          <Link component={RouterLink} variant="h5" to="/vendors">
-            Saverscard
-          </Link>
-        </Typography>
-
-        <Divider />
-        <List>
-          {["Home", "Services", "About", "Contact Us"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
   }
 
   render() {
@@ -163,7 +228,7 @@ class NavBar extends Component {
         ? currentUser.businessName
         : currentUser.firstName + " " + currentUser.lastName;
     }
-    const sideNav = this.showSideNavContent();
+    const sideNav = this.showSideNav();
 
     const navbar = (
       <div className={classes.root}>
@@ -205,27 +270,7 @@ class NavBar extends Component {
             </Toolbar>
           </Container>
         </AppBar>
-        <nav className={classes.sideNav} aria-label="mailbox folders">
-          {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-
-          <Hidden lgUp>
-            <Drawer
-              container={container}
-              variant="temporary"
-              anchor="left" //{theme.direction === "rtl" ? "right" : "left"}
-              open={mobileOpen}
-              onClose={this.handleSideNav}
-              classes={{
-                paper: classes.drawerPaper
-              }}
-              ModalProps={{
-                keepMounted: true // Better open performance on mobile.
-              }}
-            >
-              {(!currentUser || isAdmin) && sideNav}
-            </Drawer>
-          </Hidden>
-        </nav>
+        <nav>{sideNav}</nav>
       </div>
     );
 

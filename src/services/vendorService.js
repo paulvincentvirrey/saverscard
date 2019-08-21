@@ -67,3 +67,10 @@ function updatePassword(id, password) {
       return m;
     });
 }
+
+function deleteVendor(id) {
+  const requestOptions = { method: "DELETE", headers: authHeader() };
+  return fetch(`${config.apiUrl}/vendors/${id}`, requestOptions).then(
+    handleResponse
+  );
+}

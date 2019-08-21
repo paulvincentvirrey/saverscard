@@ -145,8 +145,8 @@ class AdminVendors extends Component {
     };
     return (
       <React.Fragment>
-        <Grid container justify="center">
-          <Card raised>
+        <Grid container justify="center" alignItems="center">
+          <Card>
             <MuiThemeProvider theme={muiDatatableTheme}>
               <MUIDataTable
                 title={"Vendor Consolidation Table"}
