@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import SwipeableViews from "react-swipeable-views";
 import {
+  Card,
   Container,
   Box,
   Grid,
@@ -16,21 +17,20 @@ import {
 import Carousel from "./carousel";
 import SignIn from "./signin";
 import SignUp from "./signup";
-import logo from "../img/logo.png";
-import Footer from "./footer";
+import Image from "../img/sidebg.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundColor: theme.palette.background.paper,
+    //backgroundImage: `url(${Image})`,
     height: "100vh",
-    paddingTop: theme.spacing(5)
+    paddingTop: theme.spacing(10)
   },
-  appLogo: {
+  banner: {
     maxHeight: 90,
     margin: "auto",
-    marginTop: 5,
-    marginBottom: 5,
-    justifyContent: "center"
+    marginTop: 7,
+    justifyContent: "center",
+    color: "#3f51b5"
   },
   info: {
     width: 60
@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
     width: 40
   },
   tabs: {
-    marginTop: theme.spacing(8)
+    marginTop: theme.spacing(2)
   },
   tabName: {
     fontSize: 20
@@ -106,8 +106,11 @@ const Home = props => {
 
       <Grid item lg={4} md={12} className={classes.root}>
         <Container>
+          {/* <Card className={classes.card}> */}
           <Box display="flex" justifyContent="center">
-            <img src={logo} className={classes.appLogo} />
+            <Typography className={classes.banner} variant="h4" component="h3">
+              WELCOME
+            </Typography>
           </Box>
           <Tabs
             value={value}
@@ -142,6 +145,7 @@ const Home = props => {
               <SignUp />
             </TabPanel>
           </SwipeableViews>
+          {/* </Card> */}
         </Container>
         {/* <Footer /> */}
       </Grid>

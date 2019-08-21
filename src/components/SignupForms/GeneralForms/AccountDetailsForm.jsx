@@ -9,9 +9,7 @@ export default function AccountDetailsForm(props) {
   const confirmPasswordError = confirmPassword ? true : false;
   return (
     <React.Fragment>
-      <Typography variant="h5" paragraph gutterBottom>
-        ACCOUNT DETAILS
-      </Typography>
+      <Typography variant="button">ACCOUNT DETAILS</Typography>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField

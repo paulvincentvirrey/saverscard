@@ -39,12 +39,12 @@ const useStyles = theme => ({
 
 const BlueSwitch = withStyles({
   switchBase: {
-    color: blue[300],
+    color: "#3f51b5",
     "&$checked": {
-      color: blue[500]
+      color: "#3f51b5"
     },
     "&$checked + $track": {
-      backgroundColor: blue[500]
+      backgroundColor: "#3f51b5"
     }
   },
   checked: {},
@@ -126,6 +126,32 @@ class SignIn extends Component {
           <CssBaseline />
           <div className={classes.paper}>
             <form className={classes.form} onSubmit={this.handleSubmit}>
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                id="email"
+                label="Email Address"
+                name="email"
+                autoComplete="email"
+                autoFocus
+                onChange={this.handleChange}
+                value={email}
+                variant="outlined"
+              />
+              <TextField
+                margin="normal"
+                required
+                fullWidth
+                name="password"
+                label="Password"
+                type="password"
+                id="password"
+                autoComplete="current-password"
+                onChange={this.handleChange}
+                value={password}
+                variant="outlined"
+              />
               <Grid
                 component="label"
                 container
@@ -139,30 +165,6 @@ class SignIn extends Component {
                 </Grid>
                 <Grid item>Vendor</Grid>
               </Grid>
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                id="email"
-                label="Email Address"
-                name="email"
-                autoComplete="email"
-                autoFocus
-                onChange={this.handleChange}
-                value={email}
-              />
-              <TextField
-                margin="normal"
-                required
-                fullWidth
-                name="password"
-                label="Password"
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                onChange={this.handleChange}
-                value={password}
-              />
               <FormControlLabel
                 control={<Checkbox value="remember" color="primary" />}
                 label="Remember me"
