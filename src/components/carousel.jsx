@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1
   },
   img: {
-    height: "95vh",
+    height: "100vh",
     display: "block",
     overflow: "hidden",
     width: "100%"
@@ -70,31 +70,6 @@ const Carousel = () => {
           </div>
         ))}
       </AutoPlaySwipeableViews>
-      <MobileStepper
-        steps={maxSteps}
-        position="static"
-        variant="dots"
-        activeStep={activeStep}
-        className={classes.stepper}
-        nextButton={
-          <Button
-            size="small"
-            onClick={handleNext}
-            disabled={activeStep === maxSteps - 1}
-          >
-            <Icon color="primary" fontSize="large">
-              navigate_next
-            </Icon>
-          </Button>
-        }
-        backButton={
-          <Button size="small" onClick={handleBack} disabled={activeStep === 0}>
-            <Icon color="primary" fontSize="large">
-              navigate_before
-            </Icon>
-          </Button>
-        }
-      />
     </div>
   );
 };
