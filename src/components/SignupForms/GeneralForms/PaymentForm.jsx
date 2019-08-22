@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Grid, MenuItem, TextField, Typography } from "@material-ui/core";
+import { Box, Grid, MenuItem, TextField, Typography } from "@material-ui/core";
 import { StripeNumberTextField } from "../../stripeNumberTextField";
 import { StripeExpiryTextField } from "../../stripeExpiryTextField";
 import { StripeCVCTextField } from "../../stripeCVCTextField";
@@ -60,7 +60,6 @@ class PaymentForm extends Component {
           <Grid item xs={12} sm={6}>
             <TextField
               select
-              required
               label="Credit Card Type"
               name="creditCardType"
               onChange={props.handleChange}
@@ -70,6 +69,7 @@ class PaymentForm extends Component {
                   : ""
               }
               fullWidth
+              variant="outlined"
             >
               {this.renderMenuItems(props.creditCards)}
             </TextField>
@@ -85,27 +85,26 @@ class PaymentForm extends Component {
                 "creditCardNumberComplete",
                 "cardNumberError"
               )}
-              // fullWidth
-              // component={CardNumberElement}
+              variant="outlined"
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <StripeExpiryTextField
-              required
               id="expDate"
               label="Expiry date"
               fullWidth
+              variant="outlined"
             />
           </Grid>
           <Grid item xs={12} md={6}>
             <StripeCVCTextField
-              required
               id="cvc"
               label="CVC"
               helperText="Located at the back of the card, along the signature strip"
               // onChange={props.handleChange}
               // value={props.values[props.name]}
               fullWidth
+              variant="outlined"
             />
           </Grid>
         </React.Fragment>
@@ -135,12 +134,12 @@ class PaymentForm extends Component {
         <React.Fragment>
           <Grid item xs={12} md={6}>
             <TextField
-              required
               label="Enter promo code"
               name="promoCode"
               onChange={props.handleChange}
               value={props.values[props.name]}
               fullWidth
+              variant="outlined"
             />
           </Grid>
         </React.Fragment>
@@ -151,14 +150,15 @@ class PaymentForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <Typography variant="h5" paragraph gutterBottom>
-          PAYMENT DETAILS
-        </Typography>
+        <Box display="flex" justifyContent="center">
+          <Typography variant="h5" gutterBottom>
+            PAYMENT DETAILS
+          </Typography>
+        </Box>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <TextField
               select
-              required
               label="Payment Method"
               name="paymentMethod"
               onChange={this.props.handleChange}
@@ -168,6 +168,7 @@ class PaymentForm extends Component {
                   : ""
               }
               fullWidth
+              variant="outlined"
             >
               {this.renderMenuItems(this.props.paymentMethods)}
             </TextField>
@@ -179,6 +180,7 @@ class PaymentForm extends Component {
               label="Subscription"
               value="$5/month only"
               fullWidth
+              variant="outlined"
             />
           </Grid>
           {this.getPaymentDisplay(this.props)}

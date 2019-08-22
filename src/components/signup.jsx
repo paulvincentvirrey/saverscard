@@ -91,7 +91,7 @@ const useStyles = makeStyles(theme => ({
 
 const images = [
   {
-    url: "../img/header-bg.jpg",
+    url: "../img/customers-icon.jpg",
     title: "Sign Up as a User",
     width: "100%",
     component: "SignUpUser"
@@ -136,13 +136,14 @@ const SignUp = props => {
         container
         direction="row"
         justify="center"
+        alignItems="center"
         className={classes.root}
         spacing={2}
       >
         {signup}
         {!isSigningUp &&
           images.map(image => (
-            <Grid item xs={12} key={image.title}>
+            <Grid item xs={12} md={6} key={image.title}>
               <ButtonBase
                 focusRipple
                 key={image.title}

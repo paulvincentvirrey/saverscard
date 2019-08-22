@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Box,
   Checkbox,
   FormControlLabel,
   Grid,
@@ -14,9 +15,11 @@ export default function AgreementForm(props) {
   const esignatureError = esignature ? true : false;
   return (
     <React.Fragment>
-      <Typography variant="h5" paragraph gutterBottom>
-        TERMS AND AGREEMENT
-      </Typography>
+      <Box display="flex" justifyContent="center">
+        <Typography variant="h5" gutterBottom>
+          TERMS AND AGREEMENT
+        </Typography>
+      </Box>
       <Grid container>
         <Grid item xs={1}>
           <DoneIcon />
@@ -84,13 +87,13 @@ export default function AgreementForm(props) {
         <Grid item xs={12}>
           <TextField
             error={esignatureError}
-            required
             name="esignature"
             label={esignatureError ? esignature : "E-signature"}
             helperText="Please enter your full name"
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
       </Grid>

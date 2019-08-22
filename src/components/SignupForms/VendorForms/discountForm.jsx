@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Box,
   Checkbox,
   FormControlLabel,
   Grid,
@@ -14,9 +15,11 @@ export default function VendorDiscountForm(props) {
   const discountOfferError = discountOffer ? true : false;
   return (
     <React.Fragment>
-      <Typography variant="h5" paragraph gutterBottom>
-        VENDOR DISCOUNT OFFER
-      </Typography>
+      <Box display="flex" justifyContent="center">
+        <Typography variant="h5" gutterBottom>
+          VENDOR DISCOUNT OFFER
+        </Typography>
+      </Box>
       <Grid container spacing={3}>
         <Grid item xs={12} md={6}>
           <TextField
@@ -34,6 +37,7 @@ export default function VendorDiscountForm(props) {
                 : ""
             }
             fullWidth
+            variant="outlined"
           >
             {renderMenuItems(props.categories)}
           </TextField>
@@ -50,6 +54,7 @@ export default function VendorDiscountForm(props) {
               props.values["discountOffer"] ? props.values["discountOffer"] : ""
             }
             fullWidth
+            variant="outlined"
           >
             {renderMenuItems(props.discounts)}
           </TextField>
@@ -90,7 +95,6 @@ function getDiscountDisplay(props) {
         <Grid item xs={12} sm={12}>
           <TextField
             error={discountExclusionError}
-            required
             name="discountExclusion"
             label={
               discountExclusionError ? discountExclusion : "Discount Exclusion"
@@ -98,6 +102,7 @@ function getDiscountDisplay(props) {
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
       </React.Fragment>

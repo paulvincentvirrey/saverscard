@@ -27,6 +27,9 @@ const useStyles = theme => ({
       width: 600,
       marginLeft: "auto",
       marginRight: "auto"
+    },
+    [`& fieldset`]: {
+      borderRadius: 0
     }
   },
   paper: {
@@ -46,7 +49,9 @@ const useStyles = theme => ({
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
-    color: blue
+    color: blue,
+    borderRadius: 0,
+    boxShadow: "none"
   }
 });
 

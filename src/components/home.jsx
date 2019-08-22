@@ -112,7 +112,14 @@ const Home = props => {
               WELCOME
             </Typography>
           </Box>
-          <Tabs
+          <Box display="flex" justifyContent="center">
+            <Typography className={classes.banner} variant="h5" component="h5">
+              SIGN IN
+            </Typography>
+          </Box>
+
+          <SignIn />
+          {/* <Tabs
             value={value}
             onChange={handleChange}
             indicatorColor="primary"
@@ -144,13 +151,9 @@ const Home = props => {
             <TabPanel value={value} index={1} dir={theme.direction}>
               <SignUp />
             </TabPanel>
-          </SwipeableViews>
-          {/* </Card> */}
+          </SwipeableViews> */}
         </Container>
-        {/* <Footer /> */}
       </Grid>
-      {/* <div className={classes.info}></div>
-      <div className={classes.signin}>SIGNIN</div> */}
     </Grid>
   );
 };

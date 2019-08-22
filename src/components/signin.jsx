@@ -18,7 +18,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { withStyles } from "@material-ui/core/styles";
 import { blue } from "@material-ui/core/colors";
 import { authenticationService } from "./../services/authenticationService";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link as RouterLink } from "react-router-dom";
 
 const useStyles = theme => ({
   paper: {
@@ -30,7 +30,10 @@ const useStyles = theme => ({
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(1)
+    marginTop: theme.spacing(1),
+    [`& fieldset`]: {
+      borderRadius: 0
+    }
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
@@ -185,8 +188,10 @@ class SignIn extends Component {
                   </Link>
                 </Grid>
                 <Grid item>
-                  <Link href="#" variant="body2">
-                    {"Don't have an account? Sign Up"}
+                  <Link variant="body2" component={RouterLink} to="/signup">
+                    {"Not a Saverscard member yet?"}
+                    <br />
+                    {"Join us for free!"}
                   </Link>
                 </Grid>
               </Grid>

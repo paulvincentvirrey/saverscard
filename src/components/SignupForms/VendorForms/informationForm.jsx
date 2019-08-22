@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, TextField, Typography } from "@material-ui/core";
+import { Box, Grid, TextField, Typography } from "@material-ui/core";
 
 export default function VendorInformationForm(props) {
   const {
@@ -29,42 +29,44 @@ export default function VendorInformationForm(props) {
   console.log(businessName);
   return (
     <React.Fragment>
-      <Typography variant="h5" paragraph gutterBottom>
-        VENDOR INFORMATION
-      </Typography>
+      <Box display="flex" justifyContent="center">
+        <Typography variant="h5" gutterBottom>
+          VENDOR INFORMATION
+        </Typography>
+      </Box>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={12}>
           <TextField
             error={businessNameError}
-            required
             name="businessName"
             label={businessNameError ? businessName : "Business Name"}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={12}>
           <TextField
             error={websiteError}
-            required
             name="website"
             label={websiteError ? website : "Website"}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             error={address1Error}
-            required
             name="address1"
             label={address1Error ? address1 : "Address Line 1"}
             fullWidth
             autoComplete="billing address-line1"
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12}>
@@ -76,18 +78,19 @@ export default function VendorInformationForm(props) {
             autoComplete="billing address-line2"
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={cityError}
-            required
             name="city"
             label={cityError ? city : "City"}
             fullWidth
             autoComplete="billing address-level2"
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -97,29 +100,30 @@ export default function VendorInformationForm(props) {
             label="State/Province/Region"
             value="Texas"
             fullWidth
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={zipCodeError}
-            required
             name="zip"
             label={zipCodeError ? zipCode : "Zip / Postal code"}
             fullWidth
             autoComplete="billing postal-code"
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={telephoneError}
-            required
             name="telephone"
             label={telephoneError ? telephone : "Telephone Number"}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -131,12 +135,12 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             fullWidth
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={authorizedPersonEmailError}
-            required
             name="authorizedPersonEmail"
             label={
               authorizedPersonEmailError
@@ -146,12 +150,12 @@ export default function VendorInformationForm(props) {
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={authorizedPersonError}
-            required
             name="authorizedPerson"
             label={
               authorizedPersonError ? authorizedPerson : "Authorized Person"
@@ -159,12 +163,12 @@ export default function VendorInformationForm(props) {
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={authorizedPersonPhoneError}
-            required
             name="authorizedPersonPhone"
             label={
               authorizedPersonPhoneError
@@ -174,6 +178,7 @@ export default function VendorInformationForm(props) {
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
       </Grid>

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, TextField, Typography } from "@material-ui/core";
+import { Box, Grid, TextField, Typography } from "@material-ui/core";
 import { MaterialUIPickers } from "../datePicker";
 
 export default function UserInformationForm(props) {
@@ -24,25 +24,26 @@ export default function UserInformationForm(props) {
 
   return (
     <React.Fragment>
-      <Typography variant="h5" paragraph gutterBottom>
-        USER INFORMATION
-      </Typography>
+      <Box display="flex" justifyContent="center">
+        <Typography variant="h5" gutterBottom>
+          USER INFORMATION
+        </Typography>
+      </Box>
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <TextField
             error={lastNameError}
-            required
             name="lastName"
             label={lastNameError ? lastName : "Last Name"}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={firstNameError}
-            required
             name="firstName"
             label={firstNameError ? firstName : "First Name"}
             fullWidth
@@ -54,29 +55,30 @@ export default function UserInformationForm(props) {
           <MaterialUIPickers
             values={props.values}
             handleDateChange={props.handleDateChange}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={contactNumberError}
-            required
             name="contactNumber"
             label={contactNumberError ? contactNumber : "Contact Number"}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
             error={addressLine1Error}
-            required
             name="addressLine1"
             label={addressLine1Error ? addressLine1 : "Address Line 1"}
             fullWidth
             autoComplete="billing address-level1"
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12}>
@@ -88,18 +90,19 @@ export default function UserInformationForm(props) {
             autoComplete="billing address-level2"
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={cityError}
-            required
             name="city"
             label={cityError ? city : "City"}
             fullWidth
             autoComplete="city"
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -110,12 +113,12 @@ export default function UserInformationForm(props) {
             label="State/Province/Region"
             value="Texas"
             fullWidth
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={zipCodeError}
-            required
             id="zip"
             name="zip"
             label={zipCodeError ? zipCode : "Zip / Postal code"}
@@ -123,6 +126,7 @@ export default function UserInformationForm(props) {
             autoComplete="billing postal-code"
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
       </Grid>
