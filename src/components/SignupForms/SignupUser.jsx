@@ -10,7 +10,13 @@ import {
   getPaymentMethods
 } from "../../services/fakeCategoryService";
 import { userService } from "../../services/userService";
-import { Button, CssBaseline, Paper, Typography } from "@material-ui/core";
+import {
+  Button,
+  CssBaseline,
+  Grid,
+  Paper,
+  Typography
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { injectStripe, Elements, StripeProvider } from "react-stripe-elements";
 import { blue } from "@material-ui/core/colors";
@@ -23,16 +29,6 @@ const useStyles = theme => ({
     width: "auto",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
-    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-      width: 600,
-      marginLeft: "auto",
-      marginRight: "auto"
-    },
-    [`& fieldset`]: {
-      borderRadius: 0
-    }
-  },
-  paper: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
@@ -40,18 +36,35 @@ const useStyles = theme => ({
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
       padding: theme.spacing(3)
+    },
+    // [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+    //   width: 600,
+    //   marginLeft: "auto",
+    //   marginRight: "auto"
+    // },
+    [`& fieldset`]: {
+      borderRadius: 0
     }
   },
+  paper: {},
   stepper: {
     padding: theme.spacing(3, 0, 5)
   },
 
   button: {
     marginTop: theme.spacing(3),
-    marginLeft: theme.spacing(1),
     color: blue,
     borderRadius: 0,
-    boxShadow: "none"
+    boxShadow: "none",
+    fontSize: "1.1875em",
+    width: 110
+  },
+  backButton: {
+    marginTop: theme.spacing(3),
+    borderRadius: 0,
+    boxShadow: "none",
+    fontSize: "1.1875em",
+    width: 110
   }
 });
 
@@ -68,7 +81,7 @@ class SignupUser extends Component {
     this.state = {
       values: [],
       errors: {},
-      activeStep: 0
+      activeStep: 1
     };
   }
 
@@ -336,43 +349,50 @@ class SignupUser extends Component {
       <React.Fragment>
         <CssBaseline />
         <main className={classes.layout}>
-          <Paper className={classes.paper}>
-            <React.Fragment>
-              {activeStep === steps.length ? (
-                <React.Fragment>
-                  <Typography variant="h5" gutterBottom>
-                    Welcome to Saverscard <b>{values["firstName"]}</b>
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    Your registration number is #2001539. We have emailed your
-                    registration confirmation, and will send you an update once
-                    your membership has been approved.
-                  </Typography>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <GetStepContent
-                    categories={this.categories}
-                    creditCards={this.creditCards}
-                    discounts={this.discounts}
-                    paymentMethods={this.paymentMethods}
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                    handleDateChange={this.handleDateChange}
-                    values={this.state.values}
-                    handleValidation={this.handleValidation}
-                    errors={this.state.errors}
-                    step={this.state.activeStep}
-                  />
-                  <div className={classes.buttons}>
-                    {activeStep !== 0 && (
+          {/* <div className={classes.paper}> */}
+          <React.Fragment>
+            {activeStep === steps.length ? (
+              <React.Fragment>
+                <Typography variant="h5" gutterBottom>
+                  Welcome to Saverscard <b>{values["firstName"]}</b>
+                </Typography>
+                <Typography variant="subtitle1">
+                  Your registration number is #2001539. We have emailed your
+                  registration confirmation, and will send you an update once
+                  your membership has been approved.
+                </Typography>
+              </React.Fragment>
+            ) : (
+              <React.Fragment>
+                <GetStepContent
+                  categories={this.categories}
+                  creditCards={this.creditCards}
+                  discounts={this.discounts}
+                  paymentMethods={this.paymentMethods}
+                  handleChange={this.handleChange}
+                  handleSubmit={this.handleSubmit}
+                  handleDateChange={this.handleDateChange}
+                  values={this.state.values}
+                  handleValidation={this.handleValidation}
+                  errors={this.state.errors}
+                  step={this.state.activeStep}
+                />
+                <Grid
+                  container
+                  justify="space-between"
+                  className={classes.buttons}
+                >
+                  {activeStep !== 0 && (
+                    <Grid item xs={2}>
                       <Button
                         onClick={this.handleBack}
-                        className={classes.button}
+                        className={classes.backButton}
                       >
                         Back
                       </Button>
-                    )}
+                    </Grid>
+                  )}
+                  <Grid item xs={2}>
                     <Button
                       variant="contained"
                       type="submit"
@@ -382,11 +402,12 @@ class SignupUser extends Component {
                     >
                       {activeStep === steps.length - 1 ? "Submit" : "Next"}
                     </Button>
-                  </div>
-                </React.Fragment>
-              )}
-            </React.Fragment>
-          </Paper>
+                  </Grid>
+                </Grid>
+              </React.Fragment>
+            )}
+          </React.Fragment>
+          {/* </div> */}
         </main>
       </React.Fragment>
     );

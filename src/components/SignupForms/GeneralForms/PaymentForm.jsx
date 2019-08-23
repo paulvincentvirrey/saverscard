@@ -1,8 +1,17 @@
 import React, { Component } from "react";
 import { Box, Grid, MenuItem, TextField, Typography } from "@material-ui/core";
+import { withStyles } from "@material-ui/core/styles";
 import { StripeNumberTextField } from "../../stripeNumberTextField";
 import { StripeExpiryTextField } from "../../stripeExpiryTextField";
 import { StripeCVCTextField } from "../../stripeCVCTextField";
+
+const useStyles = theme => ({
+  header: {
+    color: "#3f51b5",
+    fontWeight: "bold",
+    marginBottom: theme.spacing(6)
+  }
+});
 
 class PaymentForm extends Component {
   constructor(props) {
@@ -148,10 +157,11 @@ class PaymentForm extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
       <React.Fragment>
         <Box display="flex" justifyContent="center">
-          <Typography variant="h5" gutterBottom>
+          <Typography variant="h4" className={classes.header}>
             PAYMENT DETAILS
           </Typography>
         </Box>
@@ -190,7 +200,7 @@ class PaymentForm extends Component {
   }
 }
 
-export default PaymentForm;
+export default withStyles(useStyles)(PaymentForm);
 
 // function renderMenuItems(items) {
 //   return items.map(item => (

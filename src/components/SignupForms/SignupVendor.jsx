@@ -34,6 +34,9 @@ const useStyles = theme => ({
       width: 600,
       marginLeft: "auto",
       marginRight: "auto"
+    },
+    [`& fieldset`]: {
+      borderRadius: 0
     }
   },
   paper: {
@@ -56,7 +59,11 @@ const useStyles = theme => ({
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
-    color: blue
+    color: blue,
+    borderRadius: 0,
+    boxShadow: "none",
+    fontSize: "1.1875em",
+    width: 110
   }
 });
 
@@ -408,7 +415,7 @@ class SignupVendor extends Component {
       <React.Fragment>
         <CssBaseline />
         <main className={classes.layout}>
-          <Paper className={classes.paper}>
+          <div className={classes.paper}>
             <React.Fragment>
               {activeStep === steps.length ? (
                 <React.Fragment>
@@ -453,7 +460,7 @@ class SignupVendor extends Component {
                 </React.Fragment>
               )}
             </React.Fragment>
-          </Paper>
+          </div>
         </main>
       </React.Fragment>
     );

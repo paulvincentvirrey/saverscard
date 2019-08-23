@@ -6,17 +6,27 @@ import {
   Grid,
   MenuItem,
   TextField,
-  Typography
+  Typography,
+  makeStyles
 } from "@material-ui/core";
 
+const useStyles = makeStyles(theme => ({
+  header: {
+    color: "#3f51b5",
+    fontWeight: "bold",
+    marginBottom: theme.spacing(6)
+  }
+}));
+
 export default function VendorDiscountForm(props) {
+  const classes = useStyles();
   const { businessCategory, discountOffer } = props.errors;
   const businessCategoryError = businessCategory ? true : false;
   const discountOfferError = discountOffer ? true : false;
   return (
     <React.Fragment>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h4" className={classes.header}>
           VENDOR DISCOUNT OFFER
         </Typography>
       </Box>
@@ -26,9 +36,8 @@ export default function VendorDiscountForm(props) {
             error={businessCategoryError}
             select
             required
-            label={
-              businessCategoryError ? businessCategory : "Business Category"
-            }
+            label="Business Category"
+            helperText={businessCategoryError ? businessCategory : ""}
             name="businessCategory"
             onChange={props.handleChange}
             value={
@@ -48,7 +57,8 @@ export default function VendorDiscountForm(props) {
             select
             required
             name="discountOffer"
-            label={discountOfferError ? discountOffer : "Discount Offer"}
+            label="Discount Offer"
+            helperText={discountOfferError ? discountOffer : ""}
             onChange={props.handleChange}
             value={
               props.values["discountOffer"] ? props.values["discountOffer"] : ""
@@ -96,9 +106,8 @@ function getDiscountDisplay(props) {
           <TextField
             error={discountExclusionError}
             name="discountExclusion"
-            label={
-              discountExclusionError ? discountExclusion : "Discount Exclusion"
-            }
+            label="Discount Exclusion"
+            helperText={discountExclusionError ? discountExclusion : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}

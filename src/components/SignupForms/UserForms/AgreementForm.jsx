@@ -5,18 +5,28 @@ import {
   FormControlLabel,
   Grid,
   TextField,
-  Typography
+  Typography,
+  makeStyles
 } from "@material-ui/core";
 import { Done as DoneIcon } from "@material-ui/icons";
 
+const useStyles = makeStyles(theme => ({
+  header: {
+    color: "#3f51b5",
+    fontWeight: "bold",
+    marginBottom: theme.spacing(6)
+  }
+}));
+
 export default function AgreementForm(props) {
+  const classes = useStyles();
   const { agreementCheck, esignature } = props.errors;
   const agreementCheckError = agreementCheck ? true : false;
   const esignatureError = esignature ? true : false;
   return (
     <React.Fragment>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h4" className={classes.header}>
           TERMS AND AGREEMENT
         </Typography>
       </Box>
@@ -88,7 +98,7 @@ export default function AgreementForm(props) {
           <TextField
             error={esignatureError}
             name="esignature"
-            label={esignatureError ? esignature : "E-signature"}
+            label="E-signature"
             helperText="Please enter your full name"
             fullWidth
             onChange={props.handleChange}

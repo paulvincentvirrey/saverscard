@@ -1,7 +1,22 @@
 import React, { useState } from "react";
-import { Box, Grid, TextField, Typography } from "@material-ui/core";
+import {
+  Box,
+  Grid,
+  TextField,
+  Typography,
+  makeStyles
+} from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+  header: {
+    color: "#3f51b5",
+    fontWeight: "bold",
+    marginBottom: theme.spacing(6)
+  }
+}));
 
 export default function VendorInformationForm(props) {
+  const classes = useStyles();
   const {
     businessName,
     website,
@@ -30,7 +45,7 @@ export default function VendorInformationForm(props) {
   return (
     <React.Fragment>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h4" className={classes.header}>
           VENDOR INFORMATION
         </Typography>
       </Box>
@@ -39,7 +54,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={businessNameError}
             name="businessName"
-            label={businessNameError ? businessName : "Business Name"}
+            label="Business Name"
+            helperText={businessNameError ? businessName : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
@@ -50,7 +66,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={websiteError}
             name="website"
-            label={websiteError ? website : "Website"}
+            label="Website"
+            helperText={websiteError ? website : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
@@ -61,7 +78,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={address1Error}
             name="address1"
-            label={address1Error ? address1 : "Address Line 1"}
+            label="Address Line 1"
+            helperText={address1Error ? address1 : ""}
             fullWidth
             autoComplete="billing address-line1"
             onChange={props.handleChange}
@@ -73,7 +91,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={address2Error}
             name="address2"
-            label={address2Error ? address2 : "Address Line 2"}
+            label="Address Line 2"
+            helperText={address2Error ? address2 : ""}
             fullWidth
             autoComplete="billing address-line2"
             onChange={props.handleChange}
@@ -85,7 +104,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={cityError}
             name="city"
-            label={cityError ? city : "City"}
+            label="City"
+            helperText={cityError ? city : ""}
             fullWidth
             autoComplete="billing address-level2"
             onChange={props.handleChange}
@@ -107,7 +127,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={zipCodeError}
             name="zip"
-            label={zipCodeError ? zipCode : "Zip / Postal code"}
+            label="Zip / Postal code"
+            helperText={zipCodeError ? zipCode : ""}
             fullWidth
             autoComplete="billing postal-code"
             onChange={props.handleChange}
@@ -119,7 +140,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={telephoneError}
             name="telephone"
-            label={telephoneError ? telephone : "Telephone Number"}
+            label="Telephone Number"
+            helperText={telephoneError ? telephone : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
@@ -131,7 +153,8 @@ export default function VendorInformationForm(props) {
             error={faxError}
             id="fax"
             name="fax"
-            label={faxError ? fax : "Fax"}
+            label="Fax"
+            helperText={faxError ? fax : ""}
             onChange={props.handleChange}
             value={props.values[props.name]}
             fullWidth
@@ -142,11 +165,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={authorizedPersonEmailError}
             name="authorizedPersonEmail"
-            label={
-              authorizedPersonEmailError
-                ? authorizedPersonEmail
-                : "E-mail Address"
-            }
+            label="E-mail Address"
+            helperText={authorizedPersonEmailError ? authorizedPersonEmail : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
@@ -157,9 +177,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={authorizedPersonError}
             name="authorizedPerson"
-            label={
-              authorizedPersonError ? authorizedPerson : "Authorized Person"
-            }
+            label="Authorized Person"
+            helperText={authorizedPersonError ? authorizedPerson : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
@@ -170,11 +189,8 @@ export default function VendorInformationForm(props) {
           <TextField
             error={authorizedPersonPhoneError}
             name="authorizedPersonPhone"
-            label={
-              authorizedPersonPhoneError
-                ? authorizedPersonPhone
-                : "Authorized Person Phone"
-            }
+            label="Authorized Person Phone"
+            helperText={authorizedPersonPhoneError ? authorizedPersonPhone : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}

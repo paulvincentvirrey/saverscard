@@ -6,11 +6,12 @@ import {
   Typography,
   makeStyles
 } from "@material-ui/core";
-import { blue } from "@material-ui/core/colors";
 
 const useStyles = makeStyles(theme => ({
   header: {
-    color: blue
+    color: "#3f51b5",
+    fontWeight: "bold",
+    marginBottom: theme.spacing(6)
   }
 }));
 
@@ -24,7 +25,7 @@ export default function AccountDetailsForm(props) {
   return (
     <React.Fragment>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h5" gutterBottom className={classes.header}>
+        <Typography variant="h4" className={classes.header}>
           ACCOUNT DETAILS
         </Typography>
       </Box>
@@ -34,7 +35,8 @@ export default function AccountDetailsForm(props) {
             error={usernameError}
             id="username"
             name="username"
-            label={usernameError ? username : "Username"}
+            label="Username"
+            helperText={usernameError ? username : ""}
             fullWidth
             autoComplete="username"
             onChange={props.handleChange}
@@ -47,7 +49,8 @@ export default function AccountDetailsForm(props) {
             error={emailError}
             id="email"
             name="email"
-            label={emailError ? email : "Email Address"}
+            label="Email Address"
+            helperText={emailError ? email : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
@@ -59,7 +62,8 @@ export default function AccountDetailsForm(props) {
             error={passwordError}
             type="password"
             name="password"
-            label={passwordError ? password : "Password"}
+            label="Password"
+            helperText={passwordError ? password : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
@@ -70,7 +74,8 @@ export default function AccountDetailsForm(props) {
           <TextField
             error={confirmPasswordError}
             type="password"
-            label={confirmPasswordError ? confirmPassword : "Confirm Password"}
+            label="Confirm Password"
+            helperText={confirmPasswordError ? confirmPassword : ""}
             name="confirmPassword"
             fullWidth
             onChange={props.handleChange}

@@ -1,8 +1,23 @@
 import React from "react";
-import { Box, Grid, TextField, Typography } from "@material-ui/core";
+import {
+  Box,
+  Grid,
+  TextField,
+  Typography,
+  makeStyles
+} from "@material-ui/core";
 import { MaterialUIPickers } from "../datePicker";
 
+const useStyles = makeStyles(theme => ({
+  header: {
+    color: "#3f51b5",
+    fontWeight: "bold",
+    marginBottom: theme.spacing(6)
+  }
+}));
+
 export default function UserInformationForm(props) {
+  const classes = useStyles();
   console.log(props.errors);
   const {
     lastName,
@@ -25,7 +40,7 @@ export default function UserInformationForm(props) {
   return (
     <React.Fragment>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h5" gutterBottom>
+        <Typography variant="h4" className={classes.header}>
           USER INFORMATION
         </Typography>
       </Box>
@@ -34,7 +49,8 @@ export default function UserInformationForm(props) {
           <TextField
             error={lastNameError}
             name="lastName"
-            label={lastNameError ? lastName : "Last Name"}
+            label="Last Name"
+            helperText={lastNameError ? lastName : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
@@ -45,24 +61,26 @@ export default function UserInformationForm(props) {
           <TextField
             error={firstNameError}
             name="firstName"
-            label={firstNameError ? firstName : "First Name"}
+            label="First Name"
+            helperText={firstNameError ? firstName : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
+            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <MaterialUIPickers
             values={props.values}
             handleDateChange={props.handleDateChange}
-            variant="outlined"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
             error={contactNumberError}
             name="contactNumber"
-            label={contactNumberError ? contactNumber : "Contact Number"}
+            label="Contact Number"
+            helperText={contactNumberError ? contactNumber : ""}
             fullWidth
             onChange={props.handleChange}
             value={props.values[props.name]}
@@ -73,7 +91,8 @@ export default function UserInformationForm(props) {
           <TextField
             error={addressLine1Error}
             name="addressLine1"
-            label={addressLine1Error ? addressLine1 : "Address Line 1"}
+            label="Address Line 1"
+            helperText={addressLine1Error ? addressLine1 : ""}
             fullWidth
             autoComplete="billing address-level1"
             onChange={props.handleChange}
@@ -85,7 +104,8 @@ export default function UserInformationForm(props) {
           <TextField
             error={addressLine2Error}
             name="addressLine2"
-            label={addressLine2Error ? addressLine2 : "Address Line 2"}
+            label="Address Line 2"
+            helperText={addressLine2Error ? addressLine2 : ""}
             fullWidth
             autoComplete="billing address-level2"
             onChange={props.handleChange}
@@ -97,7 +117,8 @@ export default function UserInformationForm(props) {
           <TextField
             error={cityError}
             name="city"
-            label={cityError ? city : "City"}
+            label="City"
+            helperText={cityError ? city : ""}
             fullWidth
             autoComplete="city"
             onChange={props.handleChange}
@@ -121,7 +142,8 @@ export default function UserInformationForm(props) {
             error={zipCodeError}
             id="zip"
             name="zip"
-            label={zipCodeError ? zipCode : "Zip / Postal code"}
+            label="Zip / Postal code"
+            helperText={zipCodeError ? zipCode : ""}
             fullWidth
             autoComplete="billing postal-code"
             onChange={props.handleChange}

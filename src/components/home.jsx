@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
   root: {
     //backgroundImage: `url(${Image})`,
     height: "100vh",
-    paddingTop: theme.spacing(10)
+    paddingTop: theme.spacing(10),
+    backgroundColor: "#fdfaf0"
   },
   banner: {
     maxHeight: 90,
