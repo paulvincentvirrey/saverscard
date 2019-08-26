@@ -104,7 +104,14 @@ class AdminVendors extends Component {
         label: "Member Since",
         options: {
           filter: true,
-          sort: false
+          sort: false,
+          customBodyRender: value => {
+            console.log(typeof value);
+            if (value != null) {
+              const date = new Date(value);
+              return date.toLocaleString();
+            }
+          }
         }
       },
       {
@@ -112,7 +119,14 @@ class AdminVendors extends Component {
         label: "Date Modified",
         options: {
           filter: true,
-          sort: false
+          sort: false,
+          customBodyRender: value => {
+            console.log(typeof value);
+            if (value != null) {
+              const date = new Date(value);
+              return date.toLocaleString();
+            }
+          }
         }
       },
       {
