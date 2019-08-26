@@ -131,20 +131,7 @@ class SummaryForm extends Component {
       this.state.errors["email"] = "Invalid e-mail address";
     }
 
-    // Fax
-    if (typeof fax !== "undefined") {
-      if (
-        !fax.match(
-          /^(\+?\d{1,}(\s?|\-?)\d*(\s?|\-?)\(?\d{2,}\)?(\s?|\-?)\d{3,}\s?\d{3,})$/
-        )
-      ) {
-        this.state.errors["fax"] = "Invalid fax number";
-      }
-    } else {
-      this.state.errors["fax"] = "Invalid fax number";
-    }
-
-    // Telphone
+    // Telephone
     if (typeof telephone !== "undefined") {
       if (!telephone.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)) {
         this.state.errors["telephone"] = "Invalid telephone number";
@@ -310,6 +297,7 @@ class SummaryForm extends Component {
                 <TextField
                   select
                   required
+                  name="status"
                   label="Application Status"
                   onChange={this.handleChange}
                   value={this.state.status}
@@ -458,6 +446,7 @@ class SummaryForm extends Component {
                 <TextField
                   select
                   required
+                  name="category"
                   label="Vendor Category"
                   onChange={this.handleChange}
                   value={this.state.category}

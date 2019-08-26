@@ -394,7 +394,7 @@ function getMembershipDisplay(status, dateModified) {
     return (
       <React.Fragment>
         <Typography variant="subtitle2" gutterBottom>
-          Member Since : {dateModified}
+          Member Since : {console.log(typeof dateModified)}
         </Typography>
 
         <Typography variant="subtitle2">

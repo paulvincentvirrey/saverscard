@@ -20,7 +20,7 @@ import {
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { blue } from "@material-ui/core/colors";
-import ApplicationStatus from "./../admin/applicationStatus";
+import ApplicationStatus from "../admin/applicationStatus";
 
 const useStyles = theme => ({
   appBar: {

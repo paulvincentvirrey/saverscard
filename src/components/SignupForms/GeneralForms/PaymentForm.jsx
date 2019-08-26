@@ -1,5 +1,13 @@
 import React, { Component } from "react";
-import { Box, Grid, MenuItem, TextField, Typography } from "@material-ui/core";
+import {
+  Box,
+  Button,
+  ButtonBase,
+  Grid,
+  MenuItem,
+  TextField,
+  Typography
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { StripeNumberTextField } from "../../stripeNumberTextField";
 import { StripeExpiryTextField } from "../../stripeExpiryTextField";
@@ -122,19 +130,14 @@ class PaymentForm extends Component {
     if (payment === "Invoice") {
       return (
         <React.Fragment>
-          {/* <div className="file-field input-field">
-            <Button waves="light" small>
-              <Icon>attach_file</Icon>
-              <input type="file" />
-            </Button>
-            <div className="file-path-wrapper">
-              <input
-                className="file-path validate"
-                type="text"
-                placeholder="Please attach invoice"
-              />
-            </div>
-          </div> */}
+          {/* <Button
+            type="file"
+            onClick={e => {
+              this.refs["file-upload"].click();
+            }}
+          >
+            Upload invoice
+          </Button> */}
         </React.Fragment>
       );
     }

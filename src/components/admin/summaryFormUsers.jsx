@@ -38,6 +38,7 @@ class SummaryFormUsers extends Component {
       isDialogOpen2: false,
       errors: {},
       id: "",
+      dateModified: "",
       status: "",
       username: "",
       email: "",
@@ -59,6 +60,7 @@ class SummaryFormUsers extends Component {
 
     this.setState({
       id: data._id,
+      dateModified: data.dateModified,
       status: data.accountStatus,
       username: data.username,
       email: data.email,
@@ -122,6 +124,8 @@ class SummaryFormUsers extends Component {
 
   handleChange = ({ target }) => {
     let { name, value } = target;
+    console.log("hi");
+    console.log(name + ":" + value);
     this.setState({
       [name]: value
     });
@@ -150,11 +154,6 @@ class SummaryFormUsers extends Component {
 
     if (this.handleValidation()) {
       var today = new Date();
-      var dd = String(today.getDate()).padStart(2, "0");
-      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-      var yyyy = today.getFullYear();
-
-      today = mm + "/" + dd + "/" + yyyy;
 
       const updatedForm = {
         _id: id,
@@ -208,8 +207,8 @@ class SummaryFormUsers extends Component {
           aria-labelledby="form-dialog-title"
         >
           <DialogTitle id="form-dialog-title">
-            Information Summary :{" "}
-            {this.state.firstName + " " + this.state.lastName}
+            Information Summary :
+            {" " + this.state.firstName + " " + this.state.lastName}
           </DialogTitle>
           <DialogContent>
             <Grid container spacing={3}>
@@ -217,6 +216,7 @@ class SummaryFormUsers extends Component {
                 <TextField
                   select
                   required
+                  name="status"
                   label="Application Status"
                   onChange={this.handleChange}
                   value={this.state.status ? this.state.status : ""}

@@ -17,14 +17,14 @@ import {
 import Carousel from "./carousel";
 import SignIn from "./signin";
 import SignUp from "./signup";
-import Image from "../img/sidebg.png";
+import Image from "../img/sideBG.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    //backgroundImage: `url(${Image})`,
+    backgroundImage: `url(${Image})`,
     height: "100vh",
-    paddingTop: theme.spacing(10),
-    backgroundColor: "#fdfaf0"
+    paddingTop: theme.spacing(10)
+    //backgroundColor: "#FFF6EA"
   },
   banner: {
     maxHeight: 90,
