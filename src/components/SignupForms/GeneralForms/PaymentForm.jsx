@@ -168,6 +168,16 @@ class PaymentForm extends Component {
         <Grid container spacing={3}>
           <Grid item xs={12} md={6}>
             <TextField
+              disabled={false}
+              name="subscription"
+              label="Subscription"
+              value="$5/month only"
+              fullWidth
+              variant="outlined"
+            />
+          </Grid>
+          <Grid item xs={12} md={6}>
+            <TextField
               select
               label="Payment Method"
               name="paymentMethod"
@@ -183,16 +193,7 @@ class PaymentForm extends Component {
               {this.renderMenuItems(this.props.paymentMethods)}
             </TextField>
           </Grid>
-          <Grid item xs={12} md={6}>
-            <TextField
-              disabled
-              name="subscription"
-              label="Subscription"
-              value="$5/month only"
-              fullWidth
-              variant="outlined"
-            />
-          </Grid>
+
           {this.getPaymentDisplay(this.props)}
         </Grid>
       </React.Fragment>

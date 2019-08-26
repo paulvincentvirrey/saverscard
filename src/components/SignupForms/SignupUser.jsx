@@ -81,7 +81,7 @@ class SignupUser extends Component {
     this.state = {
       values: [],
       errors: {},
-      activeStep: 1
+      activeStep: 2
     };
   }
 
