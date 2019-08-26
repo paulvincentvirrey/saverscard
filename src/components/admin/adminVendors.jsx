@@ -106,7 +106,6 @@ class AdminVendors extends Component {
           filter: true,
           sort: false,
           customBodyRender: value => {
-            console.log(typeof value);
             if (value != null) {
               const date = new Date(value);
               return date.toLocaleString();
@@ -121,7 +120,6 @@ class AdminVendors extends Component {
           filter: true,
           sort: false,
           customBodyRender: value => {
-            console.log(typeof value);
             if (value != null) {
               const date = new Date(value);
               return date.toLocaleString();
@@ -135,7 +133,6 @@ class AdminVendors extends Component {
         options: {
           filter: false,
           sort: false,
-
           customBodyRender: (value, tableMeta, updateValue) => {
             const { rowData } = tableMeta;
             if (rowData) {

@@ -65,7 +65,7 @@ class SummaryForm extends Component {
     };
   }
 
-  componentDidMount() {
+  handlePopulate = () => {
     const { data } = this.props;
     let discountExclusions = data.discountExclusions;
     if (data.discountToAll) {
@@ -95,6 +95,16 @@ class SummaryForm extends Component {
       paymentMethod: data.paymentMethod,
       remarks: data.remarks
     });
+  };
+
+  componentDidMount() {
+    this.handlePopulate();
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.data._id !== prevProps.data._id) {
+      this.handlePopulate();
+    }
   }
 
   handleValidation() {
