@@ -51,6 +51,12 @@ const paymentMethods = [
   { _id: 3, label: "Promo Code", value: "Promo Code" }
 ];
 
+const subscriptions = [
+  { _id: 1, label: "Free", value: 0 },
+  { _id: 2, label: "$5/month", value: 5 },
+  { _id: 3, label: "$8/month", value: 8 }
+];
+
 export function getAppStatus() {
   return appStatus;
 }
@@ -73,4 +79,8 @@ export function getDiscounts() {
 
 export function getPaymentMethods() {
   return paymentMethods;
+}
+
+export function getSubscriptions() {
+  return subscriptions;
 }

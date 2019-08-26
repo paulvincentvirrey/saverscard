@@ -7,16 +7,11 @@ import {
   getCategories,
   getCreditCards,
   getDiscounts,
-  getPaymentMethods
+  getPaymentMethods,
+  getSubscriptions
 } from "../../services/fakeCategoryService";
 import { userService } from "../../services/userService";
-import {
-  Button,
-  CssBaseline,
-  Grid,
-  Paper,
-  Typography
-} from "@material-ui/core";
+import { Button, CssBaseline, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { injectStripe, Elements, StripeProvider } from "react-stripe-elements";
 import { blue } from "@material-ui/core/colors";
@@ -53,7 +48,6 @@ const useStyles = theme => ({
 
   button: {
     marginTop: theme.spacing(3),
-    color: blue,
     borderRadius: 0,
     boxShadow: "none",
     fontSize: "1.1875em",
@@ -111,159 +105,159 @@ class SignupUser extends Component {
     const agreementCheck = values["agreementCheck"];
     const esignature = values["esignature"];
 
-    if (step === 1) {
-      // Username
-      console.log("username:" + typeof username);
-      if (typeof username !== "undefined") {
-        if (!username.match(/^\w+$/)) {
-          errors["username"] = "Invalid username";
-        }
-      } else {
-        errors["username"] = "Invalid username";
-      }
+    // if (step === 1) {
+    //   // Username
+    //   console.log("username:" + typeof username);
+    //   if (typeof username !== "undefined") {
+    //     if (!username.match(/^\w+$/)) {
+    //       errors["username"] = "Invalid username";
+    //     }
+    //   } else {
+    //     errors["username"] = "Invalid username";
+    //   }
 
-      // Email Address
-      if (typeof email !== "undefined") {
-        if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-          errors["email"] = "Invalid e-mail address";
-        }
-      } else {
-        errors["email"] = "Invalid e-mail address";
-      }
+    //   // Email Address
+    //   if (typeof email !== "undefined") {
+    //     if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+    //       errors["email"] = "Invalid e-mail address";
+    //     }
+    //   } else {
+    //     errors["email"] = "Invalid e-mail address";
+    //   }
 
-      // Password
-      if (typeof password !== "undefined") {
-        if (!password.match(/^(?=.*\d).{8,16}$/)) {
-          errors["password"] = "Invalid password";
-        }
-      } else {
-        errors["password"] = "Invalid password";
-      }
+    //   // Password
+    //   if (typeof password !== "undefined") {
+    //     if (!password.match(/^(?=.*\d).{8,16}$/)) {
+    //       errors["password"] = "Invalid password";
+    //     }
+    //   } else {
+    //     errors["password"] = "Invalid password";
+    //   }
 
-      // Confirm Password
-      if (typeof confirmPassword !== "undefined") {
-        if (confirmPassword !== password) {
-          errors["confirmPassword"] = "Password did not match";
-        }
-      } else {
-        errors["confirmPassword"] = "Password did not match";
-      }
-    }
+    //   // Confirm Password
+    //   if (typeof confirmPassword !== "undefined") {
+    //     if (confirmPassword !== password) {
+    //       errors["confirmPassword"] = "Password did not match";
+    //     }
+    //   } else {
+    //     errors["confirmPassword"] = "Password did not match";
+    //   }
+    // }
 
-    if (step === 2) {
-      //Last Name
-      if (typeof lastName !== "undefined") {
-        if (lastName === "") {
-          errors["lastName"] = "Invalid last name";
-        }
-      } else {
-        errors["lastName"] = "Invalid last name";
-      }
+    // if (step === 2) {
+    //   //Last Name
+    //   if (typeof lastName !== "undefined") {
+    //     if (lastName === "") {
+    //       errors["lastName"] = "Invalid last name";
+    //     }
+    //   } else {
+    //     errors["lastName"] = "Invalid last name";
+    //   }
 
-      // First Name
-      if (typeof firstName !== "undefined") {
-        if (firstName === "") {
-          errors["firstName"] = "Invalid first name";
-        }
-      } else {
-        errors["firstName"] = "Invalid first name";
-      }
+    //   // First Name
+    //   if (typeof firstName !== "undefined") {
+    //     if (firstName === "") {
+    //       errors["firstName"] = "Invalid first name";
+    //     }
+    //   } else {
+    //     errors["firstName"] = "Invalid first name";
+    //   }
 
-      // Birthday
-      if (typeof birthday !== "undefined") {
-        if (birthday !== "") {
-          errors["birthday"] = "Invalid birthday";
-        }
-      }
+    //   // Birthday
+    //   if (typeof birthday !== "undefined") {
+    //     if (birthday !== "") {
+    //       errors["birthday"] = "Invalid birthday";
+    //     }
+    //   }
 
-      // Contact Number
-      if (typeof contactNumber !== "undefined" && contactNumber !== "") {
-        if (
-          !contactNumber.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)
-        ) {
-          errors["contactNumber"] = "Invalid contact number";
-        }
-      } else {
-        errors["contactNumber"] = "Invalid contact number";
-      }
+    //   // Contact Number
+    //   if (typeof contactNumber !== "undefined" && contactNumber !== "") {
+    //     if (
+    //       !contactNumber.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)
+    //     ) {
+    //       errors["contactNumber"] = "Invalid contact number";
+    //     }
+    //   } else {
+    //     errors["contactNumber"] = "Invalid contact number";
+    //   }
 
-      // Address Line 1
-      if (typeof addressLine1 !== "undefined") {
-        if (addressLine1 === "") {
-          errors["addressLine1"] = "Invalid address line 1";
-        }
-      } else {
-        errors["addressLine1"] = "Invalid address line 1";
-      }
+    //   // Address Line 1
+    //   if (typeof addressLine1 !== "undefined") {
+    //     if (addressLine1 === "") {
+    //       errors["addressLine1"] = "Invalid address line 1";
+    //     }
+    //   } else {
+    //     errors["addressLine1"] = "Invalid address line 1";
+    //   }
 
-      // Address Line 2
-      if (typeof addressLine2 !== "undefined") {
-        if ((addressLine1 === "" || !addressLine1) && addressLine2 !== "") {
-          errors["addressLine2"] = "Please fill in address line 1";
-        }
-      }
+    //   // Address Line 2
+    //   if (typeof addressLine2 !== "undefined") {
+    //     if ((addressLine1 === "" || !addressLine1) && addressLine2 !== "") {
+    //       errors["addressLine2"] = "Please fill in address line 1";
+    //     }
+    //   }
 
-      // City
-      if (typeof city !== "undefined") {
-        if (city === "") {
-          errors["city"] = "Invalid city";
-        }
-      } else {
-        errors["city"] = "Invalid city";
-      }
+    //   // City
+    //   if (typeof city !== "undefined") {
+    //     if (city === "") {
+    //       errors["city"] = "Invalid city";
+    //     }
+    //   } else {
+    //     errors["city"] = "Invalid city";
+    //   }
 
-      // Zip Code
-      if (typeof zipCode !== "undefined" && zipCode !== "") {
-        if (!zipCode.toString().match(/^[7|8][0-9]{0,5}$/)) {
-          errors["zipCode"] = "Invalid zip code";
-        }
-      } else {
-        errors["zipCode"] = "Invalid zip code";
-      }
-    }
+    //   // Zip Code
+    //   if (typeof zipCode !== "undefined" && zipCode !== "") {
+    //     if (!zipCode.toString().match(/^[7|8][0-9]{0,5}$/)) {
+    //       errors["zipCode"] = "Invalid zip code";
+    //     }
+    //   } else {
+    //     errors["zipCode"] = "Invalid zip code";
+    //   }
+    // }
 
-    if (step === 3) {
-      // Payment Method
-      if (typeof paymentMethod !== "undefined") {
-        if (paymentMethod === "") {
-          errors["paymentMethod"] = "Invalid payment method";
-        }
-      }
+    // if (step === 3) {
+    //   // Payment Method
+    //   if (typeof paymentMethod !== "undefined") {
+    //     if (paymentMethod === "") {
+    //       errors["paymentMethod"] = "Invalid payment method";
+    //     }
+    //   }
 
-      // CC Type
-      if (typeof ccType !== "undefined" && paymentMethod === "Credit Card") {
-        if (ccType === "") {
-          errors["ccType"] = "Invalid credit card";
-        } else {
-          errors["promoCode"] = "Invalid credit card";
-        }
-      }
+    //   // CC Type
+    //   if (typeof ccType !== "undefined" && paymentMethod === "Credit Card") {
+    //     if (ccType === "") {
+    //       errors["ccType"] = "Invalid credit card";
+    //     } else {
+    //       errors["promoCode"] = "Invalid credit card";
+    //     }
+    //   }
 
-      // Promo Code
-      if (typeof promoCode !== "undefined" && paymentMethod === "Promo Code") {
-        if (promoCode !== "") {
-          if (!promoCode.toString().match(/^[0-9]{5,10}$/)) {
-            errors["promoCode"] = "Invalid promo code";
-          }
-        } else {
-          errors["promoCode"] = "Invalid promo code";
-        }
-      }
-    }
+    //   // Promo Code
+    //   if (typeof promoCode !== "undefined" && paymentMethod === "Promo Code") {
+    //     if (promoCode !== "") {
+    //       if (!promoCode.toString().match(/^[0-9]{5,10}$/)) {
+    //         errors["promoCode"] = "Invalid promo code";
+    //       }
+    //     } else {
+    //       errors["promoCode"] = "Invalid promo code";
+    //     }
+    //   }
+    // }
 
-    if (step === 4) {
-      // Terms Agreement
-      if (typeof agreementCheck !== "undefined") {
-        if (!agreementCheck) {
-          errors["agreementCheck"] = "Please check box if you want to proceed";
-        }
-      }
+    // if (step === 4) {
+    //   // Terms Agreement
+    //   if (typeof agreementCheck !== "undefined") {
+    //     if (!agreementCheck) {
+    //       errors["agreementCheck"] = "Please check box if you want to proceed";
+    //     }
+    //   }
 
-      // E-signature
-      if (typeof esignature === "undefined" || esignature === "") {
-        errors["esignature"] = "Invalid e-signature";
-      }
-    }
+    //   // E-signature
+    //   if (typeof esignature === "undefined" || esignature === "") {
+    //     errors["esignature"] = "Invalid e-signature";
+    //   }
+    // }
 
     console.log("number of errors: " + Object.keys(errors).length);
     if (Object.keys(errors).length > 0) {
@@ -320,7 +314,7 @@ class SignupUser extends Component {
       zip: values["zip"],
       method: values["paymentMethod"],
       ccType: values["creditCardType"],
-      subscription: 5.0,
+      subscription: values["subscription"],
       promoCode: values["promoCode"]
     };
 
@@ -337,10 +331,11 @@ class SignupUser extends Component {
     });
   };
 
-  categories = [{ _id: "", value: "" }, ...getCategories()];
+  categories = [...getCategories()];
   creditCards = [...getCreditCards()];
-  discounts = [{ _id: "", value: "" }, ...getDiscounts()];
+  discounts = [...getDiscounts()];
   paymentMethods = [...getPaymentMethods()];
+  subscriptions = [...getSubscriptions()];
 
   render() {
     const { classes } = this.props;
@@ -376,6 +371,7 @@ class SignupUser extends Component {
                   handleValidation={this.handleValidation}
                   errors={this.state.errors}
                   step={this.state.activeStep}
+                  subscriptions={this.subscriptions}
                 />
                 <Grid
                   container
@@ -385,6 +381,8 @@ class SignupUser extends Component {
                   {activeStep !== 0 && (
                     <Grid item xs={2}>
                       <Button
+                        variant="contained"
+                        color="primary"
                         onClick={this.handleBack}
                         className={classes.backButton}
                       >
@@ -454,6 +452,7 @@ function GetStepContent(props) {
           categories={props.categories}
           creditCards={props.creditCards}
           paymentMethods={props.paymentMethods}
+          subscriptions={props.subscriptions}
           setFormComplete={() => {}}
           errors={props.errors}
         />

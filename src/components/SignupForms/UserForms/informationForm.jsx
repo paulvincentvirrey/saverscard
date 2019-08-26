@@ -71,8 +71,9 @@ export default function UserInformationForm(props) {
         </Grid>
         <Grid item xs={12} sm={6}>
           <MaterialUIPickers
-            values={props.values}
+            name="birthdate"
             handleDateChange={props.handleDateChange}
+            values={props.values}
           />
         </Grid>
         <Grid item xs={12} sm={6}>

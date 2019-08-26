@@ -59,7 +59,6 @@ const useStyles = theme => ({
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
-    color: blue,
     borderRadius: 0,
     boxShadow: "none",
     fontSize: "1.1875em",
@@ -442,6 +441,8 @@ class SignupVendor extends Component {
                   <div className={classes.buttons}>
                     {activeStep !== 0 && (
                       <Button
+                        variant="contained"
+                        color="primary"
                         onClick={this.handleBack}
                         className={classes.button}
                       >

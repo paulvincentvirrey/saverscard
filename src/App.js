@@ -10,7 +10,7 @@ import SignupUser from "./components/signupForms/signupUser";
 import SignupVendor from "./components/signupForms/signupVendor";
 import AdminVendors from "./components/admin/adminVendors";
 import AdminUsers from "./components/admin/adminUsers";
-import CheckoutForm from "./components/CheckoutForm";
+import CheckoutForm from "./components/checkoutForm";
 import Account from "./components/account";
 import VendorAccount from "./components/vendorAccount";
 import PrivateRoute from "./components/privateRoute";
