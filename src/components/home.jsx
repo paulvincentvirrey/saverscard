@@ -17,7 +17,7 @@ import {
 import Carousel from "./carousel";
 import SignIn from "./signin";
 import SignUp from "./signup";
-import Image from "../img/sideBG.png";
+import Image from "../img/sidebg.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
