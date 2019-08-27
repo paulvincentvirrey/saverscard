@@ -163,7 +163,6 @@ class AdminUsers extends Component {
           filter: true,
           sort: false,
           customBodyRender: value => {
-            console.log(typeof value);
             if (value != null) {
               const date = new Date(value);
               return date.toLocaleString();
@@ -178,7 +177,6 @@ class AdminUsers extends Component {
           filter: true,
           sort: false,
           customBodyRender: value => {
-            console.log(typeof value);
             if (value != null) {
               const date = new Date(value);
               return date.toLocaleString();
@@ -206,10 +204,17 @@ class AdminUsers extends Component {
       filterType: "dropdown",
       responsive: "scroll",
       print: false,
-      onRowsDelete: rowsDeleted => {
-        rowsDeleted.users.map(rowDeleted =>
-          console.log(this.state.users[rowDeleted.dataIndex])
-        );
+      selectableRows: "single",
+      onRowsDelete: async rowsDeleted => {
+        const user = this.state.users[rowsDeleted.data[0].dataIndex];
+        await userService
+          .deleteUser(user._id)
+          .then(x => {
+            return true;
+          })
+          .catch(err => {
+            return false;
+          });
       }
     };
     return (

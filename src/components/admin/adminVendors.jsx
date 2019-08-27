@@ -148,10 +148,21 @@ class AdminVendors extends Component {
       responsive: "scroll",
       print: false,
       viewColumns: false,
-      onRowsDelete: rowsDeleted => {
-        rowsDeleted.vendors.map(rowDeleted =>
-          console.log(vendors[rowDeleted.dataIndex])
-        );
+      selectableRows: "single",
+      onRowsDelete: async rowsDeleted => {
+        console.log(rowsDeleted.data[0].dataIndex);
+        const vendor = this.state.vendors[rowsDeleted.data[0].dataIndex];
+        await vendorService
+          .deleteVendor(vendor._id)
+          .then(x => {
+            return true;
+          })
+          .catch(err => {
+            return false;
+          });
+        // rowsDeleted.vendors.map(rowDeleted =>
+        //   console.log(vendors[rowDeleted.dataIndex])
+        // );
       }
     };
     return (
