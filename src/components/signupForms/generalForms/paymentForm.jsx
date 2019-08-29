@@ -4,10 +4,12 @@ import {
   Button,
   ButtonBase,
   Grid,
+  InputAdornment,
   MenuItem,
   TextField,
   Typography
 } from "@material-ui/core";
+import { Subscriptions } from "@material-ui/icons/";
 import { withStyles } from "@material-ui/core/styles";
 import { StripeNumberTextField } from "../../stripeNumberTextField";
 import { StripeExpiryTextField } from "../../stripeExpiryTextField";
@@ -18,6 +20,9 @@ const useStyles = theme => ({
     color: "#3f51b5",
     fontWeight: "bold",
     marginBottom: theme.spacing(6)
+  },
+  icons: {
+    color: "#737373"
   }
 });
 
@@ -113,7 +118,7 @@ class PaymentForm extends Component {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <StripeExpiryTextField
               id="expDate"
               label="Expiry date"
@@ -121,7 +126,7 @@ class PaymentForm extends Component {
               variant="outlined"
             />
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <StripeCVCTextField
               id="cvc"
               label="CVC"
@@ -152,7 +157,7 @@ class PaymentForm extends Component {
     if (payment === "Promo Code") {
       return (
         <React.Fragment>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               label="Enter promo code"
               name="promoCode"
@@ -177,7 +182,7 @@ class PaymentForm extends Component {
           </Typography>
         </Box>
         <Grid container spacing={3}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               select
               name="subscription"
@@ -190,11 +195,18 @@ class PaymentForm extends Component {
               }
               fullWidth
               variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment className={classes.icons} position="start">
+                    <Subscriptions />
+                  </InputAdornment>
+                )
+              }}
             >
               {this.renderMenuItemsLabel(this.props.subscriptions)}
             </TextField>
           </Grid>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} sm={6}>
             <TextField
               select
               label="Payment Method"

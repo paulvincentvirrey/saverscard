@@ -2,10 +2,19 @@ import React from "react";
 import {
   Box,
   Grid,
+  InputAdornment,
   TextField,
   Typography,
   makeStyles
 } from "@material-ui/core";
+import {
+  Home,
+  LocationCity,
+  Map,
+  Person,
+  Phone,
+  Place
+} from "@material-ui/icons/";
 import { MaterialUIPickers } from "../datePicker";
 
 const useStyles = makeStyles(theme => ({
@@ -13,6 +22,9 @@ const useStyles = makeStyles(theme => ({
     color: "#3f51b5",
     fontWeight: "bold",
     marginBottom: theme.spacing(6)
+  },
+  icons: {
+    color: "#737373"
   }
 }));
 
@@ -53,8 +65,15 @@ export default function UserInformationForm(props) {
             helperText={lastNameError ? lastName : ""}
             fullWidth
             onChange={props.handleChange}
-            value={props.values[props.name]}
+            value={props.values["lastName"]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Person />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -65,15 +84,22 @@ export default function UserInformationForm(props) {
             helperText={firstNameError ? firstName : ""}
             fullWidth
             onChange={props.handleChange}
-            value={props.values[props.name]}
+            value={props.values["firstName"]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Person />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
           <MaterialUIPickers
             name="birthdate"
             handleDateChange={props.handleDateChange}
-            values={props.values}
+            value={props.values["birthdate"]}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -84,8 +110,15 @@ export default function UserInformationForm(props) {
             helperText={contactNumberError ? contactNumber : ""}
             fullWidth
             onChange={props.handleChange}
-            value={props.values[props.name]}
+            value={props.values["contactNumber"]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Phone />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -97,8 +130,15 @@ export default function UserInformationForm(props) {
             fullWidth
             autoComplete="billing address-level1"
             onChange={props.handleChange}
-            value={props.values[props.name]}
+            value={props.values["addressLine1"]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Home />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -110,8 +150,15 @@ export default function UserInformationForm(props) {
             fullWidth
             autoComplete="billing address-level2"
             onChange={props.handleChange}
-            value={props.values[props.name]}
+            value={props.values["addressLine2"]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Home />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -123,8 +170,15 @@ export default function UserInformationForm(props) {
             fullWidth
             autoComplete="city"
             onChange={props.handleChange}
-            value={props.values[props.name]}
+            value={props.values["city"]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <LocationCity />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -136,6 +190,13 @@ export default function UserInformationForm(props) {
             value="Texas"
             fullWidth
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Place />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -148,8 +209,15 @@ export default function UserInformationForm(props) {
             fullWidth
             autoComplete="billing postal-code"
             onChange={props.handleChange}
-            value={props.values[props.name]}
+            value={props.values["zip"]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Map />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
       </Grid>

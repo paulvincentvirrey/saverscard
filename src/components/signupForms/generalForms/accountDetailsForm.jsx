@@ -2,16 +2,21 @@ import React from "react";
 import {
   Box,
   Grid,
+  InputAdornment,
   TextField,
   Typography,
   makeStyles
 } from "@material-ui/core";
+import { AccountCircle, Email, Lock, LockOutlined } from "@material-ui/icons/";
 
 const useStyles = makeStyles(theme => ({
   header: {
     color: "#3f51b5",
     fontWeight: "bold",
     marginBottom: theme.spacing(6)
+  },
+  icons: {
+    color: "#737373"
   }
 }));
 
@@ -42,6 +47,13 @@ export default function AccountDetailsForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <AccountCircle />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -55,6 +67,13 @@ export default function AccountDetailsForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Email />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -68,6 +87,13 @@ export default function AccountDetailsForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Lock />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -81,6 +107,13 @@ export default function AccountDetailsForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <LockOutlined />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
       </Grid>

@@ -4,17 +4,20 @@ import {
   Checkbox,
   FormControlLabel,
   Grid,
+  InputAdornment,
   TextField,
   Typography,
   makeStyles
 } from "@material-ui/core";
-import { Done as DoneIcon } from "@material-ui/icons";
-
+import { Edit, Done } from "@material-ui/icons/";
 const useStyles = makeStyles(theme => ({
   header: {
     color: "#3f51b5",
     fontWeight: "bold",
     marginBottom: theme.spacing(6)
+  },
+  icons: {
+    color: "#737373"
   }
 }));
 
@@ -32,7 +35,7 @@ export default function AgreementForm(props) {
       </Box>
       <Grid container>
         <Grid item xs={1}>
-          <DoneIcon />
+          <Done />
         </Grid>
         <Grid item xs={11}>
           <Typography variant="subtitle2">
@@ -40,7 +43,7 @@ export default function AgreementForm(props) {
           </Typography>
         </Grid>
         <Grid item xs={1}>
-          <DoneIcon />
+          <Done />
         </Grid>
         <Grid item xs={11}>
           <Typography variant="subtitle2" gutterBottom>
@@ -48,7 +51,7 @@ export default function AgreementForm(props) {
           </Typography>
         </Grid>
         <Grid item xs={1}>
-          <DoneIcon />
+          <Done />
         </Grid>
         <Grid item xs={11}>
           <Typography variant="subtitle2" gutterBottom>
@@ -56,7 +59,7 @@ export default function AgreementForm(props) {
           </Typography>
         </Grid>
         <Grid item xs={1}>
-          <DoneIcon />
+          <Done />
         </Grid>
         <Grid item xs={11}>
           <Typography variant="subtitle2" gutterBottom>
@@ -65,7 +68,7 @@ export default function AgreementForm(props) {
           </Typography>
         </Grid>
         <Grid item xs={1}>
-          <DoneIcon />
+          <Done />
         </Grid>
         <Grid item xs={11}>
           <Typography variant="subtitle2" gutterBottom>
@@ -74,7 +77,7 @@ export default function AgreementForm(props) {
           </Typography>
         </Grid>
         <Grid item xs={1}>
-          <DoneIcon />
+          <Done />
         </Grid>
         <Grid item xs={11}>
           <Typography variant="subtitle2" gutterBottom>
@@ -104,6 +107,13 @@ export default function AgreementForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Edit />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
       </Grid>
