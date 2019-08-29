@@ -11,6 +11,7 @@ export const userService = {
   getById,
   createUser,
   updateUser,
+  deleteUser,
   updatePassword
 };
 

@@ -11,6 +11,7 @@ export const vendorService = {
   getById,
   createVendor,
   updateVendor,
+  deleteVendor,
   updatePassword
 };
 
