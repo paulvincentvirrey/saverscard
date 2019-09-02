@@ -3,7 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { Card, Grid } from "@material-ui/core";
 import { userService } from "../../services/userService";
-import ApplicationStatus from "./applicationStatus";
+import ApplicationStatus from "../applicationStatus";
 import SummaryFormUsers from "./summaryFormUsers";
 
 class AdminUsers extends Component {

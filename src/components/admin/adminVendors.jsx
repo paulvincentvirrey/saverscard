@@ -3,7 +3,7 @@ import MUIDataTable from "mui-datatables";
 import { Card, Grid } from "@material-ui/core";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { vendorService } from "../../services/vendorService";
-import ApplicationStatus from "./applicationStatus";
+import ApplicationStatus from "../applicationStatus";
 import SummaryFormVendors from "./summaryFormVendors";
 
 class AdminVendors extends Component {
