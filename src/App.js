@@ -1,21 +1,21 @@
 import React, { Component } from "react";
 import { Router, Route, Switch } from "react-router-dom";
-import NavBar from "./components/navbar";
+
+import Account from "./components/forms/account";
+import AdminUsers from "./components/admin/adminUsers";
+import AdminVendors from "./components/admin/adminVendors";
 import Footer from "./components/footer";
+import Home from "./components/home";
+import NavBar from "./components/navbar";
+import Password from "./components/forms/changePassword";
+import PrivateRoute from "./components/privateRoute";
 import SignIn from "./components/signin";
 import SignUp from "./components/signup";
-import Vendors from "./components/vendors";
-import Home from "./components/home";
-import SignupUser from "./components/signupForms/signupUser";
-import SignupVendor from "./components/signupForms/signupVendor";
-import AdminVendors from "./components/admin/adminVendors";
-import AdminUsers from "./components/admin/adminUsers";
-import CheckoutForm from "./components/checkoutForm";
-import Account from "./components/account";
+import SignupUser from "./components/forms/signupUser";
+import SignupVendor from "./components/forms/signupVendor";
 import VendorAccount from "./components/vendorAccount";
-import PrivateRoute from "./components/privateRoute";
+import Vendors from "./views/vendors";
 import { history } from "./helpers/history";
-import Password from "./components/changePassword";
 
 class App extends Component {
   constructor(props) {

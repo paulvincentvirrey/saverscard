@@ -27,7 +27,7 @@ import {
 } from "../services/fakeCategoryService";
 import { authenticationService } from "../services/authenticationService";
 import { vendorService } from "../services/vendorService";
-import ApplicationStatus from "./admin/applicationStatus";
+import ApplicationStatus from "./applicationStatus";
 import moment from "react-moment";
 
 const useStyles = theme => ({
@@ -347,7 +347,7 @@ class VendorAccount extends Component {
               <CardMedia
                 component="img"
                 height="100"
-                image={require("../img/accountbg.png")}
+                image={require("../assets/img/accountbg.png")}
               />
               <Fab
                 color="primary"

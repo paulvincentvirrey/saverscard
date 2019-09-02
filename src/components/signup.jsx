@@ -10,8 +10,8 @@ import {
   Container,
   Link
 } from "@material-ui/core";
-import SignupVendor from "./signupForms/signupVendor";
-import SignupUser from "./signupForms/signupUser";
+import SignupVendor from "./forms/signupVendor";
+import SignupUser from "./forms/signupUser";
 import { Elements, StripeProvider } from "react-stripe-elements";
 
 const useStyles = makeStyles(theme => ({
