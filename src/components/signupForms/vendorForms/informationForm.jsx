@@ -2,16 +2,35 @@ import React, { useState } from "react";
 import {
   Box,
   Grid,
+  InputAdornment,
   TextField,
   Typography,
   makeStyles
 } from "@material-ui/core";
+
+import {
+  Business,
+  Contacts,
+  ContactMail,
+  ContactPhone,
+  Home,
+  Language,
+  LocationCity,
+  Map,
+  Place,
+  Phone,
+  Print,
+  BusinessCenter
+} from "@material-ui/icons/";
 
 const useStyles = makeStyles(theme => ({
   header: {
     color: "#3f51b5",
     fontWeight: "bold",
     marginBottom: theme.spacing(6)
+  },
+  icons: {
+    color: "#737373"
   }
 }));
 
@@ -60,6 +79,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <BusinessCenter />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={12}>
@@ -72,6 +98,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Language />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -85,6 +118,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Home />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12}>
@@ -98,6 +138,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Home />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -111,6 +158,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <LocationCity />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -121,6 +175,13 @@ export default function VendorInformationForm(props) {
             value="Texas"
             fullWidth
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Place />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -134,6 +195,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Map />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -146,6 +214,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Phone />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -159,6 +234,13 @@ export default function VendorInformationForm(props) {
             value={props.values[props.name]}
             fullWidth
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Print />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -171,6 +253,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <ContactMail />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -183,6 +272,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Contacts />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -195,6 +291,13 @@ export default function VendorInformationForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <ContactPhone />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
       </Grid>

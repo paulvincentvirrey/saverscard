@@ -7,13 +7,25 @@ import {
   InputAdornment,
   MenuItem,
   TextField,
-  Typography
+  Typography,
+  Card
 } from "@material-ui/core";
-import { Subscriptions } from "@material-ui/icons/";
+import {
+  Subscriptions,
+  Payment,
+  CardMembership,
+  CreditCard,
+  Lock,
+  LocalOffer,
+  Business,
+  CalendarToday,
+  CreditCardOutlined
+} from "@material-ui/icons/";
 import { withStyles } from "@material-ui/core/styles";
 import { StripeNumberTextField } from "../../stripeNumberTextField";
 import { StripeExpiryTextField } from "../../stripeExpiryTextField";
 import { StripeCVCTextField } from "../../stripeCVCTextField";
+import { Calendar } from "@material-ui/pickers";
 
 const useStyles = theme => ({
   header: {
@@ -100,6 +112,13 @@ class PaymentForm extends Component {
               }
               fullWidth
               variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CreditCardOutlined />
+                  </InputAdornment>
+                )
+              }}
             >
               {this.renderMenuItems(props.creditCards)}
             </TextField>
@@ -116,6 +135,13 @@ class PaymentForm extends Component {
                 "cardNumberError"
               )}
               variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CreditCardOutlined />
+                  </InputAdornment>
+                )
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -124,6 +150,13 @@ class PaymentForm extends Component {
               label="Expiry date"
               fullWidth
               variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <CalendarToday />
+                  </InputAdornment>
+                )
+              }}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -135,6 +168,13 @@ class PaymentForm extends Component {
               // value={props.values[props.name]}
               fullWidth
               variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalOffer />
+                  </InputAdornment>
+                )
+              }}
             />
           </Grid>
         </React.Fragment>
@@ -165,6 +205,13 @@ class PaymentForm extends Component {
               value={props.values[props.name]}
               fullWidth
               variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <LocalOffer />
+                  </InputAdornment>
+                )
+              }}
             />
           </Grid>
         </React.Fragment>
@@ -198,7 +245,7 @@ class PaymentForm extends Component {
               InputProps={{
                 startAdornment: (
                   <InputAdornment className={classes.icons} position="start">
-                    <Subscriptions />
+                    <CardMembership />
                   </InputAdornment>
                 )
               }}
@@ -219,6 +266,13 @@ class PaymentForm extends Component {
               }
               fullWidth
               variant="outlined"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment className={classes.icons} position="start">
+                    <Payment />
+                  </InputAdornment>
+                )
+              }}
             >
               {this.renderMenuItems(this.props.paymentMethods)}
             </TextField>

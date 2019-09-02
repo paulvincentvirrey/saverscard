@@ -21,7 +21,7 @@ import Image from "../img/sidebg.png";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    backgroundImage: `url(${Image})`,
+    //backgroundImage: `url(${Image})`,
     height: "100vh",
     paddingTop: theme.spacing(10)
     //backgroundColor: "#FFF6EA"

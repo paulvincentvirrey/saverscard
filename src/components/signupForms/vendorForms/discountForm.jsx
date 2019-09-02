@@ -4,17 +4,23 @@ import {
   Checkbox,
   FormControlLabel,
   Grid,
+  InputAdornment,
   MenuItem,
   TextField,
   Typography,
   makeStyles
 } from "@material-ui/core";
 
+import { Category, LocalOffer, Block } from "@material-ui/icons/";
+
 const useStyles = makeStyles(theme => ({
   header: {
     color: "#3f51b5",
     fontWeight: "bold",
     marginBottom: theme.spacing(6)
+  },
+  icons: {
+    color: "#737373"
   }
 }));
 
@@ -47,6 +53,13 @@ export default function VendorDiscountForm(props) {
             }
             fullWidth
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Category />
+                </InputAdornment>
+              )
+            }}
           >
             {renderMenuItems(props.categories)}
           </TextField>
@@ -65,6 +78,13 @@ export default function VendorDiscountForm(props) {
             }
             fullWidth
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <LocalOffer />
+                </InputAdornment>
+              )
+            }}
           >
             {renderMenuItems(props.discounts)}
           </TextField>
@@ -78,7 +98,7 @@ export default function VendorDiscountForm(props) {
                 value="discountCheck"
               />
             }
-            label="Discount applies to ALL products."
+            label="DISCOUNT APPLIES TO ALL PRODUCTS."
           />
         </Grid>
         {getDiscountDisplay(props)}
@@ -112,6 +132,13 @@ function getDiscountDisplay(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Block />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
       </React.Fragment>
