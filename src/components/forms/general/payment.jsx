@@ -26,6 +26,7 @@ import { StripeNumberTextField } from "../../stripeNumberTextField";
 import { StripeExpiryTextField } from "../../stripeExpiryTextField";
 import { StripeCVCTextField } from "../../stripeCVCTextField";
 import { Calendar } from "@material-ui/pickers";
+import FileUpload from "../../fileUpload";
 
 const useStyles = theme => ({
   header: {
@@ -182,7 +183,8 @@ class PaymentForm extends Component {
     }
     if (payment === "Invoice") {
       return (
-        <React.Fragment>
+        <Grid item xs={12}>
+          <FileUpload name="invoice" handleChange={props.handleChange} />
           {/* <Button
             type="file"
             onClick={e => {
@@ -191,7 +193,7 @@ class PaymentForm extends Component {
           >
             Upload invoice
           </Button> */}
-        </React.Fragment>
+        </Grid>
       );
     }
     if (payment === "Promo Code") {

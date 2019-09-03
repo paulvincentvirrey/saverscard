@@ -1,14 +1,28 @@
 import React, { Component } from "react";
-import { Button, Grid, IconButton } from "@material-ui/core";
-import { Clear as ClearButton } from "@material-ui/icons";
+import { Box, Button, Grid, IconButton } from "@material-ui/core";
+import {
+  Clear as ClearButton,
+  CloudUpload as CloudUploadIcon
+} from "@material-ui/icons";
+import { withStyles } from "@material-ui/core/styles";
+
+const useStyles = theme => ({
+  button: {
+    marginTop: theme.spacing(1),
+    marginRight: theme.spacing(1),
+    marginBottom: theme.spacing(1)
+  },
+  rightIcon: {
+    marginLeft: theme.spacing(2)
+  }
+});
 
 class FileUpload extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      selectedFile: null,
-      fileName: null
+      selectedFile: null
     };
   }
 
@@ -21,7 +35,6 @@ class FileUpload extends Component {
     if (this.validateSize(event)) {
       console.log(file);
       this.setState({
-        fileName: file.name,
         selectedFile: file
       });
 
@@ -44,7 +57,6 @@ class FileUpload extends Component {
       }
     };
     this.setState({
-      fileName: null,
       selectedFile: null
     });
 
@@ -66,11 +78,16 @@ class FileUpload extends Component {
   };
 
   displayUploadedFile = () => {
+    const { classes } = this.props;
+    const name = this.state.selectedFile.name;
+    const size = (this.state.selectedFile.size / 1000).toFixed(2);
     return (
       <React.Fragment>
-        <Grid item>{this.state.fileName}</Grid>
-        <Grid item>
-          <IconButton onClick={this.handleDelete}>
+        <Grid item xs={8}>
+          {name + " "}|{" " + size + " KB"}
+        </Grid>
+        <Grid item xs={2}>
+          <IconButton onClick={this.handleDelete} className={classes.rightIcon}>
             <ClearButton />
           </IconButton>
         </Grid>
@@ -79,23 +96,32 @@ class FileUpload extends Component {
   };
 
   render() {
+    const { classes } = this.props;
     return (
-      <Grid container alignItems="center" justify="flex-start" spacing={2}>
-        <Grid item>
-          <Button variant="contained" component="label">
-            Upload File
-            <input
-              type="file"
-              style={{ display: "none" }}
-              accept="application/pdf"
-              onChange={this.handleUpload}
-            />
-          </Button>
+      <Box border={1} borderColor="grey.500">
+        <Grid container alignItems="center" spacing={2}>
+          <Grid item xs={2}>
+            <IconButton
+              variant="contained"
+              component="label"
+              className={classes.button}
+            >
+              <CloudUploadIcon />
+              <input
+                type="file"
+                style={{ display: "none" }}
+                accept="application/pdf"
+                onChange={this.handleUpload}
+              />
+            </IconButton>
+          </Grid>
+          {this.state.selectedFile
+            ? this.displayUploadedFile()
+            : "Upload invoice"}
         </Grid>
-        {this.state.fileName ? this.displayUploadedFile() : ""}
-      </Grid>
+      </Box>
     );
   }
 }
 
-export default FileUpload;
+export default withStyles(useStyles)(FileUpload);
