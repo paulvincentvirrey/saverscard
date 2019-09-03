@@ -21,6 +21,7 @@ import styles from "../../assets/js/landingPage";
 import ProductSection from "./Sections/productSection";
 import TeamSection from "./Sections/teamSection.js";
 import WorkSection from "./Sections/workSection.js";
+import { CssBaseline } from "@material-ui/core";
 
 const dashboardRoutes = [];
 
@@ -31,6 +32,7 @@ export default function LandingPage(props) {
   const { ...rest } = props;
   return (
     <div>
+      <CssBaseline />
       <Header
         color="dark"
         routes={dashboardRoutes}
