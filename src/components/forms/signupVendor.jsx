@@ -12,7 +12,7 @@ import {
   getSubscriptions
 } from "../../services/fakeCategoryService";
 import { vendorService } from "../../services/vendorService";
-import { Button, CssBaseline, Typography } from "@material-ui/core";
+import { Button, CssBaseline, Grid, Typography } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 
 const useStyles = theme => ({
@@ -45,13 +45,16 @@ const useStyles = theme => ({
   stepper: {
     padding: theme.spacing(3, 0, 5)
   },
-  buttons: {
-    display: "flex",
-    justifyContent: "flex-end"
-  },
   button: {
     marginTop: theme.spacing(3),
     marginLeft: theme.spacing(1),
+    borderRadius: 0,
+    boxShadow: "none",
+    fontSize: "1.1875em",
+    width: 110
+  },
+  backButton: {
+    marginTop: theme.spacing(3),
     borderRadius: 0,
     boxShadow: "none",
     fontSize: "1.1875em",
@@ -418,26 +421,35 @@ class SignupVendor extends Component {
                     step={this.state.activeStep}
                     subscriptions={this.subscriptions}
                   />
-                  <div className={classes.buttons}>
+                  <Grid
+                    container
+                    justify="space-between"
+                    className={classes.buttons}
+                  >
                     {activeStep !== 0 && (
+                      <Grid item xs={2}>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={this.handleBack}
+                          className={classes.backButton}
+                        >
+                          Back
+                        </Button>
+                      </Grid>
+                    )}
+                    <Grid item xs={2}>
                       <Button
                         variant="contained"
+                        type="submit"
                         color="primary"
-                        onClick={this.handleBack}
+                        onClick={this.handleNext}
                         className={classes.button}
                       >
-                        Back
+                        {activeStep === steps.length - 1 ? "Submit" : "Next"}
                       </Button>
-                    )}
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      onClick={this.handleNext}
-                      className={classes.button}
-                    >
-                      {activeStep === steps.length - 1 ? "Submit" : "Next"}
-                    </Button>
-                  </div>
+                    </Grid>
+                  </Grid>
                 </React.Fragment>
               )}
             </React.Fragment>

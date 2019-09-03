@@ -23,6 +23,16 @@ const useStyles = theme => ({
     width: "auto",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
+    [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
+      width: 600,
+      marginLeft: "auto",
+      marginRight: "auto"
+    },
+    [`& fieldset`]: {
+      borderRadius: 0
+    }
+  },
+  paper: {
     marginTop: theme.spacing(3),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
@@ -30,17 +40,8 @@ const useStyles = theme => ({
       marginTop: theme.spacing(6),
       marginBottom: theme.spacing(6),
       padding: theme.spacing(3)
-    },
-    // [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
-    //   width: 600,
-    //   marginLeft: "auto",
-    //   marginRight: "auto"
-    // },
-    [`& fieldset`]: {
-      borderRadius: 0
     }
   },
-  paper: {},
   stepper: {
     padding: theme.spacing(3, 0, 5)
   },
@@ -343,68 +344,68 @@ class SignupUser extends Component {
       <React.Fragment>
         <CssBaseline />
         <main className={classes.layout}>
-          {/* <div className={classes.paper}> */}
-          <React.Fragment>
-            {activeStep === steps.length ? (
-              <React.Fragment>
-                <Typography variant="h5" gutterBottom>
-                  Welcome to Saverscard <b>{values["firstName"]}</b>
-                </Typography>
-                <Typography variant="subtitle1">
-                  Your registration number is #2001539. We have emailed your
-                  registration confirmation, and will send you an update once
-                  your membership has been approved.
-                </Typography>
-              </React.Fragment>
-            ) : (
-              <React.Fragment>
-                <GetStepContent
-                  categories={this.categories}
-                  creditCards={this.creditCards}
-                  discounts={this.discounts}
-                  paymentMethods={this.paymentMethods}
-                  handleChange={this.handleChange}
-                  handleSubmit={this.handleSubmit}
-                  handleDateChange={this.handleDateChange}
-                  values={this.state.values}
-                  handleValidation={this.handleValidation}
-                  errors={this.state.errors}
-                  step={this.state.activeStep}
-                  subscriptions={this.subscriptions}
-                />
-                <Grid
-                  container
-                  justify="space-between"
-                  className={classes.buttons}
-                >
-                  {activeStep !== 0 && (
+          <div className={classes.paper}>
+            <React.Fragment>
+              {activeStep === steps.length ? (
+                <React.Fragment>
+                  <Typography variant="h5" gutterBottom>
+                    Welcome to Saverscard <b>{values["firstName"]}</b>
+                  </Typography>
+                  <Typography variant="subtitle1">
+                    Your registration number is #2001539. We have emailed your
+                    registration confirmation, and will send you an update once
+                    your membership has been approved.
+                  </Typography>
+                </React.Fragment>
+              ) : (
+                <React.Fragment>
+                  <GetStepContent
+                    categories={this.categories}
+                    creditCards={this.creditCards}
+                    discounts={this.discounts}
+                    paymentMethods={this.paymentMethods}
+                    handleChange={this.handleChange}
+                    handleSubmit={this.handleSubmit}
+                    handleDateChange={this.handleDateChange}
+                    values={this.state.values}
+                    handleValidation={this.handleValidation}
+                    errors={this.state.errors}
+                    step={this.state.activeStep}
+                    subscriptions={this.subscriptions}
+                  />
+                  <Grid
+                    container
+                    justify="space-between"
+                    className={classes.buttons}
+                  >
+                    {activeStep !== 0 && (
+                      <Grid item xs={2}>
+                        <Button
+                          variant="contained"
+                          color="primary"
+                          onClick={this.handleBack}
+                          className={classes.backButton}
+                        >
+                          Back
+                        </Button>
+                      </Grid>
+                    )}
                     <Grid item xs={2}>
                       <Button
                         variant="contained"
+                        type="submit"
                         color="primary"
-                        onClick={this.handleBack}
-                        className={classes.backButton}
+                        onClick={this.handleNext}
+                        className={classes.button}
                       >
-                        Back
+                        {activeStep === steps.length - 1 ? "Submit" : "Next"}
                       </Button>
                     </Grid>
-                  )}
-                  <Grid item xs={2}>
-                    <Button
-                      variant="contained"
-                      type="submit"
-                      color="primary"
-                      onClick={this.handleNext}
-                      className={classes.button}
-                    >
-                      {activeStep === steps.length - 1 ? "Submit" : "Next"}
-                    </Button>
                   </Grid>
-                </Grid>
-              </React.Fragment>
-            )}
-          </React.Fragment>
-          {/* </div> */}
+                </React.Fragment>
+              )}
+            </React.Fragment>
+          </div>
         </main>
       </React.Fragment>
     );
@@ -413,7 +414,6 @@ class SignupUser extends Component {
 
 function GetStepContent(props) {
   const { step } = props;
-  console.log(props);
   switch (step) {
     case 0:
       return (

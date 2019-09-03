@@ -88,7 +88,6 @@ class AdminUsers extends Component {
   };
 
   render() {
-    const tableTitle = ["Users List"];
     const { users } = this.state;
     console.log(users);
 
