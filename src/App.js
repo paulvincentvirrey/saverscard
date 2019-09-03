@@ -5,7 +5,8 @@ import Account from "./components/forms/account";
 import AdminUsers from "./components/admin/adminUsers";
 import AdminVendors from "./components/admin/adminVendors";
 import Footer from "./components/footer";
-import Home from "./components/home";
+// import Home from "./components/home";
+import LandingPage from "./views/Landing Page/landingPage";
 import NavBar from "./components/navbar";
 import Password from "./components/forms/changePassword";
 import PrivateRoute from "./components/privateRoute";
@@ -48,7 +49,8 @@ class App extends Component {
             <Route path="/signup" component={SignUp} />
             <Route path="/signupUser" component={SignupUser} />
             <Route path="/signupVendor" component={SignupVendor} />
-            <Route path="/" component={Home} />
+            {/* <Route path="/" component={Home} /> */}
+            <Route path="/" component={LandingPage} />
           </Switch>
           {/* <Footer /> */}
         </React.Fragment>
