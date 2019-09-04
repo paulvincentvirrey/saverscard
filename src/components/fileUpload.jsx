@@ -22,7 +22,7 @@ class FileUpload extends Component {
     super(props);
 
     this.state = {
-      selectedFile: null
+      selectedFile: this.props.value ? this.props.value : null
     };
   }
 

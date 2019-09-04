@@ -148,8 +148,44 @@ class NavBar extends Component {
       </React.Fragment>
     );
 
-    if (!currentUser) {
-      return (
+    // if (!currentUser) {
+    //   return (
+    //     <Hidden lgUp>
+    //       <Drawer
+    //         container={container}
+    //         variant="temporary"
+    //         anchor="left" //{theme.direction === "rtl" ? "right" : "left"}
+    //         open={mobileOpen}
+    //         onClose={this.handleSideNav}
+    //         classes={{
+    //           paper: classes.drawerPaper
+    //         }}
+    //         ModalProps={{
+    //           keepMounted: true // Better open performance on mobile.
+    //         }}
+    //       >
+    //         <Typography component="h1" variant="h5" className={classes.appName}>
+    //           <Link component={RouterLink} variant="h5" to="/vendors">
+    //             Saverscard
+    //           </Link>
+    //         </Typography>
+
+    //         <Divider />
+    //         <List>
+    //           {["Home", "Services", "About", "Contact Us"].map(
+    //             (text, index) => (
+    //               <ListItem button key={text}>
+    //                 <ListItemText primary={text} />
+    //               </ListItem>
+    //             )
+    //           )}
+    //         </List>
+    //       </Drawer>
+    //     </Hidden>
+    //   );
+    // } else if (isAdmin) {
+    return (
+      <React.Fragment>
         <Hidden lgUp>
           <Drawer
             container={container}
@@ -158,65 +194,29 @@ class NavBar extends Component {
             open={mobileOpen}
             onClose={this.handleSideNav}
             classes={{
-              paper: classes.drawerPaper
+              paper: classes.drawerPaperAdmin
             }}
             ModalProps={{
               keepMounted: true // Better open performance on mobile.
             }}
           >
-            <Typography component="h1" variant="h5" className={classes.appName}>
-              <Link component={RouterLink} variant="h5" to="/vendors">
-                Saverscard
-              </Link>
-            </Typography>
-
-            <Divider />
-            <List>
-              {["Home", "Services", "About", "Contact Us"].map(
-                (text, index) => (
-                  <ListItem button key={text}>
-                    <ListItemText primary={text} />
-                  </ListItem>
-                )
-              )}
-            </List>
+            {adminContent}
           </Drawer>
         </Hidden>
-      );
-    } else if (isAdmin) {
-      return (
-        <React.Fragment>
-          <Hidden lgUp>
-            <Drawer
-              container={container}
-              variant="temporary"
-              anchor="left" //{theme.direction === "rtl" ? "right" : "left"}
-              open={mobileOpen}
-              onClose={this.handleSideNav}
-              classes={{
-                paper: classes.drawerPaperAdmin
-              }}
-              ModalProps={{
-                keepMounted: true // Better open performance on mobile.
-              }}
-            >
-              {adminContent}
-            </Drawer>
-          </Hidden>
-          <Hidden mdDown>
-            <Drawer
-              classes={{
-                paper: classes.drawerPaperAdmin
-              }}
-              variant="permanent"
-              open
-            >
-              {adminContent}
-            </Drawer>
-          </Hidden>
-        </React.Fragment>
-      );
-    }
+        <Hidden mdDown>
+          <Drawer
+            classes={{
+              paper: classes.drawerPaperAdmin
+            }}
+            variant="permanent"
+            open
+          >
+            {adminContent}
+          </Drawer>
+        </Hidden>
+      </React.Fragment>
+    );
+    // }
   }
 
   render() {
@@ -230,13 +230,14 @@ class NavBar extends Component {
     }
     const sideNav = this.showSideNav();
 
-    const navbar = (
+    const navbar = currentUser && (
       <div className={classes.root}>
         <CssBaseline />
         <AppBar position="static" className={classes.appBar}>
           <Container>
             <Toolbar>
-              {(!currentUser || isAdmin) && (
+              {/* {(!currentUser || isAdmin) && ( */}
+              {isAdmin && (
                 <Hidden lgUp>
                   <IconButton
                     edge="start"
@@ -273,10 +274,6 @@ class NavBar extends Component {
         <nav>{sideNav}</nav>
       </div>
     );
-
-    if (!currentUser) {
-      return <Hidden lgUp>{navbar}</Hidden>;
-    }
 
     return <React.Fragment>{navbar}</React.Fragment>;
   }

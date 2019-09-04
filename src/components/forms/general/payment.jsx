@@ -184,7 +184,11 @@ class PaymentForm extends Component {
     if (payment === "Invoice") {
       return (
         <Grid item xs={12}>
-          <FileUpload name="invoice" handleChange={props.handleChange} />
+          <FileUpload
+            name="invoice"
+            value={props.values["invoice"]}
+            handleChange={props.handleChange}
+          />
           {/* <Button
             type="file"
             onClick={e => {
