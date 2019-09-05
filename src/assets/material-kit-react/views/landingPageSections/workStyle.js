@@ -1,20 +1,21 @@
-import { title } from "../../../js/material-kit-react";
+import { title, successColor } from "../../../js/material-kit-react";
 
 const workStyle = {
   section: {
     padding: "70px 0",
-    background: "#FFFF9E"
+    background: "#293039"
   },
   title: {
-    ...title,
+    color: successColor,
+    fontSize: "30px",
     marginBottom: "50px",
-    marginTop: "30px",
+    marginTop: "20px",
     minHeight: "32px",
     textDecoration: "none",
     textAlign: "center"
   },
   description: {
-    color: "black",
+    color: "#AAAAAA",
     textAlign: "center"
   },
   textCenter: {

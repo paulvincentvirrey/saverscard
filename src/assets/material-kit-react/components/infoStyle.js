@@ -49,7 +49,9 @@ const infoStyle = {
     color: grayColor,
     overflow: "hidden"
   },
-  title,
+  title: {
+    fontSize: "20px"
+  },
   description: {
     color: grayColor,
     overflow: "hidden",

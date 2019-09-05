@@ -16,10 +16,10 @@ class AdminUsers extends Component {
 
   async componentDidMount() {
     await userService.getAll().then(users => {
-      this.setState({ users });
+      const filteredUsers = users.filter(v => !v.isAdmin);
+      Y;
+      this.setState({ users: filteredUsers });
     });
-
-    // add this to filter admin users.find(v => !v.isAdmin)
   }
 
   getUser = id => {

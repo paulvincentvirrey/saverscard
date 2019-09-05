@@ -13,11 +13,11 @@ const customInputStyle = {
   },
   underline: {
     "&:hover:not($disabled):before,&:before": {
-      borderColor: "#D2D2D2 !important",
+      borderColor: "white !important",
       borderWidth: "1px !important"
     },
     "&:after": {
-      borderColor: primaryColor
+      borderColor: successColor
     }
   },
   underlineError: {
@@ -40,7 +40,7 @@ const customInputStyle = {
   },
   labelRoot: {
     ...defaultFont,
-    color: "#AAAAAA !important",
+    color: "white !important",
     fontWeight: "400",
     fontSize: "14px",
     lineHeight: "1.42857",
@@ -61,11 +61,11 @@ const customInputStyle = {
     paddingTop: "27px",
     position: "relative",
     "& svg,& .fab,& .far,& .fal,& .fas,& .material-icons": {
-      color: "#495057"
+      color: "white"
     }
   },
   input: {
-    color: "#495057",
+    color: "white",
     height: "unset",
     "&,&::placeholder": {
       fontSize: "14px",

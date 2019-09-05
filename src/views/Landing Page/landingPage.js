@@ -19,7 +19,6 @@ import styles from "../../assets/material-kit-react/views/landingPage";
 
 // Sections for this page
 import ProductSection from "./Sections/productSection";
-import TeamSection from "./Sections/teamSection.js";
 import WorkSection from "./Sections/workSection.js";
 import { CssBaseline } from "@material-ui/core";
 
@@ -70,7 +69,6 @@ export default function LandingPage(props) {
       <div className={classNames(classes.main, classes.mainRaised)}>
         <div className={classes.container}>
           <ProductSection />
-          {/* <TeamSection /> */}
           <WorkSection />
         </div>
       </div>
