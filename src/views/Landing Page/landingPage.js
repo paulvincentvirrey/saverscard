@@ -8,18 +8,18 @@ import { Link as RouterLink } from "react-router-dom";
 
 // core components
 import Header from "../../components/landingPage/Header";
-import Footer from "../../components/landingPage/Footer.js";
-import GridContainer from "../../components/landingPage/GridContainer.js";
-import GridItem from "../../components/landingPage/GridItem.js";
+import Footer from "../../components/landingPage/Footer";
+import GridContainer from "../../components/landingPage/GridContainer";
+import GridItem from "../../components/landingPage/GridItem";
 import Button from "../../components/landingPage/Button";
-import HeaderLinks from "../../components/landingPage/HeaderLinks.js";
-import Parallax from "../../components/landingPage/Parallax.js";
+import HeaderLinks from "../../components/landingPage/HeaderLinks";
+import Parallax from "../../components/landingPage/Parallax";
 
 import styles from "../../assets/material-kit-react/views/landingPage";
 
 // Sections for this page
 import ProductSection from "./Sections/productSection";
-import WorkSection from "./Sections/workSection.js";
+import WorkSection from "./Sections/workSection";
 import { CssBaseline } from "@material-ui/core";
 
 const dashboardRoutes = [];

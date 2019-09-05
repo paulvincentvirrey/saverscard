@@ -17,7 +17,6 @@ class AdminUsers extends Component {
   async componentDidMount() {
     await userService.getAll().then(users => {
       const filteredUsers = users.filter(v => !v.isAdmin);
-      Y;
       this.setState({ users: filteredUsers });
     });
   }

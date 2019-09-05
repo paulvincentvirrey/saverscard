@@ -73,7 +73,7 @@ class SignupUser extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      values: [],
+      values: { subscription: 0, paymentMethod: "Promo Code" },
       errors: {},
       activeStep: 2
     };
@@ -292,6 +292,8 @@ class SignupUser extends Component {
       name = value;
       value = checked;
     }
+    const v = { ...this.state.values, [name]: value };
+    console.log(v);
     this.setState({
       values: { ...this.state.values, [name]: value }
     });
