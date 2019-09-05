@@ -74,7 +74,7 @@ class SignupVendor extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      values: [],
+      values: { subscription: 0, paymentMethod: "Promo Code" },
       errors: {},
       activeStep: 0
     };
@@ -387,7 +387,10 @@ class SignupVendor extends Component {
   creditCards = [...getCreditCards()];
   discounts = [...getDiscounts()];
   paymentMethods = [...getPaymentMethods()];
-  subscriptions = [...getSubscriptions()];
+  subscriptions = [
+    { _id: 1, label: "Free", value: 0 },
+    { _id: 2, label: "$5/month", value: 5 }
+  ];
 
   render() {
     const { classes } = this.props;

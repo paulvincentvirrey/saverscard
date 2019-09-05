@@ -337,7 +337,10 @@ class SignupUser extends Component {
   creditCards = [...getCreditCards()];
   discounts = [...getDiscounts()];
   paymentMethods = [...getPaymentMethods()];
-  subscriptions = [...getSubscriptions()];
+  subscriptions = [
+    { _id: 1, label: "Free", value: 0 },
+    { _id: 2, label: "$2/month", value: 2 }
+  ];
 
   render() {
     const { classes } = this.props;

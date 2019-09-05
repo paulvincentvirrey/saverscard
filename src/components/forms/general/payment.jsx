@@ -94,10 +94,59 @@ class PaymentForm extends Component {
     ));
   };
 
+  getPaymentMethod = subscription => {
+    const { classes } = this.props;
+    if (!subscription || subscription == 0) {
+      return (
+        <TextField
+          disabled
+          label="Payment Method"
+          name="paymentMethod"
+          value="Promo Code"
+          fullWidth
+          variant="outlined"
+          InputProps={{
+            startAdornment: (
+              <InputAdornment className={classes.icons} position="start">
+                <Payment />
+              </InputAdornment>
+            )
+          }}
+        />
+      );
+    }
+
+    return (
+      <TextField
+        select
+        label="Payment Method"
+        name="paymentMethod"
+        onChange={this.props.handleChange}
+        value={
+          this.props.values["paymentMethod"]
+            ? this.props.values["paymentMethod"]
+            : ""
+        }
+        fullWidth
+        variant="outlined"
+        InputProps={{
+          startAdornment: (
+            <InputAdornment className={classes.icons} position="start">
+              <Payment />
+            </InputAdornment>
+          )
+        }}
+      >
+        {this.renderMenuItems(this.props.paymentMethods)}
+      </TextField>
+    );
+  };
+
   getPaymentDisplay = props => {
     const { cardNumberError } = this.state;
     const payment = props.values["paymentMethod"];
-    if (payment === "Credit Card") {
+    const subscription = props.values["subscription"];
+    if (subscription > 0 && payment === "Credit Card") {
       return (
         <React.Fragment>
           <Grid item xs={12} sm={6}>
@@ -181,7 +230,7 @@ class PaymentForm extends Component {
         </React.Fragment>
       );
     }
-    if (payment === "Invoice") {
+    if (subscription > 0 && payment === "Invoice") {
       return (
         <Grid item xs={12}>
           <FileUpload
@@ -200,7 +249,7 @@ class PaymentForm extends Component {
         </Grid>
       );
     }
-    if (payment === "Promo Code") {
+    if (subscription == 0) {
       return (
         <React.Fragment>
           <Grid item xs={12} sm={6}>
@@ -260,28 +309,7 @@ class PaymentForm extends Component {
             </TextField>
           </Grid>
           <Grid item xs={12} sm={6}>
-            <TextField
-              select
-              label="Payment Method"
-              name="paymentMethod"
-              onChange={this.props.handleChange}
-              value={
-                this.props.values["paymentMethod"]
-                  ? this.props.values["paymentMethod"]
-                  : ""
-              }
-              fullWidth
-              variant="outlined"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment className={classes.icons} position="start">
-                    <Payment />
-                  </InputAdornment>
-                )
-              }}
-            >
-              {this.renderMenuItems(this.props.paymentMethods)}
-            </TextField>
+            {this.getPaymentMethod(this.props.values["subscription"])}
           </Grid>
 
           {this.getPaymentDisplay(this.props)}

@@ -47,8 +47,7 @@ const discounts = [
 
 const paymentMethods = [
   { _id: 1, label: "Credit Card", value: "Credit Card" },
-  { _id: 2, label: "Invoice", value: "Invoice" },
-  { _id: 3, label: "Promo Code", value: "Promo Code" }
+  { _id: 2, label: "Invoice", value: "Invoice" }
 ];
 
 const subscriptions = [
