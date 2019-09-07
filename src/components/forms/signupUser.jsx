@@ -78,7 +78,7 @@ class SignupUser extends Component {
     this.state = {
       values: { subscription: 0, paymentMethod: "Promo Code" },
       errors: {},
-      activeStep: 2
+      activeStep: 0
     };
   }
 
@@ -278,7 +278,6 @@ class SignupUser extends Component {
         this.handleSubmit();
       } else {
         this.setState({ activeStep: this.state.activeStep + 1 });
-        // setActiveStep(activeStep + 1);
       }
     } else {
       console.log("errors!");
@@ -328,7 +327,6 @@ class SignupUser extends Component {
   };
 
   handleDateChange = value => {
-    //setSelectedDate(date);
     let values = { ...this.state.values, ["birthdate"]: value };
     console.log(values);
     this.setState({

@@ -1,5 +1,4 @@
-import React, { Component } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -19,6 +18,7 @@ const dashboardRoutes = [];
 const useStyles = makeStyles(theme => ({
   root: {
     padding: theme.spacing(3, 2),
+    marginTop: theme.spacing(8),
     display: "flex",
     flexWrap: "wrap",
     minWidth: 300,
@@ -141,6 +141,7 @@ const SignUp = props => {
         rightLinks={<HeaderLinks />}
         fixed
       />
+
       <Grid
         container
         direction="row"

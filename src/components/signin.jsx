@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import {
   Button,
+  Checkbox,
   CssBaseline,
   Container,
-  TextField,
   FormControlLabel,
-  Checkbox,
   Grid,
+  Link,
   Switch,
-  Link
+  TextField,
+  Typography
 } from "@material-ui/core";
 import Header from "./landingPage/Header";
 import HeaderLinks from "./landingPage/HeaderLinks";
@@ -134,6 +135,9 @@ class SignIn extends Component {
             fixed
           />
           <div className={classes.paper}>
+            <Typography align="center" variant="h5" component="h1">
+              <b>WELCOME TO SAVERSCARD</b>
+            </Typography>
             <form className={classes.form} onSubmit={this.handleSubmit}>
               <TextField
                 margin="normal"

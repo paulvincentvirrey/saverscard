@@ -1,23 +1,16 @@
 import React, { Component } from "react";
 import {
   Box,
-  Button,
-  ButtonBase,
   Grid,
   InputAdornment,
   MenuItem,
   TextField,
-  Typography,
-  Card
+  Typography
 } from "@material-ui/core";
 import {
-  Subscriptions,
   Payment,
   CardMembership,
-  CreditCard,
-  Lock,
   LocalOffer,
-  Business,
   CalendarToday,
   CreditCardOutlined
 } from "@material-ui/icons/";
@@ -25,7 +18,6 @@ import { withStyles } from "@material-ui/core/styles";
 import { StripeNumberTextField } from "../../stripeNumberTextField";
 import { StripeExpiryTextField } from "../../stripeExpiryTextField";
 import { StripeCVCTextField } from "../../stripeCVCTextField";
-import { Calendar } from "@material-ui/pickers";
 import FileUpload from "../../fileUpload";
 
 const useStyles = theme => ({
