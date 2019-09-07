@@ -7,13 +7,16 @@ import {
   getCategories,
   getCreditCards,
   getDiscounts,
-  getPaymentMethods,
-  getSubscriptions
+  getPaymentMethods
 } from "../../services/fakeCategoryService";
 import { userService } from "../../services/userService";
 import { Button, CssBaseline, Grid, Typography } from "@material-ui/core";
+import Header from "../../components/landingPage/Header";
+import HeaderLinks from "../../components/landingPage/HeaderLinks";
 import { withStyles } from "@material-ui/core/styles";
 //import { injectStripe, Elements, StripeProvider } from "react-stripe-elements";
+
+const dashboardRoutes = [];
 
 const useStyles = theme => ({
   appBar: {
@@ -345,9 +348,17 @@ class SignupUser extends Component {
   render() {
     const { classes } = this.props;
     const { values, errors, activeStep } = this.state;
+
     return (
       <React.Fragment>
         <CssBaseline />
+        <Header
+          color="dark"
+          routes={dashboardRoutes}
+          brand="SAVERSCARD"
+          rightLinks={<HeaderLinks />}
+          fixed
+        />
         <main className={classes.layout}>
           <div className={classes.paper}>
             <React.Fragment>

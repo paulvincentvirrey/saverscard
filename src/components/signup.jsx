@@ -4,15 +4,17 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
   ButtonBase,
-  Paper,
   Typography,
   Grid,
-  Container,
-  Link
+  Container
 } from "@material-ui/core";
+import Header from "./landingPage/Header";
+import HeaderLinks from "./landingPage/HeaderLinks";
 import SignupVendor from "./forms/signupVendor";
 import SignupUser from "./forms/signupUser";
 import { Elements, StripeProvider } from "react-stripe-elements";
+
+const dashboardRoutes = [];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -132,6 +134,13 @@ const SignUp = props => {
 
   return (
     <Container maxWidth="md">
+      <Header
+        color="dark"
+        routes={dashboardRoutes}
+        brand="SAVERSCARD"
+        rightLinks={<HeaderLinks />}
+        fixed
+      />
       <Grid
         container
         direction="row"

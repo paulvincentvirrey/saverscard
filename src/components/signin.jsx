@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import {
-  Avatar,
   Button,
   CssBaseline,
   Container,
@@ -9,20 +8,19 @@ import {
   Checkbox,
   Grid,
   Switch,
-  InputLabel,
-  Select,
-  MenuItem,
   Link
 } from "@material-ui/core";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+import Header from "./landingPage/Header";
+import HeaderLinks from "./landingPage/HeaderLinks";
 import { withStyles } from "@material-ui/core/styles";
-import { blue } from "@material-ui/core/colors";
 import { authenticationService } from "./../services/authenticationService";
 import { withRouter, Link as RouterLink } from "react-router-dom";
 
+const dashboardRoutes = [];
+
 const useStyles = theme => ({
   paper: {
-    // marginTop: theme.spacing(8),
+    marginTop: theme.spacing(15),
     marginBottom: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
@@ -127,6 +125,13 @@ class SignIn extends Component {
       <React.Fragment>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
+          <Header
+            color="dark"
+            routes={dashboardRoutes}
+            brand="SAVERSCARD"
+            rightLinks={<HeaderLinks />}
+            fixed
+          />
           <div className={classes.paper}>
             <form className={classes.form} onSubmit={this.handleSubmit}>
               <TextField

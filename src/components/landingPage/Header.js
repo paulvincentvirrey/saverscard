@@ -15,6 +15,8 @@ import Drawer from "@material-ui/core/Drawer";
 import Menu from "@material-ui/icons/Menu";
 // core components
 import styles from "../../assets/material-kit-react/components/headerStyle.js";
+// react components for routing our app without refresh
+import { Link as RouterLink } from "react-router-dom";
 
 const useStyles = makeStyles(styles);
 
@@ -61,7 +63,7 @@ export default function Header(props) {
     [classes.fixed]: fixed
   });
   const brandComponent = (
-    <Button className={classes.title}>
+    <Button component={RouterLink} to="/" className={classes.title}>
       <b>{brand}</b>
     </Button>
   );
