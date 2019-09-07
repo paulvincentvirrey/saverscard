@@ -3,6 +3,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
   ButtonBase,
+  CssBaseline,
   Typography,
   Grid,
   Container
@@ -134,6 +135,7 @@ const SignUp = props => {
 
   return (
     <Container maxWidth="md">
+      <CssBaseline />
       <Header
         color="dark"
         routes={dashboardRoutes}
