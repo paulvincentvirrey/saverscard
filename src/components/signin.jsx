@@ -22,7 +22,7 @@ const dashboardRoutes = [];
 
 const useStyles = theme => ({
   paper: {
-    marginTop: theme.spacing(15),
+    marginTop: theme.spacing(18),
     marginBottom: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
@@ -135,7 +135,12 @@ class SignIn extends Component {
             fixed
           />
           <div className={classes.paper}>
-            <Typography align="center" variant="h5" component="h1">
+            <Typography
+              align="center"
+              variant="h5"
+              component="h1"
+              color="primary"
+            >
               <b>WELCOME TO SAVERSCARD</b>
             </Typography>
             <form className={classes.form} onSubmit={this.handleSubmit}>

@@ -53,15 +53,15 @@ const useStyles = theme => ({
     marginTop: theme.spacing(3),
     borderRadius: 0,
     boxShadow: "none",
-    fontSize: "1.1875em",
-    width: 110
+    fontSize: "1.0em",
+    width: 100
   },
   backButton: {
     marginTop: theme.spacing(3),
     borderRadius: 0,
     boxShadow: "none",
-    fontSize: "1.1875em",
-    width: 110
+    fontSize: "1.0em",
+    width: 100
   }
 });
 
@@ -399,6 +399,7 @@ class SignupUser extends Component {
                           color="primary"
                           onClick={this.handleBack}
                           className={classes.backButton}
+                          size="small"
                         >
                           Back
                         </Button>
