@@ -18,7 +18,13 @@ class ApplicationStatus extends Component {
         />
       );
     } else if (value === "For Review") {
-      result = <Chip size="small" label={value} color="primary" />;
+      result = (
+        <Chip
+          size="small"
+          label={value}
+          style={{ backgroundColor: "#1B95E0", color: "white" }}
+        />
+      );
     } else if (value === "Pending Requirements") {
       result = (
         <Chip

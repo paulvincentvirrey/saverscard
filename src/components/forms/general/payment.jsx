@@ -230,14 +230,6 @@ class PaymentForm extends Component {
             value={props.values["invoice"]}
             handleChange={props.handleChange}
           />
-          {/* <Button
-            type="file"
-            onClick={e => {
-              this.refs["file-upload"].click();
-            }}
-          >
-            Upload invoice
-          </Button> */}
         </Grid>
       );
     }

@@ -68,7 +68,9 @@ export default function WorkSection() {
                     md={4}
                     className={classes.textCenter}
                   >
-                    <Button color="success">Send Message</Button>
+                    <Button color="success" href="carmelapatrice@gmail.com">
+                      Send Message
+                    </Button>
                   </GridItem>
                 </GridContainer>
               </GridContainer>
