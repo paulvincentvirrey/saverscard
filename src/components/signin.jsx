@@ -6,14 +6,16 @@ import {
   Container,
   FormControlLabel,
   Grid,
+  InputAdornment,
   Link,
   Switch,
   TextField,
   Typography
 } from "@material-ui/core";
+import { Email as EmailIcon, Lock as LockIcon } from "@material-ui/icons";
+import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
 import Header from "./landingPage/Header";
 import HeaderLinks from "./landingPage/HeaderLinks";
-import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "../assets/theme";
 import { authenticationService } from "./../services/authenticationService";
 import { withRouter, Link as RouterLink } from "react-router-dom";
@@ -37,6 +39,9 @@ const useStyles = theme => ({
   },
   submit: {
     margin: theme.spacing(3, 0, 2)
+  },
+  icons: {
+    color: "#737373"
   }
 });
 
@@ -135,13 +140,17 @@ class SignIn extends Component {
             fixed
           />
           <div className={classes.paper}>
-            <Typography align="center" variant="h5" component="h1">
+            <Typography
+              align="center"
+              variant="h5"
+              component="h1"
+              color="primary"
+            >
               <b>WELCOME TO SAVERSCARD</b>
             </Typography>
             <form className={classes.form} onSubmit={this.handleSubmit}>
               <TextField
                 margin="normal"
-                required
                 fullWidth
                 id="email"
                 label="Email Address"
@@ -151,10 +160,16 @@ class SignIn extends Component {
                 onChange={this.handleChange}
                 value={email}
                 variant="outlined"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment className={classes.icons} position="start">
+                      <EmailIcon />
+                    </InputAdornment>
+                  )
+                }}
               />
               <TextField
                 margin="normal"
-                required
                 fullWidth
                 name="password"
                 label="Password"
@@ -164,6 +179,13 @@ class SignIn extends Component {
                 onChange={this.handleChange}
                 value={password}
                 variant="outlined"
+                InputProps={{
+                  startAdornment: (
+                    <InputAdornment className={classes.icons} position="start">
+                      <LockIcon />
+                    </InputAdornment>
+                  )
+                }}
               />
               <Grid
                 component="label"

@@ -1,4 +1,5 @@
 import React from "react";
+import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   Button,
@@ -95,14 +96,16 @@ const useStyles = makeStyles(theme => ({
 const images = [
   {
     url: "../img/customers-icon.jpg",
-    title: "Sign Up as a User",
+    title: "SIGN UP AS A USER",
     width: "100%",
+    route: "/user/signup",
     component: "SignUpUser"
   },
   {
     url: "../img/vendor-icon.jpg",
-    title: "Sign Up as a Vendor",
+    title: "SIGN UP AS A VENDOR",
     width: "100%",
+    route: "/vendor/signup",
     component: "SignUpVendor"
   }
 ];
@@ -164,7 +167,8 @@ const SignUp = props => {
                 style={{
                   width: image.width
                 }}
-                component={Button}
+                component={RouterLink}
+                to={image.route}
                 onClick={() => handleClick(image.component)}
               >
                 <span

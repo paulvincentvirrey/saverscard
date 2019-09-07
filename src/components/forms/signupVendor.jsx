@@ -19,6 +19,14 @@ import { withStyles } from "@material-ui/core/styles";
 const dashboardRoutes = [];
 
 const useStyles = theme => ({
+  root: {
+    padding: theme.spacing(3, 2),
+    marginTop: theme.spacing(8),
+    display: "flex",
+    flexWrap: "wrap",
+    minWidth: 300,
+    width: "100%"
+  },
   appBar: {
     position: "relative"
   },
@@ -399,7 +407,7 @@ class SignupVendor extends Component {
     const { classes } = this.props;
     const { activeStep, values } = this.state;
     return (
-      <React.Fragment>
+      <div className={classes.root}>
         <CssBaseline />
         <Header
           color="dark"
@@ -468,7 +476,7 @@ class SignupVendor extends Component {
             </React.Fragment>
           </div>
         </main>
-      </React.Fragment>
+      </div>
     );
   }
 }

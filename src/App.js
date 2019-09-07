@@ -48,8 +48,8 @@ class App extends Component {
             <Route path="/signin" component={SignIn} />
             <Route path="/contact" component={Vendors} />
             <Route path="/signup" component={SignUp} />
-            <Route path="/signupUser" component={SignupUser} />
-            <Route path="/signupVendor" component={SignupVendor} />
+            <Route path="/user/signup" component={SignupUser} />
+            <Route path="/vendor/signup" component={SignupVendor} />
             <Route path="/" component={LandingPage} />
           </Switch>
         </MuiThemeProvider>
