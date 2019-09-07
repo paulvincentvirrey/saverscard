@@ -13,10 +13,9 @@ import {
   Typography
 } from "@material-ui/core";
 import { Email as EmailIcon, Lock as LockIcon } from "@material-ui/icons";
-import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 import Header from "./landingPage/Header";
 import HeaderLinks from "./landingPage/HeaderLinks";
-import theme from "../assets/theme";
 import { authenticationService } from "./../services/authenticationService";
 import { withRouter, Link as RouterLink } from "react-router-dom";
 
@@ -129,7 +128,7 @@ class SignIn extends Component {
     const { email, password, loginAs, submitted, loading, error } = this.state;
 
     return (
-      <MuiThemeProvider theme={theme}>
+      <React.Fragment>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <Header
@@ -230,7 +229,7 @@ class SignIn extends Component {
             </form>
           </div>
         </Container>
-      </MuiThemeProvider>
+      </React.Fragment>
     );
   }
 }

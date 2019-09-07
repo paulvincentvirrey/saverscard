@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // @material-ui/core components
@@ -21,14 +21,32 @@ import styles from "../../assets/material-kit-react/views/landingPage";
 import ProductSection from "./Sections/productSection";
 import WorkSection from "./Sections/workSection";
 import { CssBaseline } from "@material-ui/core";
+import desktopImage from "../../assets/img/cool-background.png";
+import mobileImage from "../../assets/img/mobile-landing.png";
 
 const dashboardRoutes = [];
 
 const useStyles = makeStyles(styles);
 
-export default function LandingPage(props) {
+const LandingPage = props => {
   const classes = useStyles();
   const { ...rest } = props;
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const bgImage = windowWidth >= 650 ? desktopImage : mobileImage;
+
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  });
+
   return (
     <div>
       <CssBaseline />
@@ -40,7 +58,7 @@ export default function LandingPage(props) {
         fixed
         {...rest}
       />
-      <Parallax filter image={require("../../assets/img/cool-background.png")}>
+      <Parallax filter image={bgImage}>
         <div className={classes.container}>
           <GridContainer>
             <GridItem xs={12} sm={12} md={6}>
@@ -75,4 +93,6 @@ export default function LandingPage(props) {
       <Footer />
     </div>
   );
-}
+};
+
+export default LandingPage;
