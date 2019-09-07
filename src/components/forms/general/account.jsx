@@ -12,7 +12,7 @@ import { AccountCircle, Email, Lock, LockOutlined } from "@material-ui/icons/";
 const useStyles = makeStyles(theme => ({
   header: {
     fontWeight: "bold",
-    marginBottom: theme.spacing(6),
+    marginBottom: theme.spacing(3),
     fontSize: "28px"
   },
   icons: {

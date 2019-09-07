@@ -23,7 +23,7 @@ import FileUpload from "../../fileUpload";
 const useStyles = theme => ({
   header: {
     fontWeight: "bold",
-    marginBottom: theme.spacing(6),
+    marginBottom: theme.spacing(3),
     fontSize: "28px"
   },
   icons: {

@@ -16,7 +16,8 @@ import { Category, LocalOffer, Block } from "@material-ui/icons/";
 const useStyles = makeStyles(theme => ({
   header: {
     fontWeight: "bold",
-    marginBottom: theme.spacing(6)
+    marginBottom: theme.spacing(3),
+    fontSize: "28px"
   },
   icons: {
     color: "#737373"
@@ -31,7 +32,12 @@ export default function VendorDiscountForm(props) {
   return (
     <React.Fragment>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h4" className={classes.header} color="primary">
+        <Typography
+          align="center"
+          variant="h5"
+          className={classes.header}
+          color="primary"
+        >
           VENDOR DISCOUNT OFFER
         </Typography>
       </Box>

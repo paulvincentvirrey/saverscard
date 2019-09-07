@@ -1,18 +1,19 @@
 import React from "react";
 import {
-  Box,
   Checkbox,
   FormControlLabel,
   Grid,
+  InputAdornment,
   TextField,
   Typography,
   makeStyles
 } from "@material-ui/core";
-
+import { Edit } from "@material-ui/icons/";
 const useStyles = makeStyles(theme => ({
   header: {
     fontWeight: "bold",
-    marginBottom: theme.spacing(6)
+    marginBottom: theme.spacing(3),
+    fontSize: "28px"
   }
 }));
 
@@ -23,11 +24,14 @@ export default function AgreementForm(props) {
   const esignatureError = esignature ? true : false;
   return (
     <React.Fragment>
-      <Box display="flex" justifyContent="center">
-        <Typography variant="h4" className={classes.header} color="primary">
-          TERMS AND AGREEMENT
-        </Typography>
-      </Box>
+      <Typography
+        align="center"
+        variant="h5"
+        className={classes.header}
+        color="primary"
+      >
+        TERMS AND AGREEMENT
+      </Typography>
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Typography variant="body2" align="justify">
@@ -66,6 +70,13 @@ export default function AgreementForm(props) {
             onChange={props.handleChange}
             value={props.values[props.name]}
             variant="outlined"
+            InputProps={{
+              startAdornment: (
+                <InputAdornment className={classes.icons} position="start">
+                  <Edit />
+                </InputAdornment>
+              )
+            }}
           />
         </Grid>
       </Grid>
