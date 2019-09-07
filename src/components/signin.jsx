@@ -12,9 +12,7 @@ import {
 } from "@material-ui/core";
 import Header from "./landingPage/Header";
 import HeaderLinks from "./landingPage/HeaderLinks";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
-import { blue } from "@material-ui/core/colors";
 import theme from "../assets/theme";
 import { authenticationService } from "./../services/authenticationService";
 import { withRouter, Link as RouterLink } from "react-router-dom";
