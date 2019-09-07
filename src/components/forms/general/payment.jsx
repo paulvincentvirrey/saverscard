@@ -23,7 +23,8 @@ import FileUpload from "../../fileUpload";
 const useStyles = theme => ({
   header: {
     fontWeight: "bold",
-    marginBottom: theme.spacing(6)
+    marginBottom: theme.spacing(6),
+    fontSize: "28px"
   },
   icons: {
     color: "#737373"
@@ -270,7 +271,12 @@ class PaymentForm extends Component {
     return (
       <React.Fragment>
         <Box display="flex" justifyContent="center">
-          <Typography variant="h4" className={classes.header} color="primary">
+          <Typography
+            align="center"
+            variant="h5"
+            className={classes.header}
+            color="primary"
+          >
             PAYMENT DETAILS
           </Typography>
         </Box>

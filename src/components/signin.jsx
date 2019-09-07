@@ -24,7 +24,7 @@ const dashboardRoutes = [];
 
 const useStyles = theme => ({
   paper: {
-    marginTop: theme.spacing(15),
+    marginTop: theme.spacing(18),
     marginBottom: theme.spacing(8),
     display: "flex",
     flexDirection: "column",
