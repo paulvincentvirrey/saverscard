@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { Card, Grid } from "@material-ui/core";
+import { green } from "@material-ui/core/colors";
 import { userService } from "../../services/userService";
 import ApplicationStatus from "../applicationStatus";
 import SummaryFormUsers from "./summaryFormUsers";
@@ -35,6 +36,11 @@ class AdminUsers extends Component {
           responsiveScroll: {
             maxHeight: "720px"
           }
+        }
+      },
+      palette: {
+        primary: {
+          main: green[800]
         }
       }
     });

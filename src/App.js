@@ -16,6 +16,8 @@ import SignupVendor from "./components/forms/signupVendor";
 import VendorAccount from "./components/vendorAccount";
 import Vendors from "./views/vendors";
 import { history } from "./helpers/history";
+import { MuiThemeProvider } from "@material-ui/core/styles";
+import theme from "./assets/theme";
 
 class App extends Component {
   constructor(props) {
@@ -25,7 +27,7 @@ class App extends Component {
   render() {
     return (
       <Router history={history}>
-        <React.Fragment>
+        <MuiThemeProvider theme={theme}>
           <NavBar />
           <Switch>
             <PrivateRoute path="/vendors" component={Vendors} />
@@ -50,7 +52,7 @@ class App extends Component {
             <Route path="/signupVendor" component={SignupVendor} />
             <Route path="/" component={LandingPage} />
           </Switch>
-        </React.Fragment>
+        </MuiThemeProvider>
       </Router>
       // <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
       //   <div className="example">

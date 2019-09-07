@@ -15,7 +15,8 @@ import {
   Link
 } from "@material-ui/core";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { withStyles } from "@material-ui/core/styles";
+import { withStyles, MuiThemeProvider } from "@material-ui/core/styles";
+import theme from "../assets/theme";
 import { blue } from "@material-ui/core/colors";
 import { authenticationService } from "./../services/authenticationService";
 import { withRouter, Link as RouterLink } from "react-router-dom";
@@ -40,14 +41,14 @@ const useStyles = theme => ({
   }
 });
 
-const BlueSwitch = withStyles({
+const GreenSwitch = withStyles({
   switchBase: {
-    color: "#3f51b5",
+    color: "#2e7d32",
     "&$checked": {
-      color: "#3f51b5"
+      color: "#2e7d32"
     },
     "&$checked + $track": {
-      backgroundColor: "#3f51b5"
+      backgroundColor: "#2e7d32"
     }
   },
   checked: {},
@@ -124,7 +125,7 @@ class SignIn extends Component {
     const { email, password, loginAs, submitted, loading, error } = this.state;
 
     return (
-      <React.Fragment>
+      <MuiThemeProvider theme={theme}>
         <Container component="main" maxWidth="xs">
           <CssBaseline />
           <div className={classes.paper}>
@@ -164,7 +165,7 @@ class SignIn extends Component {
               >
                 <Grid item>User</Grid>
                 <Grid item>
-                  <BlueSwitch onChange={this.handleSwitch} />
+                  <GreenSwitch onChange={this.handleSwitch} />
                 </Grid>
                 <Grid item>Vendor</Grid>
               </Grid>
@@ -198,7 +199,7 @@ class SignIn extends Component {
             </form>
           </div>
         </Container>
-      </React.Fragment>
+      </MuiThemeProvider>
     );
   }
 }

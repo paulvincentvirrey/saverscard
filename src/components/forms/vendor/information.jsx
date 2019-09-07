@@ -25,7 +25,6 @@ import {
 
 const useStyles = makeStyles(theme => ({
   header: {
-    color: "#3f51b5",
     fontWeight: "bold",
     marginBottom: theme.spacing(6)
   },
@@ -64,7 +63,7 @@ export default function VendorInformationForm(props) {
   return (
     <React.Fragment>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h4" className={classes.header}>
+        <Typography variant="h4" className={classes.header} color="primary">
           VENDOR INFORMATION
         </Typography>
       </Box>

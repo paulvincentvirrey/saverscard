@@ -12,7 +12,6 @@ import {
 import { Edit, Done } from "@material-ui/icons/";
 const useStyles = makeStyles(theme => ({
   header: {
-    color: "#3f51b5",
     fontWeight: "bold",
     marginBottom: theme.spacing(6)
   },
@@ -29,7 +28,7 @@ export default function AgreementForm(props) {
   return (
     <React.Fragment>
       <Box display="flex" justifyContent="center">
-        <Typography variant="h4" className={classes.header}>
+        <Typography variant="h4" className={classes.header} color="primary">
           TERMS AND AGREEMENT
         </Typography>
       </Box>
@@ -92,6 +91,7 @@ export default function AgreementForm(props) {
                 checked={props.values[props.name]}
                 onChange={props.handleChange}
                 value="agreementCheck"
+                color="primary"
               />
             }
             label="I understand and agree with the terms and conditions."
