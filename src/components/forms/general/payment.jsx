@@ -65,11 +65,11 @@ class PaymentForm extends Component {
         expectedState.cvcComplete &&
         expectedState.expirationDateComplete
     );
-    this.props.setFormComplete(
-      expectedState.creditCardNumberComplete &&
-        expectedState.cvcComplete &&
-        expectedState.expirationDateComplete
-    );
+    // this.props.setFormComplete(
+    //   expectedState.creditCardNumberComplete &&
+    //     expectedState.cvcComplete &&
+    //     expectedState.expirationDateComplete
+    // );
 
     if (
       expectedState.creditCardNumberComplete &&
@@ -146,6 +146,7 @@ class PaymentForm extends Component {
   };
 
   getPaymentDisplay = props => {
+    const { classes } = this.props;
     const { cardNumberError, cardNumber } = this.state;
     const payment = props.values["paymentMethod"];
     const subscription = props.values["subscription"];
@@ -167,7 +168,7 @@ class PaymentForm extends Component {
               variant="outlined"
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment className={classes.icons} position="start">
                     <CreditCardOutlined />
                   </InputAdornment>
                 )
@@ -192,7 +193,7 @@ class PaymentForm extends Component {
               variant="outlined"
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment className={classes.icons} position="start">
                     <CreditCardOutlined />
                   </InputAdornment>
                 )
@@ -212,7 +213,7 @@ class PaymentForm extends Component {
               variant="outlined"
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment className={classes.icons} position="start">
                     <CalendarToday />
                   </InputAdornment>
                 )
@@ -231,7 +232,7 @@ class PaymentForm extends Component {
               variant="outlined"
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment className={classes.icons} position="start">
                     <LocalOffer />
                   </InputAdornment>
                 )
@@ -265,7 +266,7 @@ class PaymentForm extends Component {
               variant="outlined"
               InputProps={{
                 startAdornment: (
-                  <InputAdornment position="start">
+                  <InputAdornment className={classes.icons} position="start">
                     <LocalOffer />
                   </InputAdornment>
                 )

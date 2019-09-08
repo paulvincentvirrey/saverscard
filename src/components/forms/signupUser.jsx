@@ -494,7 +494,6 @@ function GetStepContent(props) {
           creditCards={props.creditCards}
           paymentMethods={props.paymentMethods}
           subscriptions={props.subscriptions}
-          setFormComplete={() => {}}
           errors={props.errors}
         />
         //   </Elements>

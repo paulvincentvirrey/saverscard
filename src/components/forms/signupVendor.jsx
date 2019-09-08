@@ -15,6 +15,7 @@ import { Button, CssBaseline, Grid, Typography } from "@material-ui/core";
 import Header from "../../components/landingPage/Header";
 import HeaderLinks from "../../components/landingPage/HeaderLinks";
 import { withStyles } from "@material-ui/core/styles";
+import { Elements, StripeProvider } from "react-stripe-elements";
 
 const dashboardRoutes = [];
 
@@ -360,6 +361,15 @@ class SignupVendor extends Component {
     });
   };
 
+  handleCCPaymentChange = payment => {
+    const name = "paymentToken";
+    const value = payment;
+
+    this.setState({
+      values: { ...this.state.values, [name]: value }
+    });
+  };
+
   handleSubmit = async () => {
     const { values } = this.state;
     const filledForm = {
@@ -392,6 +402,9 @@ class SignupVendor extends Component {
 
     const vendor = await vendorService.createVendor(filledForm);
     console.log(vendor);
+    const stripeToken = values["paymentToken"];
+    // const payment = await paymentService.chargePayment(stripeToken);
+    console.log(stripeToken);
   };
 
   categories = [...getCategories()];
@@ -407,76 +420,83 @@ class SignupVendor extends Component {
     const { classes } = this.props;
     const { activeStep, values } = this.state;
     return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <Header
-          color="dark"
-          routes={dashboardRoutes}
-          brand="SAVERSCARD"
-          rightLinks={<HeaderLinks />}
-          fixed
-        />
-        <main className={classes.layout}>
-          <div className={classes.paper}>
-            <React.Fragment>
-              {activeStep === steps.length ? (
+      <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
+        <Elements>
+          <div className={classes.root}>
+            <CssBaseline />
+            <Header
+              color="dark"
+              routes={dashboardRoutes}
+              brand="SAVERSCARD"
+              rightLinks={<HeaderLinks />}
+              fixed
+            />
+            <main className={classes.layout}>
+              <div className={classes.paper}>
                 <React.Fragment>
-                  <Typography variant="h5" gutterBottom>
-                    Welcome to Saverscard <b>{values["businessName"]}</b>
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    You have successfully created your account! Refresh the page
-                    and sign in using your new credentials.
-                  </Typography>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <GetStepContent
-                    categories={this.categories}
-                    creditCards={this.creditCards}
-                    discounts={this.discounts}
-                    paymentMethods={this.paymentMethods}
-                    handleChange={this.handleChange}
-                    values={this.state.values}
-                    errors={this.state.errors}
-                    step={this.state.activeStep}
-                    subscriptions={this.subscriptions}
-                  />
-                  <Grid
-                    container
-                    justify="space-between"
-                    className={classes.buttons}
-                  >
-                    {activeStep !== 0 && (
-                      <Grid item xs={2}>
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          onClick={this.handleBack}
-                          className={classes.backButton}
-                        >
-                          Back
-                        </Button>
-                      </Grid>
-                    )}
-                    <Grid item xs={2}>
-                      <Button
-                        variant="contained"
-                        type="submit"
-                        color="primary"
-                        onClick={this.handleNext}
-                        className={classes.button}
+                  {activeStep === steps.length ? (
+                    <React.Fragment>
+                      <Typography variant="h5" gutterBottom>
+                        Welcome to Saverscard <b>{values["businessName"]}</b>
+                      </Typography>
+                      <Typography variant="subtitle1">
+                        You have successfully created your account! Refresh the
+                        page and sign in using your new credentials.
+                      </Typography>
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      <GetStepContent
+                        categories={this.categories}
+                        creditCards={this.creditCards}
+                        discounts={this.discounts}
+                        paymentMethods={this.paymentMethods}
+                        handleChange={this.handleChange}
+                        handleCCPaymentChange={this.handleCCPaymentChange}
+                        values={this.state.values}
+                        errors={this.state.errors}
+                        step={this.state.activeStep}
+                        subscriptions={this.subscriptions}
+                      />
+                      <Grid
+                        container
+                        justify="space-between"
+                        className={classes.buttons}
                       >
-                        {activeStep === steps.length - 1 ? "Submit" : "Next"}
-                      </Button>
-                    </Grid>
-                  </Grid>
+                        {activeStep !== 0 && (
+                          <Grid item xs={2}>
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={this.handleBack}
+                              className={classes.backButton}
+                            >
+                              Back
+                            </Button>
+                          </Grid>
+                        )}
+                        <Grid item xs={2}>
+                          <Button
+                            variant="contained"
+                            type="submit"
+                            color="primary"
+                            onClick={this.handleNext}
+                            className={classes.button}
+                          >
+                            {activeStep === steps.length - 1
+                              ? "Submit"
+                              : "Next"}
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </React.Fragment>
+                  )}
                 </React.Fragment>
-              )}
-            </React.Fragment>
+              </div>
+            </main>
           </div>
-        </main>
-      </div>
+        </Elements>
+      </StripeProvider>
     );
   }
 }
@@ -523,6 +543,7 @@ function GetStepContent(props) {
       return (
         <PaymentForm
           handleChange={props.handleChange}
+          handleCCPaymentChange={props.handleCCPaymentChange}
           values={props.values}
           categories={props.categories}
           creditCards={props.creditCards}

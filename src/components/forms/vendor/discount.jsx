@@ -107,7 +107,7 @@ export default function VendorDiscountForm(props) {
             label="DISCOUNT APPLIES TO ALL PRODUCTS."
           />
         </Grid>
-        {getDiscountDisplay(props)}
+        {getDiscountDisplay(classes, props)}
       </Grid>
     </React.Fragment>
   );
@@ -121,7 +121,7 @@ function renderMenuItems(items) {
   ));
 }
 
-function getDiscountDisplay(props) {
+function getDiscountDisplay(classes, props) {
   const { discountExclusion } = props.errors;
   const discountExclusionError = discountExclusion ? true : false;
   const checked = props.values["discountCheck"];
@@ -140,7 +140,7 @@ function getDiscountDisplay(props) {
             variant="outlined"
             InputProps={{
               startAdornment: (
-                <InputAdornment position="start">
+                <InputAdornment className={classes.icons} position="start">
                   <Block />
                 </InputAdornment>
               )
