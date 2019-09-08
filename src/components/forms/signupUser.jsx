@@ -325,30 +325,35 @@ class SignupUser extends Component {
 
   handleSubmit = async () => {
     const { values } = this.state;
-    // const filledForm = {
-    //   username: values["username"],
-    //   email: values["email"],
-    //   password: values["password"],
-    //   firstName: values["firstName"],
-    //   lastName: values["lastName"],
-    //   birthday: values["birthdate"].toString(),
-    //   contactNumber: values["contactNumber"],
-    //   address1: values["addressLine1"],
-    //   address2: values["addressLine2"],
-    //   city: values["city"],
-    //   state: "Texas",
-    //   zip: values["zip"],
-    //   method: values["paymentMethod"],
-    //   ccType: values["creditCardType"],
-    //   subscription: values["subscription"],
-    //   promoCode: values["promoCode"]
-    // };
+    const filledForm = {
+      username: values["username"],
+      email: values["email"],
+      password: values["password"],
+      firstName: values["firstName"],
+      lastName: values["lastName"],
+      birthday: values["birthdate"].toString(),
+      contactNumber: values["contactNumber"],
+      address1: values["addressLine1"],
+      address2: values["addressLine2"],
+      city: values["city"],
+      state: "Texas",
+      zip: values["zip"],
+      method: values["paymentMethod"],
+      ccType: values["creditCardType"],
+      subscription: values["subscription"],
+      promoCode: values["promoCode"],
+      invoice: values["invoice"]
+    };
 
-    // const user = await userService.createUser(filledForm);
-    // console.log(user);
-    const stripeToken = values["paymentToken"];
-    // const payment = await paymentService.chargePayment(stripeToken);
-    console.log(stripeToken);
+    const paymentDetails = {
+      subscription_type: "user",
+      email: values["email"],
+      name: values["firstName"] + " " + values["lastName"],
+      token: values["paymentToken"]
+    };
+    const payment = await paymentService.chargePayment(paymentDetails);
+    const user = await userService.createUser(filledForm);
+    console.log(user);
   };
 
   handleDateChange = value => {
