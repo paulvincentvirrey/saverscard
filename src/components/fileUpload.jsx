@@ -5,6 +5,7 @@ import {
   CloudUpload as CloudUploadIcon
 } from "@material-ui/icons";
 import { withStyles } from "@material-ui/core/styles";
+import { fileService } from "../services/fileService";
 
 const useStyles = theme => ({
   button: {
@@ -26,7 +27,7 @@ class FileUpload extends Component {
     };
   }
 
-  handleUpload = event => {
+  handleUpload = async event => {
     const { target } = event;
     const file = target.files[0];
     let newEvent = {};
@@ -38,10 +39,12 @@ class FileUpload extends Component {
         selectedFile: file
       });
 
+      const path = await fileService.upload(file);
+      console.log(path);
       newEvent = {
         target: {
           name: this.props.name,
-          value: file
+          value: path
         }
       };
 

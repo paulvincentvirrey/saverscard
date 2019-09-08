@@ -11,6 +11,7 @@ import {
   getPaymentMethods
 } from "../../services/fakeCategoryService";
 import { vendorService } from "../../services/vendorService";
+import { paymentService } from "../../services/paymentService";
 import { Button, CssBaseline, Grid, Typography } from "@material-ui/core";
 import Header from "../../components/landingPage/Header";
 import HeaderLinks from "../../components/landingPage/HeaderLinks";
@@ -397,14 +398,19 @@ class SignupVendor extends Component {
         values["paymentMethod"] === "Credit Card" ? "Approved" : "For Review",
       ccType: values["creditCardType"],
       subscription: 5,
-      promoCode: values["promoCode"]
+      promoCode: values["promoCode"],
+      invoice: values["invoice"]
     };
 
+    const paymentDetails = {
+      subscription_type: "vendor",
+      email: values["email"],
+      name: values["businessName"],
+      token: values["paymentToken"]
+    };
+    const payment = await paymentService.chargePayment(paymentDetails);
     const vendor = await vendorService.createVendor(filledForm);
     console.log(vendor);
-    const stripeToken = values["paymentToken"];
-    // const payment = await paymentService.chargePayment(stripeToken);
-    console.log(stripeToken);
   };
 
   categories = [...getCategories()];
