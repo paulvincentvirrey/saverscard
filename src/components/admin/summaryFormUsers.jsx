@@ -40,7 +40,7 @@ class SummaryFormUsers extends Component {
       id: "",
       dateModified: "",
       status: "",
-      updatedStatus: "",
+      prevStatus: "",
       username: "",
       email: "",
       lastName: "",
@@ -64,6 +64,7 @@ class SummaryFormUsers extends Component {
       id: data._id,
       dateModified: data.dateModified,
       status: data.accountStatus,
+      prevStatus: data.prevStatus,
       username: data.username,
       email: data.email,
       lastName: data.lastName,
@@ -145,7 +146,7 @@ class SummaryFormUsers extends Component {
   handleSubmit = async () => {
     const {
       id,
-      updatedStatus,
+      prevStatus,
       status,
       email,
       lastName,
@@ -165,13 +166,28 @@ class SummaryFormUsers extends Component {
     });
 
     if (this.handleValidation()) {
+      let dateCreated;
       var today = new Date();
+      var dd = String(today.getDate()).padStart(2, "0");
+      var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+      var yyyy = today.getFullYear();
+      var hh = today.getHours();
+      var min = today.getMinutes();
+      var sec = today.getSeconds();
+
+      today = mm + "/" + dd + "/" + yyyy + " " + hh + ":" + min + ":" + sec;
+
+      if (prevStatus !== "Approved" && status === "Approved") {
+        dateCreated = today;
+      } else {
+        dateCreated = null;
+      }
 
       const updatedForm = {
         _id: id,
         accountStatus: status,
         dateModified: today,
-        dateCreated: today,
+        dateCreated: dateCreated,
         username: username,
         email: email,
         lastName: lastName,
@@ -184,11 +200,15 @@ class SummaryFormUsers extends Component {
         remarks: remarks
       };
       const user = await userService.updateUser(id, updatedForm);
-      console.log(user);
+      alert("Updated " + firstName + " " + lastName + " details successfully!");
+      this.handleClose();
+      this.handleClose2();
+      window.location.reload();
+    } else {
+      alert(firstName + " " + lastName + " details were not updated!");
+      this.handleClose();
+      this.handleClose2();
     }
-    this.handleClose();
-    this.handleClose2();
-    alert("Updated " + firstName + " " + lastName + " details successfully!");
   };
 
   handleOpen = data => {

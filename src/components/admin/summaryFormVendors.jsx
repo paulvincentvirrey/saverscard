@@ -43,6 +43,7 @@ class SummaryForm extends Component {
       errors: {},
       id: "",
       status: "",
+      prevStatus: "",
       username: "",
       email: "",
       password: "",
@@ -75,6 +76,7 @@ class SummaryForm extends Component {
     this.setState({
       id: data._id,
       status: data.applicationStatus,
+      prevStatus: data.applicationStatus,
       username: data.username,
       email: data.email,
       password: data.password,
@@ -114,7 +116,6 @@ class SummaryForm extends Component {
       website,
       zipCode,
       telephone,
-      fax,
       authPersonEmail,
       authPersonPhone
     } = this.state;
@@ -212,6 +213,7 @@ class SummaryForm extends Component {
     const {
       id,
       status,
+      prevStatus,
       username,
       email,
       businessName,
@@ -235,12 +237,22 @@ class SummaryForm extends Component {
     });
 
     if (this.handleValidation()) {
+      let dateCreated;
       var today = new Date();
       var dd = String(today.getDate()).padStart(2, "0");
       var mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
       var yyyy = today.getFullYear();
+      var hh = today.getHours();
+      var min = today.getMinutes();
+      var sec = today.getSeconds();
 
-      today = mm + "/" + dd + "/" + yyyy;
+      today = mm + "/" + dd + "/" + yyyy + " " + hh + ":" + min + ":" + sec;
+
+      if (prevStatus !== "Approved" && status === "Approved") {
+        dateCreated = today;
+      } else {
+        dateCreated = null;
+      }
 
       const updatedForm = {
         applicationStatus: status,
@@ -260,13 +272,19 @@ class SummaryForm extends Component {
         vendorCategory: category,
         discountInPercent: discount,
         remarks: remarks,
-        dateModified: today
+        dateModified: today,
+        dateCreated: dateCreated
       };
       const vendor = await vendorService.updateVendor(id, updatedForm);
+      alert("Updated " + businessName + " details successfully!");
+      this.handleClose();
+      this.handleClose2();
+      window.location.reload();
+    } else {
+      alert(businessName + " details were not updated!");
+      this.handleClose();
+      this.handleClose2();
     }
-    this.handleClose();
-    this.handleClose2();
-    alert("Updated " + businessName + " details successfully!");
   };
 
   handleOpen = data => {

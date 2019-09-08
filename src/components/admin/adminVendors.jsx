@@ -121,8 +121,8 @@ class AdminVendors extends Component {
           sort: false,
           customBodyRender: value => {
             if (value != null) {
-              const date = new Date(value);
-              return date.toLocaleString();
+              var date = new Date(value);
+              return date.toLocaleString("en-US", { timeZone: "UTC" });
             }
           }
         }
@@ -135,8 +135,8 @@ class AdminVendors extends Component {
           sort: false,
           customBodyRender: value => {
             if (value != null) {
-              const date = new Date(value);
-              return date.toLocaleString();
+              var date = new Date(value);
+              return date.toLocaleString("en-US", { timeZone: "UTC" });
             }
           }
         }
