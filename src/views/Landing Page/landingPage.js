@@ -7,7 +7,7 @@ import { Link as RouterLink } from "react-router-dom";
 // @material-ui/icons
 
 // core components
-import Header from "../../components/landingPage/Header";
+import Nav from "../../components/landingPage/Header";
 import Footer from "../../components/landingPage/Footer";
 import GridContainer from "../../components/landingPage/GridContainer";
 import GridItem from "../../components/landingPage/GridItem";
@@ -50,13 +50,12 @@ const LandingPage = props => {
   return (
     <div>
       <CssBaseline />
-      <Header
+      <Nav
         color="dark"
         routes={dashboardRoutes}
         brand="SAVERSCARD"
         rightLinks={<HeaderLinks />}
         fixed
-        {...rest}
       />
       <Parallax filter image={bgImage}>
         <div className={classes.container}>

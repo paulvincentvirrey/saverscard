@@ -16,6 +16,7 @@ import Header from "../../components/landingPage/Header";
 import HeaderLinks from "../../components/landingPage/HeaderLinks";
 import { withStyles } from "@material-ui/core/styles";
 import { Elements, StripeProvider } from "react-stripe-elements";
+import Image from "../../assets/img/form-bg.png";
 
 const dashboardRoutes = [];
 
@@ -26,7 +27,9 @@ const useStyles = theme => ({
     display: "flex",
     flexWrap: "wrap",
     minWidth: 300,
-    width: "100%"
+    width: "100%",
+    height: "100vh",
+    backgroundImage: `url(${Image})`
   },
   appBar: {
     position: "relative"

@@ -6,7 +6,15 @@ import { green } from "@material-ui/core/colors";
 import { userService } from "../../services/userService";
 import ApplicationStatus from "../applicationStatus";
 import SummaryFormUsers from "./summaryFormUsers";
+import Header from "../landingPage/Header";
+import HeaderLinks from "../landingPage/HeaderLinkInApp";
+import { withStyles } from "@material-ui/core/styles";
 
+const useStyles = theme => ({
+  table: {
+    marginTop: theme.spacing(9)
+  }
+});
 class AdminUsers extends Component {
   constructor(props) {
     super(props);
@@ -34,7 +42,7 @@ class AdminUsers extends Component {
       overrides: {
         MUIDataTable: {
           responsiveScroll: {
-            maxHeight: "720px"
+            maxHeight: "100%"
           }
         }
       },
@@ -160,13 +168,24 @@ class AdminUsers extends Component {
           });
       }
     };
+
+    const { classes } = this.props;
+    const dashboardRoutes = [];
+
     return (
       <React.Fragment>
-        <Grid container justify="center">
+        <Header
+          color="dark"
+          routes={dashboardRoutes}
+          brand="SAVERSCARD"
+          rightLinks={<HeaderLinks />}
+          fixed
+        />
+        <Grid container className={classes.table} justify="center">
           <Card raised>
             <MuiThemeProvider theme={muiDatatableTheme}>
               <MUIDataTable
-                title={"Users Consolidation Table"}
+                title={"USERS CONSOLIDATION"}
                 data={this.state.users}
                 columns={columns}
                 options={options}
@@ -179,4 +198,4 @@ class AdminUsers extends Component {
   }
 }
 
-export default AdminUsers;
+export default withStyles(useStyles)(AdminUsers);

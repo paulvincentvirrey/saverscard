@@ -1,12 +1,20 @@
 import React, { Component } from "react";
 import MUIDataTable from "mui-datatables";
 import { Card, Grid } from "@material-ui/core";
+import ApplicationStatus from "../applicationStatus";
+import SummaryFormVendors from "./summaryFormVendors";
+import Header from "../landingPage/Header";
+import HeaderLinks from "../landingPage/HeaderLinkInApp";
+import { withStyles } from "@material-ui/core/styles";
 import { createMuiTheme, MuiThemeProvider } from "@material-ui/core/styles";
 import { green } from "@material-ui/core/colors";
 import { vendorService } from "../../services/vendorService";
-import ApplicationStatus from "../applicationStatus";
-import SummaryFormVendors from "./summaryFormVendors";
 
+const useStyles = theme => ({
+  table: {
+    marginTop: theme.spacing(9)
+  }
+});
 class AdminVendors extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +40,7 @@ class AdminVendors extends Component {
       overrides: {
         MUIDataTable: {
           responsiveScroll: {
-            maxHeight: "720px"
+            maxHeight: "100%"
           }
         }
       },
@@ -166,18 +174,30 @@ class AdminVendors extends Component {
           .catch(err => {
             return false;
           });
-        // rowsDeleted.vendors.map(rowDeleted =>
-        //   console.log(vendors[rowDeleted.dataIndex])
-        // );
       }
     };
+
+    const { classes } = this.props;
+    const dashboardRoutes = [];
     return (
       <React.Fragment>
-        <Grid container justify="center" alignItems="center">
+        <Header
+          color="dark"
+          routes={dashboardRoutes}
+          brand="SAVERSCARD"
+          rightLinks={<HeaderLinks />}
+          fixed
+        />
+        <Grid
+          container
+          className={classes.table}
+          justify="center"
+          alignItems="center"
+        >
           <Card>
             <MuiThemeProvider theme={muiDatatableTheme}>
               <MUIDataTable
-                title={"Vendor Consolidation Table"}
+                title={"VENDORS CONSOLIDATION"}
                 data={vendors}
                 columns={columns}
                 options={options}
@@ -190,4 +210,4 @@ class AdminVendors extends Component {
   }
 }
 
-export default AdminVendors;
+export default withStyles(useStyles)(AdminVendors);

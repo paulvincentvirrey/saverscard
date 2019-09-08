@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
@@ -14,6 +14,8 @@ import HeaderLinks from "./landingPage/HeaderLinks";
 import SignupVendor from "./forms/signupVendor";
 import SignupUser from "./forms/signupUser";
 import { Elements, StripeProvider } from "react-stripe-elements";
+import desktopImage from "../assets/img/cool-background.png";
+import mobileImage from "../assets/img/mobile-landing.png";
 
 const dashboardRoutes = [];
 
@@ -26,6 +28,10 @@ const useStyles = makeStyles(theme => ({
     minWidth: 300,
     width: "100%"
   },
+  container: {
+    marginTop: theme.spacing(-8),
+    height: "100vh"
+  },
   image: {
     position: "relative",
     height: 200,
@@ -36,7 +42,7 @@ const useStyles = makeStyles(theme => ({
     "&:hover, &$focusVisible": {
       zIndex: 1,
       "& $imageBackdrop": {
-        opacity: 0.15
+        opacity: 0.8
       },
       "& $imageMarked": {
         opacity: 0
@@ -74,7 +80,7 @@ const useStyles = makeStyles(theme => ({
     top: 0,
     bottom: 0,
     backgroundColor: theme.palette.common.black,
-    opacity: 0.4,
+    opacity: 0.8,
     transition: theme.transitions.create("opacity")
   },
   imageTitle: {
@@ -95,14 +101,12 @@ const useStyles = makeStyles(theme => ({
 
 const images = [
   {
-    url: "../img/customers-icon.jpg",
     title: "SIGN UP AS A USER",
     width: "100%",
     route: "/user/signup",
     component: "SignUpUser"
   },
   {
-    url: "../img/vendor-icon.jpg",
     title: "SIGN UP AS A VENDOR",
     width: "100%",
     route: "/vendor/signup",
@@ -114,6 +118,20 @@ const SignUp = props => {
   const classes = useStyles();
   const [signup, setSignup] = React.useState(<div />);
   const [isSigningUp, setIsSigningUp] = React.useState(false);
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  const bgImage = windowWidth >= 650 ? desktopImage : mobileImage;
+
+  const handleWindowResize = () => {
+    setWindowWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  });
 
   function handleClick(component) {
     if (component === "SignUpUser")
@@ -137,63 +155,68 @@ const SignUp = props => {
   }
 
   return (
-    <Container maxWidth="md">
-      <CssBaseline />
-      <Header
-        color="dark"
-        routes={dashboardRoutes}
-        brand="SAVERSCARD"
-        rightLinks={<HeaderLinks />}
-        fixed
-      />
-
-      <Grid
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-        className={classes.root}
-        spacing={2}
+    <CssBaseline>
+      <Container
+        maxWidth="md"
+        className={classes.container}
+        style={{
+          backgroundImage: "url(" + bgImage + ")"
+        }}
       >
-        {signup}
-        {!isSigningUp &&
-          images.map(image => (
-            <Grid item xs={12} md={6} key={image.title}>
-              <ButtonBase
-                focusRipple
-                key={image.title}
-                className={classes.image}
-                focusVisibleClassName={classes.focusVisible}
-                style={{
-                  width: image.width
-                }}
-                component={RouterLink}
-                to={image.route}
-                // onClick={() => handleClick(image.component)}
-              >
-                <span
-                  className={classes.imageSrc}
+        <Header
+          color="dark"
+          routes={dashboardRoutes}
+          brand="SAVERSCARD"
+          rightLinks={<HeaderLinks />}
+          fixed
+        />
+        <Grid
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          className={classes.root}
+          spacing={2}
+        >
+          {signup}
+          {!isSigningUp &&
+            images.map(image => (
+              <Grid item xs={12} md={6} key={image.title}>
+                <ButtonBase
+                  focusRipple
+                  key={image.title}
+                  className={classes.image}
+                  focusVisibleClassName={classes.focusVisible}
                   style={{
-                    backgroundImage: `url(${image.url})`
+                    width: image.width
                   }}
-                />
-                <span className={classes.imageBackdrop} />
-                <span className={classes.imageButton}>
-                  <Typography
-                    component="span"
-                    variant="subtitle1"
-                    color="inherit"
-                    className={classes.imageTitle}
-                  >
-                    {image.title}
-                    <span className={classes.imageMarked} />
-                  </Typography>
-                </span>
-              </ButtonBase>
-            </Grid>
-          ))}
-      </Grid>
-    </Container>
+                  component={RouterLink}
+                  to={image.route}
+                >
+                  <span
+                    className={classes.imageSrc}
+                    style={{
+                      backgroundImage: `url(${image.url})`
+                    }}
+                  />
+                  <span className={classes.imageBackdrop} />
+                  <span className={classes.imageButton}>
+                    <Typography
+                      component="span"
+                      variant="subtitle1"
+                      color="inherit"
+                      className={classes.imageTitle}
+                    >
+                      {image.title}
+                      <span className={classes.imageMarked} />
+                    </Typography>
+                  </span>
+                </ButtonBase>
+              </Grid>
+            ))}
+        </Grid>
+      </Container>
+    </CssBaseline>
   );
 };
 

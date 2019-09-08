@@ -22,7 +22,9 @@ import { withRouter } from "react-router-dom";
 import { authenticationService } from "../../services/authenticationService";
 import { userService } from "../../services/userService";
 import ApplicationStatus from "../applicationStatus";
-import moment from "react-moment";
+
+import Header from "../../components/landingPage/Header";
+import HeaderLinks from "../../components/landingPage/HeaderLinkInApp";
 
 const useStyles = theme => ({
   card: {
@@ -46,7 +48,7 @@ const useStyles = theme => ({
     marginLeft: theme.spacing(2)
   },
   paper: {
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(12),
     marginBottom: theme.spacing(3),
     padding: theme.spacing(2),
     [theme.breakpoints.up(600 + theme.spacing(3) * 2)]: {
@@ -200,9 +202,18 @@ class Account extends Component {
 
   render() {
     const { classes } = this.props;
+    const dashboardRoutes = [];
+
     return (
       <React.Fragment>
         <CssBaseline />
+        <Header
+          color="dark"
+          routes={dashboardRoutes}
+          brand="SAVERSCARD"
+          rightLinks={<HeaderLinks />}
+          fixed
+        />
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography variant="h4">My Account</Typography>

@@ -7,6 +7,8 @@ import { Container, CssBaseline, Grid, withStyles } from "@material-ui/core";
 import { getCategories } from "../services/fakeCategoryService";
 import { getVendors } from "./../services/fakeVendorService";
 import { vendorService } from "./../services/vendorService";
+import Header from "../components/landingPage/Header";
+import HeaderLinks from "../components/landingPage/HeaderLinkInApp";
 
 const useStyles = theme => ({
   container: {
@@ -14,7 +16,8 @@ const useStyles = theme => ({
     paddingBottom: theme.spacing(8)
   },
   functions: {
-    paddingBottom: theme.spacing(3)
+    paddingBottom: theme.spacing(3),
+    marginTop: theme.spacing(5)
   }
 });
 
@@ -71,12 +74,19 @@ class Vendors extends Component {
   render() {
     const { classes } = this.props;
     const { categories, category, sortBy, search } = this.state;
-
+    const dashboardRoutes = [];
     const { data: vendors } = this.getProcessedData();
 
     return (
       <Container className={classes.container} maxWidth="lg">
         <CssBaseline />
+        <Header
+          color="dark"
+          routes={dashboardRoutes}
+          brand="SAVERSCARD"
+          rightLinks={<HeaderLinks />}
+          fixed
+        />
         <Grid container spacing={3} className={classes.functions}>
           <Grid item xs={12} md={4}>
             <Filter

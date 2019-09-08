@@ -22,7 +22,7 @@ export default function WorkSection() {
       <Container>
         <GridContainer justify="center">
           <GridItem cs={12} sm={12} md={8}>
-            <h2 className={classes.title}>WE WOULD LOVE TO HEAR FROM YOU!</h2>
+            <h3 className={classes.title}>WE WOULD LOVE TO HEAR FROM YOU!</h3>
             <h4 className={classes.description}>
               Divide details about your product or agency work into parts. Write
               a few lines about each one and contact us about any further
@@ -31,48 +31,9 @@ export default function WorkSection() {
             </h4>
             <form>
               <GridContainer>
-                <GridItem xs={12} sm={12} md={6}>
-                  <CustomInput
-                    labelText="Your Name"
-                    id="name"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <GridItem xs={12} sm={12} md={6}>
-                  <CustomInput
-                    labelText="Your Email"
-                    id="email"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                  />
-                </GridItem>
-                <CustomInput
-                  labelText="Your Message"
-                  id="message"
-                  formControlProps={{
-                    fullWidth: true,
-                    className: classes.textArea
-                  }}
-                  inputProps={{
-                    multiline: true,
-                    rows: 2
-                  }}
-                />
-                <GridContainer justify="center">
-                  <GridItem
-                    xs={12}
-                    sm={12}
-                    md={4}
-                    className={classes.textCenter}
-                  >
-                    <Button color="success" href="carmelapatrice@gmail.com">
-                      Send Message
-                    </Button>
-                  </GridItem>
-                </GridContainer>
+                <Button color="success" href="carmelapatrice@gmail.com">
+                  Email us!
+                </Button>
               </GridContainer>
             </form>
           </GridItem>
