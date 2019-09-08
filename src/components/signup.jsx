@@ -15,13 +15,13 @@ import SignupVendor from "./forms/signupVendor";
 import SignupUser from "./forms/signupUser";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import desktopImage from "../assets/img/cool-background.png";
-import mobileImage from "../assets/img/mobile.png";
+import mobileImage from "../assets/img/signup.png";
 
 const dashboardRoutes = [];
 
 const useStyles = makeStyles(theme => ({
   root: {
-    padding: theme.spacing(3, 2),
+    padding: theme.spacing(15, 2),
     marginTop: theme.spacing(8),
     display: "flex",
     flexWrap: "wrap",
