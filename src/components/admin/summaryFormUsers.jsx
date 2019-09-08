@@ -40,6 +40,7 @@ class SummaryFormUsers extends Component {
       id: "",
       dateModified: "",
       status: "",
+      updatedStatus: "",
       username: "",
       email: "",
       lastName: "",
@@ -51,7 +52,8 @@ class SummaryFormUsers extends Component {
       zipCode: "",
       contactNumber: "",
       paymentMethod: "",
-      remarks: ""
+      remarks: "",
+      dateCreated: ""
     };
   }
 
@@ -134,8 +136,7 @@ class SummaryFormUsers extends Component {
 
   handleChange = ({ target }) => {
     let { name, value } = target;
-    console.log("hi");
-    console.log(name + ":" + value);
+
     this.setState({
       [name]: value
     });
@@ -144,6 +145,7 @@ class SummaryFormUsers extends Component {
   handleSubmit = async () => {
     const {
       id,
+      updatedStatus,
       status,
       email,
       lastName,
@@ -169,6 +171,7 @@ class SummaryFormUsers extends Component {
         _id: id,
         accountStatus: status,
         dateModified: today,
+        dateCreated: today,
         username: username,
         email: email,
         lastName: lastName,
@@ -185,6 +188,7 @@ class SummaryFormUsers extends Component {
     }
     this.handleClose();
     this.handleClose2();
+    alert("Updated " + firstName + " " + lastName + " details successfully!");
   };
 
   handleOpen = data => {

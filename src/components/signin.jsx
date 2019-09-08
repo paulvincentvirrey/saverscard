@@ -109,7 +109,7 @@ class SignIn extends Component {
         const { account } = x;
         let newRoute = "";
         if (account.role === "Admin") {
-          newRoute = "/v/admin";
+          newRoute = "/vendor/admin";
         } else {
           newRoute = "/vendors";
         }

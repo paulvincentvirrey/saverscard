@@ -216,7 +216,6 @@ class NavBar extends Component {
         </Hidden>
       </React.Fragment>
     );
-    // }
   }
 
   render() {

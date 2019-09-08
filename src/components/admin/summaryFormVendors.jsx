@@ -263,10 +263,10 @@ class SummaryForm extends Component {
         dateModified: today
       };
       const vendor = await vendorService.updateVendor(id, updatedForm);
-      console.log(vendor);
     }
     this.handleClose();
     this.handleClose2();
+    alert("Updated " + businessName + " details successfully!");
   };
 
   handleOpen = data => {

@@ -6,19 +6,19 @@ import AdminUsers from "./components/admin/adminUsers";
 import AdminVendors from "./components/admin/adminVendors";
 import Footer from "./components/footer";
 import LandingPage from "./views/Landing Page/landingPage";
-import NavBar from "./components/navbar";
 import Password from "./components/forms/changePassword";
 import PrivateRoute from "./components/privateRoute";
 import SignIn from "./components/signin";
 import SignUp from "./components/signup";
 import SignupUser from "./components/forms/signupUser";
 import SignupVendor from "./components/forms/signupVendor";
-import VendorAccount from "./components/vendorAccount";
+import VendorAccount from "./components/forms/vendorAccount";
 import Vendors from "./views/vendors";
 import { history } from "./helpers/history";
 import { MuiThemeProvider } from "@material-ui/core/styles";
 import theme from "./assets/theme";
 
+const dashboardRoutes = [];
 class App extends Component {
   constructor(props) {
     super(props);
@@ -28,17 +28,16 @@ class App extends Component {
     return (
       <Router history={history}>
         <MuiThemeProvider theme={theme}>
-          <NavBar />
           <Switch>
             <PrivateRoute path="/vendors" component={Vendors} />
             <PrivateRoute path="/account" component={Account} />
             <PrivateRoute
-              path="/v/admin"
+              path="/vendor/admin"
               roles={["Admin"]}
               component={AdminVendors}
             />
             <PrivateRoute
-              path="/u/admin"
+              path="/user/admin"
               roles={["Admin"]}
               component={AdminUsers}
             />

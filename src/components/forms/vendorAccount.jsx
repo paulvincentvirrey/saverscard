@@ -15,19 +15,20 @@ import {
   MenuItem,
   Paper,
   TextField,
-  Typography,
-  Tooltip
+  Typography
 } from "@material-ui/core";
+import Header from "../../components/landingPage/Header";
+import HeaderLinks from "../../components/landingPage/HeaderLinkInApp";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import {
   getAppStatus,
   getCategories,
   getDiscounts
-} from "../services/fakeCategoryService";
-import { authenticationService } from "../services/authenticationService";
-import { vendorService } from "../services/vendorService";
-import ApplicationStatus from "./applicationStatus";
+} from "../../services/fakeCategoryService";
+import { authenticationService } from "../../services/authenticationService";
+import { vendorService } from "../../services/vendorService";
+import ApplicationStatus from "../applicationStatus";
 import moment from "react-moment";
 
 const useStyles = theme => ({
@@ -39,6 +40,7 @@ const useStyles = theme => ({
     width: "auto",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
+    marginTop: theme.spacing(10),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 600,
       marginLeft: "auto",
@@ -98,7 +100,7 @@ class VendorAccount extends Component {
       discountToAll: "",
       discountToAll: "",
       applicationStatus: "",
-      //dateCreated: dateCreated,
+      dateCreated: "",
       discountExclusions: ""
     };
   }
@@ -137,7 +139,7 @@ class VendorAccount extends Component {
           paymentMethod: account.paymentMethod,
           ccType: account.ccType,
           applicationStatus: account.applicationStatus,
-          //dateCreated: account.dateCreated,
+          dateCreated: account.dateCreated,
           discountExclusions: discountExclusions
         });
       }
@@ -280,7 +282,7 @@ class VendorAccount extends Component {
       discountInPercent,
       discountToAll,
       applicationStatus,
-      //dateCreated: dateCreated,
+      dateCreated: dateCreated,
       discountExclusions
     } = this.state;
 
@@ -317,14 +319,14 @@ class VendorAccount extends Component {
         discountToAll: discountToAll,
         applicationStatus: applicationStatus,
         dateModified: today,
-        //dateCreated: dateCreated,
+        dateCreated: dateCreated,
         discountExclusions: discountExclusions
       };
-      //const vendor = await vendorService.updateVendor(id, updatedForm);
+      const vendor = await vendorService.updateVendor(id, updatedForm);
       console.log(updatedForm);
     }
     this.handleClose();
-    //this.handleClose2();
+    this.handleClose2();
   };
 
   handleOpen = data => {
@@ -337,9 +339,17 @@ class VendorAccount extends Component {
 
   render() {
     const { classes } = this.props;
+    const dashboardRoutes = [];
     return (
       <React.Fragment>
         <CssBaseline />
+        <Header
+          color="dark"
+          routes={dashboardRoutes}
+          brand="SAVERSCARD"
+          rightLinks={<HeaderLinks />}
+          fixed
+        />
         <main className={classes.layout}>
           <Paper className={classes.paper}>
             <Typography variant="h4">My Account</Typography>
@@ -347,7 +357,7 @@ class VendorAccount extends Component {
               <CardMedia
                 component="img"
                 height="100"
-                image={require("../assets/img/accountbg.png")}
+                image={require("../../assets/img/accountbg.png")}
               />
               <Fab
                 color="primary"
@@ -540,6 +550,7 @@ class VendorAccount extends Component {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
+                      disabled
                       select
                       required
                       label="Discount Offer"
