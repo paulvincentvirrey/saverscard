@@ -35,6 +35,7 @@ const useStyles = theme => ({
     width: "auto",
     marginLeft: theme.spacing(2),
     marginRight: theme.spacing(2),
+    marginTop: theme.spacing(10),
     [theme.breakpoints.up(600 + theme.spacing(2) * 2)]: {
       width: 600,
       marginLeft: "auto",
@@ -78,6 +79,7 @@ class Account extends Component {
       lastName: "",
       firstName: "",
       dateModified: "",
+      dateCreated: "",
       username: "",
       email: "",
       password: "",
@@ -86,7 +88,8 @@ class Account extends Component {
       city: "",
       zipCode: "",
       contactNumber: "",
-      status: ""
+      status: "",
+      isAdmin: ""
     };
   }
 
@@ -102,13 +105,15 @@ class Account extends Component {
           lastName: account.lastName,
           firstName: account.firstName,
           dateModified: account.dateModified,
+          dateCreated: account.dateCreated,
           username: account.username,
           email: account.email,
           addr1: account.address1,
           addr2: account.address2,
           city: account.city,
           zipCode: account.zip,
-          contactNumber: account.contactNumber
+          contactNumber: account.contactNumber,
+          isAdmin: account.isAdmin
         });
       }
     });
@@ -187,9 +192,10 @@ class Account extends Component {
         zip: zipCode
       };
       const user = await userService.updateUser(id, updatedForm);
-      console.log(user);
     }
     this.handleClose();
+    alert("Updated " + username + " details successfully!");
+    window.location.reload();
   };
 
   handleOpen = data => {
@@ -236,7 +242,8 @@ class Account extends Component {
                 </Typography>
                 {getMembershipDisplay(
                   this.state.status,
-                  this.state.dateModified
+                  this.state.dateCreated,
+                  this.state.isAdmin
                 )}
               </CardContent>
             </Card>
@@ -400,27 +407,39 @@ class Account extends Component {
   }
 }
 
-function getMembershipDisplay(status, dateModified) {
+function getMembershipDisplay(status, dateCreated, isAdmin) {
   if (status === "Approved") {
-    return (
-      <React.Fragment>
-        <Typography variant="subtitle2" gutterBottom>
-          Member Since : {console.log(typeof dateModified)}
-        </Typography>
+    let finalDate;
+    let car;
 
-        <Typography variant="subtitle2">
-          Application Status : <ApplicationStatus value={status} />
-        </Typography>
-      </React.Fragment>
+    if (dateCreated != null) {
+      finalDate = new Date(dateCreated);
+      car = finalDate.toLocaleString("en-US", { timeZone: "UTC" });
+    }
+
+    return (
+      !isAdmin && (
+        <React.Fragment>
+          <Typography variant="subtitle2" gutterBottom>
+            Member Since : {car}
+          </Typography>
+
+          <Typography variant="subtitle2">
+            Application Status : <ApplicationStatus value={status} />
+          </Typography>
+        </React.Fragment>
+      )
     );
   } else {
     return (
-      <React.Fragment>
-        <Typography variant="body2" component="p">
-          Application Status :
-        </Typography>
-        <ApplicationStatus value={status} />
-      </React.Fragment>
+      !isAdmin && (
+        <React.Fragment>
+          <Typography variant="body2" component="p">
+            Application Status :
+          </Typography>
+          <ApplicationStatus value={status} />
+        </React.Fragment>
+      )
     );
   }
 }

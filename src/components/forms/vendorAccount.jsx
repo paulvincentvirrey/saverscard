@@ -22,14 +22,12 @@ import HeaderLinks from "../../components/landingPage/HeaderLinkInApp";
 import { withStyles } from "@material-ui/core/styles";
 import { withRouter } from "react-router-dom";
 import {
-  getAppStatus,
   getCategories,
   getDiscounts
 } from "../../services/fakeCategoryService";
 import { authenticationService } from "../../services/authenticationService";
 import { vendorService } from "../../services/vendorService";
 import ApplicationStatus from "../applicationStatus";
-import moment from "react-moment";
 
 const useStyles = theme => ({
   card: {
@@ -323,10 +321,11 @@ class VendorAccount extends Component {
         discountExclusions: discountExclusions
       };
       const vendor = await vendorService.updateVendor(id, updatedForm);
-      console.log(updatedForm);
     }
     this.handleClose();
     this.handleClose2();
+    alert("Updated " + businessName + " details successfully!");
+    window.location.reload();
   };
 
   handleOpen = data => {

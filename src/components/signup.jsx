@@ -15,7 +15,7 @@ import SignupVendor from "./forms/signupVendor";
 import SignupUser from "./forms/signupUser";
 import { Elements, StripeProvider } from "react-stripe-elements";
 import desktopImage from "../assets/img/cool-background.png";
-import mobileImage from "../assets/img/mobile-landing.png";
+import mobileImage from "../assets/img/mobile.png";
 
 const dashboardRoutes = [];
 
