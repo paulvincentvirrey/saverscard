@@ -16,7 +16,7 @@ import Header from "../../components/landingPage/Header";
 import HeaderLinks from "../../components/landingPage/HeaderLinks";
 import { withStyles } from "@material-ui/core/styles";
 import { Elements, StripeProvider } from "react-stripe-elements";
-import Image from "../../assets/img/form-bg.png";
+import Image from "../../assets/img/signup.png";
 
 const dashboardRoutes = [];
 
