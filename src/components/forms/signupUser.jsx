@@ -10,11 +10,12 @@ import {
   getPaymentMethods
 } from "../../services/fakeCategoryService";
 import { userService } from "../../services/userService";
+import { paymentService } from "../../services/paymentService";
 import { Button, CssBaseline, Grid, Typography } from "@material-ui/core";
 import Header from "../../components/landingPage/Header";
 import HeaderLinks from "../../components/landingPage/HeaderLinks";
 import { withStyles } from "@material-ui/core/styles";
-//import { injectStripe, Elements, StripeProvider } from "react-stripe-elements";
+import { Elements, StripeProvider } from "react-stripe-elements";
 
 const dashboardRoutes = [];
 
@@ -86,7 +87,7 @@ class SignupUser extends Component {
     this.state = {
       values: { subscription: 0, paymentMethod: "Promo Code" },
       errors: {},
-      activeStep: 0
+      activeStep: 2
     };
   }
 
@@ -297,6 +298,7 @@ class SignupUser extends Component {
   };
 
   handleChange = e => {
+    console.log(this.props.stripe);
     let { name, value, type, checked } = e.target;
     if (type === "checkbox") {
       name = value;
@@ -309,29 +311,41 @@ class SignupUser extends Component {
     });
   };
 
+  handleCCPaymentChange = payment => {
+    const name = "paymentToken";
+    const value = payment;
+
+    this.setState({
+      values: { ...this.state.values, [name]: value }
+    });
+  };
+
   handleSubmit = async () => {
     const { values } = this.state;
-    const filledForm = {
-      username: values["username"],
-      email: values["email"],
-      password: values["password"],
-      firstName: values["firstName"],
-      lastName: values["lastName"],
-      birthday: values["birthdate"].toString(),
-      contactNumber: values["contactNumber"],
-      address1: values["addressLine1"],
-      address2: values["addressLine2"],
-      city: values["city"],
-      state: "Texas",
-      zip: values["zip"],
-      method: values["paymentMethod"],
-      ccType: values["creditCardType"],
-      subscription: values["subscription"],
-      promoCode: values["promoCode"]
-    };
+    // const filledForm = {
+    //   username: values["username"],
+    //   email: values["email"],
+    //   password: values["password"],
+    //   firstName: values["firstName"],
+    //   lastName: values["lastName"],
+    //   birthday: values["birthdate"].toString(),
+    //   contactNumber: values["contactNumber"],
+    //   address1: values["addressLine1"],
+    //   address2: values["addressLine2"],
+    //   city: values["city"],
+    //   state: "Texas",
+    //   zip: values["zip"],
+    //   method: values["paymentMethod"],
+    //   ccType: values["creditCardType"],
+    //   subscription: values["subscription"],
+    //   promoCode: values["promoCode"]
+    // };
 
-    const user = await userService.createUser(filledForm);
-    console.log(user);
+    // const user = await userService.createUser(filledForm);
+    // console.log(user);
+    const stripeToken = values["paymentToken"];
+    // const payment = await paymentService.chargePayment(stripeToken);
+    console.log(stripeToken);
   };
 
   handleDateChange = value => {
@@ -356,81 +370,91 @@ class SignupUser extends Component {
     const { values, errors, activeStep } = this.state;
 
     return (
-      <div className={classes.root}>
-        <CssBaseline />
-        <Header
-          color="dark"
-          routes={dashboardRoutes}
-          brand="SAVERSCARD"
-          rightLinks={<HeaderLinks />}
-          fixed
-        />
-        <main className={classes.layout}>
-          <div className={classes.paper}>
-            <React.Fragment>
-              {activeStep === steps.length ? (
+      // <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
+      <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
+        <Elements>
+          <div className={classes.root}>
+            <CssBaseline />
+            <Header
+              color="dark"
+              routes={dashboardRoutes}
+              brand="SAVERSCARD"
+              rightLinks={<HeaderLinks />}
+              fixed
+            />
+            <main className={classes.layout}>
+              <div className={classes.paper}>
                 <React.Fragment>
-                  <Typography variant="h5" gutterBottom>
-                    Welcome to Saverscard <b>{values["firstName"]}</b>
-                  </Typography>
-                  <Typography variant="subtitle1">
-                    Your registration number is #2001539. We have emailed your
-                    registration confirmation, and will send you an update once
-                    your membership has been approved.
-                  </Typography>
-                </React.Fragment>
-              ) : (
-                <React.Fragment>
-                  <GetStepContent
-                    categories={this.categories}
-                    creditCards={this.creditCards}
-                    discounts={this.discounts}
-                    paymentMethods={this.paymentMethods}
-                    handleChange={this.handleChange}
-                    handleSubmit={this.handleSubmit}
-                    handleDateChange={this.handleDateChange}
-                    values={this.state.values}
-                    handleValidation={this.handleValidation}
-                    errors={this.state.errors}
-                    step={this.state.activeStep}
-                    subscriptions={this.subscriptions}
-                  />
-                  <Grid
-                    container
-                    justify="space-between"
-                    className={classes.buttons}
-                  >
-                    {activeStep !== 0 && (
-                      <Grid item xs={2}>
-                        <Button
-                          variant="contained"
-                          color="primary"
-                          onClick={this.handleBack}
-                          className={classes.backButton}
-                          size="small"
-                        >
-                          Back
-                        </Button>
-                      </Grid>
-                    )}
-                    <Grid item xs={2}>
-                      <Button
-                        variant="contained"
-                        type="submit"
-                        color="primary"
-                        onClick={this.handleNext}
-                        className={classes.button}
+                  {activeStep === steps.length ? (
+                    <React.Fragment>
+                      <Typography variant="h5" gutterBottom>
+                        Welcome to Saverscard <b>{values["firstName"]}</b>
+                      </Typography>
+                      <Typography variant="subtitle1">
+                        Your registration number is #2001539. We have emailed
+                        your registration confirmation, and will send you an
+                        update once your membership has been approved.
+                      </Typography>
+                    </React.Fragment>
+                  ) : (
+                    <React.Fragment>
+                      <GetStepContent
+                        categories={this.categories}
+                        creditCards={this.creditCards}
+                        discounts={this.discounts}
+                        paymentMethods={this.paymentMethods}
+                        handleChange={this.handleChange}
+                        handleSubmit={this.handleSubmit}
+                        handleDateChange={this.handleDateChange}
+                        handleCCPaymentChange={this.handleCCPaymentChange}
+                        values={this.state.values}
+                        handleValidation={this.handleValidation}
+                        errors={this.state.errors}
+                        step={this.state.activeStep}
+                        subscriptions={this.subscriptions}
+                      />
+                      <Grid
+                        container
+                        justify="space-between"
+                        className={classes.buttons}
                       >
-                        {activeStep === steps.length - 1 ? "Submit" : "Next"}
-                      </Button>
-                    </Grid>
-                  </Grid>
+                        {activeStep !== 0 && (
+                          <Grid item xs={2}>
+                            <Button
+                              variant="contained"
+                              color="primary"
+                              onClick={this.handleBack}
+                              className={classes.backButton}
+                              size="small"
+                            >
+                              Back
+                            </Button>
+                          </Grid>
+                        )}
+                        <Grid item xs={2}>
+                          <Button
+                            variant="contained"
+                            type="submit"
+                            color="primary"
+                            onClick={this.handleNext}
+                            className={classes.button}
+                          >
+                            {activeStep === steps.length - 1
+                              ? "Submit"
+                              : "Next"}
+                          </Button>
+                        </Grid>
+                      </Grid>
+                    </React.Fragment>
+                  )}
                 </React.Fragment>
-              )}
-            </React.Fragment>
+              </div>
+            </main>
           </div>
-        </main>
-      </div>
+        </Elements>
+      </StripeProvider>
+
+      // </StripeProvider>
     );
   }
 }
@@ -461,6 +485,7 @@ function GetStepContent(props) {
         //   <Elements>
         <PaymentForm
           handleChange={props.handleChange}
+          handleCCPaymentChange={props.handleCCPaymentChange}
           values={props.values}
           categories={props.categories}
           creditCards={props.creditCards}
@@ -469,8 +494,8 @@ function GetStepContent(props) {
           setFormComplete={() => {}}
           errors={props.errors}
         />
-        //</Elements>
-        //</StripeProvider>
+        //   </Elements>
+        // </StripeProvider>
       );
     case 3:
       return (

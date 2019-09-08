@@ -169,7 +169,7 @@ const SignUp = props => {
                 }}
                 component={RouterLink}
                 to={image.route}
-                onClick={() => handleClick(image.component)}
+                // onClick={() => handleClick(image.component)}
               >
                 <span
                   className={classes.imageSrc}

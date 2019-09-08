@@ -12,11 +12,11 @@ export function StripeNumberTextField({
   error,
   ...otherProps
 }) {
-  console.log(otherProps);
   return (
     <TextField
       fullWidth={fullWidth}
-      label={error ? labelErrorMessage || `Invalid ${label}` : label}
+      label={label}
+      helperText={error ? labelErrorMessage || `Invalid ${label}` : ""}
       error={error}
       InputLabelProps={{
         ...InputLabelProps,

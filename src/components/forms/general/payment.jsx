@@ -19,6 +19,7 @@ import { StripeNumberTextField } from "../../stripeNumberTextField";
 import { StripeExpiryTextField } from "../../stripeExpiryTextField";
 import { StripeCVCTextField } from "../../stripeCVCTextField";
 import FileUpload from "../../fileUpload";
+import { injectStripe } from "react-stripe-elements";
 
 const useStyles = theme => ({
   header: {
@@ -36,28 +37,29 @@ class PaymentForm extends Component {
     super(props);
 
     this.state = {
+      cardNumber: "",
       creditCardNumberComplete: false,
       expirationDateComplete: false,
       cvcComplete: false,
-      cardNameError: false,
       cardNumberError: false,
       expiredError: false,
       cvcError: false
     };
   }
 
-  submit = async ev => {
+  generateToken = async () => {
     let { token } = await this.props.stripe.createToken({ name: "Name" });
-    console.log(token);
+    return token;
   };
 
-  onElementChange = (field, errorField) => ({
+  onElementChange = (field, errorField) => async ({
     complete,
     error = { message: null }
   }) => {
     this.setState({ [field]: complete, [errorField]: error.message });
     const expectedState = { ...this.state };
     expectedState[field] = complete;
+    console.log(this.props.name);
     console.log(
       expectedState.creditCardNumberComplete &&
         expectedState.cvcComplete &&
@@ -68,6 +70,15 @@ class PaymentForm extends Component {
         expectedState.cvcComplete &&
         expectedState.expirationDateComplete
     );
+
+    if (
+      expectedState.creditCardNumberComplete &&
+      expectedState.cvcComplete &&
+      expectedState.expirationDateComplete
+    ) {
+      const token = await this.generateToken();
+      this.props.handleCCPaymentChange(token);
+    }
   };
 
   renderMenuItems = items => {
@@ -135,7 +146,7 @@ class PaymentForm extends Component {
   };
 
   getPaymentDisplay = props => {
-    const { cardNumberError } = this.state;
+    const { cardNumberError, cardNumber } = this.state;
     const payment = props.values["paymentMethod"];
     const subscription = props.values["subscription"];
     if (subscription > 0 && payment === "Credit Card") {
@@ -172,6 +183,8 @@ class PaymentForm extends Component {
               name="cardNumber"
               error={Boolean(cardNumberError)}
               labelErrorMessage={cardNumberError}
+              // onChange={props.handleChange}
+              value={cardNumber}
               onChange={this.onElementChange(
                 "creditCardNumberComplete",
                 "cardNumberError"
@@ -191,6 +204,11 @@ class PaymentForm extends Component {
               id="expDate"
               label="Expiry date"
               fullWidth
+              // onChange={props.handleChange}
+              onChange={this.onElementChange(
+                "expirationDateComplete",
+                "expiredError"
+              )}
               variant="outlined"
               InputProps={{
                 startAdornment: (
@@ -209,6 +227,7 @@ class PaymentForm extends Component {
               // onChange={props.handleChange}
               // value={props.values[props.name]}
               fullWidth
+              onChange={this.onElementChange("cvcComplete", "cvcError")}
               variant="outlined"
               InputProps={{
                 startAdornment: (
@@ -308,4 +327,4 @@ class PaymentForm extends Component {
   }
 }
 
-export default withStyles(useStyles)(PaymentForm);
+export default withStyles(useStyles)(injectStripe(PaymentForm));
