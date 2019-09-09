@@ -28,8 +28,7 @@ const dashboardRoutes = [];
 
 const useStyles = theme => ({
   root: {
-    padding: theme.spacing(3, 2),
-    marginTop: theme.spacing(8),
+    padding: theme.spacing(15, 2),
     display: "flex",
     flexWrap: "wrap",
     minWidth: 300,
@@ -100,7 +99,7 @@ class SignupVendor extends Component {
     this.state = {
       values: { subscription: 0, paymentMethod: "Promo Code" },
       errors: {},
-      activeStep: 5
+      activeStep: 0
     };
   }
 
@@ -138,189 +137,189 @@ class SignupVendor extends Component {
     const esignature = values["esignature"];
 
     if (step === 1) {
-      // // Username
-      // console.log("username:" + typeof username);
-      // if (typeof username !== "undefined") {
-      //   if (!username.match(/^\w+$/)) {
-      //     errors["username"] = "Invalid username";
-      //   }
-      // } else {
-      //   errors["username"] = "Invalid username";
-      // }
-      // // Email Address
-      // if (typeof email !== "undefined") {
-      //   if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-      //     errors["email"] = "Invalid e-mail address";
-      //   }
-      // } else {
-      //   errors["email"] = "Invalid e-mail address";
-      // }
-      // // Password
-      // if (typeof password !== "undefined") {
-      //   if (!password.match(/^(?=.*\d).{8,16}$/)) {
-      //     errors["password"] = "Invalid password";
-      //   }
-      // } else {
-      //   errors["password"] = "Invalid password";
-      // }
-      // // Confirm Password
-      // if (typeof confirmPassword !== "undefined") {
-      //   if (confirmPassword !== password) {
-      //     errors["confirmPassword"] = "Password did not match";
-      //   }
-      // } else {
-      //   errors["confirmPassword"] = "Password did not match";
-      // }
+      // Username
+      console.log("username:" + typeof username);
+      if (typeof username !== "undefined") {
+        if (!username.match(/^\w+$/)) {
+          errors["username"] = "Invalid username";
+        }
+      } else {
+        errors["username"] = "Invalid username";
+      }
+      // Email Address
+      if (typeof email !== "undefined") {
+        if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+          errors["email"] = "Invalid e-mail address";
+        }
+      } else {
+        errors["email"] = "Invalid e-mail address";
+      }
+      // Password
+      if (typeof password !== "undefined") {
+        if (!password.match(/^(?=.*\d).{8,16}$/)) {
+          errors["password"] = "Invalid password";
+        }
+      } else {
+        errors["password"] = "Invalid password";
+      }
+      // Confirm Password
+      if (typeof confirmPassword !== "undefined") {
+        if (confirmPassword !== password) {
+          errors["confirmPassword"] = "Password did not match";
+        }
+      } else {
+        errors["confirmPassword"] = "Password did not match";
+      }
     }
 
     if (step === 2) {
-      // //Business Name
-      // if (typeof businessName !== "undefined") {
-      //   if (businessName === "") {
-      //     errors["businessName"] = "Invalid business name";
-      //   }
-      // } else {
-      //   errors["businessName"] = "Invalid business name";
-      // }
-      // // Website
-      // if (typeof website !== "undefined") {
-      //   if (
-      //     !website.match(
-      //       /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
-      //     )
-      //   ) {
-      //     errors["website"] = "Invalid website";
-      //   }
-      // } else {
-      //   errors["website"] = "Invalid website";
-      // }
-      // // Address Line 1
-      // if (typeof address1 !== "undefined") {
-      //   if (address1 === "") {
-      //     errors["address1"] = "Invalid address line 1";
-      //   }
-      // } else {
-      //   errors["address1"] = "Invalid address line 1";
-      // }
-      // // Address Line 2
-      // if (typeof address2 !== "undefined") {
-      //   if ((address1 === "" || !address1) && address2 !== "") {
-      //     errors["address2"] = "Please fill in address line 1";
-      //   }
-      // }
-      // // City
-      // if (typeof city !== "undefined") {
-      //   if (city === "") {
-      //     errors["city"] = "Invalid city";
-      //   }
-      // } else {
-      //   errors["city"] = "Invalid city";
-      // }
-      // // Zip Code
-      // if (typeof zipCode !== "undefined" && zipCode !== "") {
-      //   if (!zipCode.toString().match(/^[7|8][0-9]{0,5}$/)) {
-      //     errors["zipCode"] = "Invalid zip code";
-      //   }
-      // } else {
-      //   errors["zipCode"] = "Invalid zip code";
-      // }
-      // // Telephone
-      // if (typeof telephone !== "undefined") {
-      //   if (!telephone.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)) {
-      //     errors["telephone"] = "Invalid telephone number";
-      //   }
-      // } else {
-      //   errors["telephone"] = "Invalid telephone number";
-      // }
-      // // Fax
-      // if (typeof fax !== "undefined") {
-      //   if (
-      //     !fax.match(
-      //       /^(\+?\d{1,}(\s?|\-?)\d*(\s?|\-?)\(?\d{2,}\)?(\s?|\-?)\d{3,}\s?\d{3,})$/
-      //     )
-      //   ) {
-      //     errors["fax"] = "Invalid fax number";
-      //   }
-      // } else {
-      //   errors["fax"] = "Invalid fax number";
-      // }
-      // // Authorized Person Email
-      // if (typeof authorizedPersonEmail !== "undefined") {
-      //   if (
-      //     !authorizedPersonEmail
-      //       .toString()
-      //       .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
-      //   ) {
-      //     errors["authorizedPersonEmail"] = "Invalid e-mail address";
-      //   }
-      // } else {
-      //   errors["authorizedPersonEmail"] = "Invalid e-mail address";
-      // }
-      // //Authorized Person
-      // if (typeof authorizedPerson !== "undefined") {
-      //   if (authorizedPerson === "") {
-      //     errors["authorizedPerson"] = "Invalid name";
-      //   }
-      // } else {
-      //   errors["authorizedPerson"] = "Invalid name";
-      // }
-      // // Authorized Person Phone
-      // if (typeof authorizedPersonPhone !== "undefined") {
-      //   if (
-      //     !authorizedPersonPhone
-      //       .toString()
-      //       .match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)
-      //   ) {
-      //     errors["authorizedPersonPhone"] = "Invalid contact number";
-      //   }
-      // } else {
-      //   errors["authorizedPersonPhone"] = "Invalid contact number";
-      // }
+      //Business Name
+      if (typeof businessName !== "undefined") {
+        if (businessName === "") {
+          errors["businessName"] = "Invalid business name";
+        }
+      } else {
+        errors["businessName"] = "Invalid business name";
+      }
+      // Website
+      if (typeof website !== "undefined") {
+        if (
+          !website.match(
+            /^(http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/
+          )
+        ) {
+          errors["website"] = "Invalid website";
+        }
+      } else {
+        errors["website"] = "Invalid website";
+      }
+      // Address Line 1
+      if (typeof address1 !== "undefined") {
+        if (address1 === "") {
+          errors["address1"] = "Invalid address line 1";
+        }
+      } else {
+        errors["address1"] = "Invalid address line 1";
+      }
+      // Address Line 2
+      if (typeof address2 !== "undefined") {
+        if ((address1 === "" || !address1) && address2 !== "") {
+          errors["address2"] = "Please fill in address line 1";
+        }
+      }
+      // City
+      if (typeof city !== "undefined") {
+        if (city === "") {
+          errors["city"] = "Invalid city";
+        }
+      } else {
+        errors["city"] = "Invalid city";
+      }
+      // Zip Code
+      if (typeof zipCode !== "undefined" && zipCode !== "") {
+        if (!zipCode.toString().match(/^[7|8][0-9]{0,5}$/)) {
+          errors["zipCode"] = "Invalid zip code";
+        }
+      } else {
+        errors["zipCode"] = "Invalid zip code";
+      }
+      // Telephone
+      if (typeof telephone !== "undefined") {
+        if (!telephone.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)) {
+          errors["telephone"] = "Invalid telephone number";
+        }
+      } else {
+        errors["telephone"] = "Invalid telephone number";
+      }
+      // Fax
+      if (typeof fax !== "undefined") {
+        if (
+          !fax.match(
+            /^(\+?\d{1,}(\s?|\-?)\d*(\s?|\-?)\(?\d{2,}\)?(\s?|\-?)\d{3,}\s?\d{3,})$/
+          )
+        ) {
+          errors["fax"] = "Invalid fax number";
+        }
+      } else {
+        errors["fax"] = "Invalid fax number";
+      }
+      // Authorized Person Email
+      if (typeof authorizedPersonEmail !== "undefined") {
+        if (
+          !authorizedPersonEmail
+            .toString()
+            .match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)
+        ) {
+          errors["authorizedPersonEmail"] = "Invalid e-mail address";
+        }
+      } else {
+        errors["authorizedPersonEmail"] = "Invalid e-mail address";
+      }
+      //Authorized Person
+      if (typeof authorizedPerson !== "undefined") {
+        if (authorizedPerson === "") {
+          errors["authorizedPerson"] = "Invalid name";
+        }
+      } else {
+        errors["authorizedPerson"] = "Invalid name";
+      }
+      // Authorized Person Phone
+      if (typeof authorizedPersonPhone !== "undefined") {
+        if (
+          !authorizedPersonPhone
+            .toString()
+            .match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)
+        ) {
+          errors["authorizedPersonPhone"] = "Invalid contact number";
+        }
+      } else {
+        errors["authorizedPersonPhone"] = "Invalid contact number";
+      }
     }
 
     if (step === 3) {
-      // //Business Category
-      // if (typeof businessCategory === "undefined") {
-      //   errors["businessCategory"] = "Choose one category";
-      // }
-      // //Discount Offer
-      // if (typeof discountOffer === "undefined") {
-      //   errors["discountOffer"] = "Choose one offer";
-      // }
-      // if (!discountCheck) {
-      //   if (
-      //     typeof discountExclusion === "undefined" ||
-      //     discountExclusion === ""
-      //   ) {
-      //     errors["discountExclusion"] = "Enter some rules";
-      //   }
-    }
+      //Business Category
+      if (typeof businessCategory === "undefined") {
+        errors["businessCategory"] = "Choose one category";
+      }
+      //Discount Offer
+      if (typeof discountOffer === "undefined") {
+        errors["discountOffer"] = "Choose one offer";
+      }
+      if (!discountCheck) {
+        if (
+          typeof discountExclusion === "undefined" ||
+          discountExclusion === ""
+        ) {
+          errors["discountExclusion"] = "Enter some rules";
+        }
+      }
 
-    // // Payment Method
-    // if (typeof paymentMethod !== "undefined") {
-    //   if (paymentMethod === "") {
-    //     errors["paymentMethod"] = "Invalid payment method";
-    //   }
-    // }
-    // // CC Type
-    // if (typeof ccType !== "undefined" && paymentMethod === "Credit Card") {
-    //   if (ccType === "") {
-    //     errors["ccType"] = "Invalid credit card";
-    //   } else {
-    //     errors["promoCode"] = "Invalid credit card";
-    //   }
-    // }
-    // // Promo Code
-    // if (typeof promoCode !== "undefined" && paymentMethod === "Promo Code") {
-    //   if (promoCode !== "") {
-    //     if (!promoCode.toString().match(/^[0-9]{5,10}$/)) {
-    //       errors["promoCode"] = "Invalid promo code";
-    //     }
-    //   } else {
-    //     errors["promoCode"] = "Invalid promo code";
-    //   }
-    // }
-    //}
+      // Payment Method
+      if (typeof paymentMethod !== "undefined") {
+        if (paymentMethod === "") {
+          errors["paymentMethod"] = "Invalid payment method";
+        }
+      }
+      // CC Type
+      if (typeof ccType !== "undefined" && paymentMethod === "Credit Card") {
+        if (ccType === "") {
+          errors["ccType"] = "Invalid credit card";
+        } else {
+          errors["promoCode"] = "Invalid credit card";
+        }
+      }
+      // Promo Code
+      if (typeof promoCode !== "undefined" && paymentMethod === "Promo Code") {
+        if (promoCode !== "") {
+          if (!promoCode.toString().match(/^[0-9]{5,10}$/)) {
+            errors["promoCode"] = "Invalid promo code";
+          }
+        } else {
+          errors["promoCode"] = "Invalid promo code";
+        }
+      }
+    }
 
     if (step === 5) {
       // Terms Agreement
@@ -349,10 +348,8 @@ class SignupVendor extends Component {
       if (activeStep === steps.length - 1) {
         console.log("no error congrats!");
         this.handleSubmit();
-      } else {
-        this.setState({ activeStep: this.state.activeStep + 1 });
-        // setActiveStep(activeStep + 1);
       }
+      this.setState({ activeStep: this.state.activeStep + 1 });
     } else {
       console.log("errors!");
     }
