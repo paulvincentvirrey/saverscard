@@ -288,12 +288,10 @@ class SignupUser extends Component {
     const { values, errors, activeStep } = this.state;
     if (this.handleValidation()) {
       if (activeStep === steps.length - 1) {
-        console.log("no error congrats!"); //---------------------------DELETE THIS
+        console.log("no error congrats!");
         this.handleSubmit();
       }
       this.setState({ activeStep: this.state.activeStep + 1 });
-    } else {
-      console.log("errors!"); //---------------------------DELETE THIS
     }
   };
 
@@ -309,7 +307,6 @@ class SignupUser extends Component {
       value = checked;
     }
     const v = { ...this.state.values, [name]: value };
-    console.log(v); //---------------------------DELETE THIS
     this.setState({
       values: { ...this.state.values, [name]: value }
     });
@@ -357,12 +354,10 @@ class SignupUser extends Component {
     }
 
     const user = await userService.createUser(filledForm);
-    console.log(user); //---------------------------DELETE THIS
   };
 
   handleDateChange = value => {
     let values = { ...this.state.values, ["birthdate"]: value };
-    console.log(values); //---------------------------DELETE THIS
     this.setState({
       values: { ...this.state.values, ["birthdate"]: value }
     });

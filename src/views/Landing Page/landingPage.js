@@ -21,7 +21,7 @@ import styles from "../../assets/material-kit-react/views/landingPage";
 import ProductSection from "./Sections/productSection";
 import WorkSection from "./Sections/workSection";
 import { CssBaseline } from "@material-ui/core";
-import desktopImage from "../../assets/img/cool-background.png";
+import desktopImage from "../../assets/img/bg-landing.png";
 import mobileImage from "../../assets/img/mobile.png";
 
 const dashboardRoutes = [];
