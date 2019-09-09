@@ -2,8 +2,8 @@ import { authHeader } from "../helpers/authHeader";
 import { handleResponse } from "../helpers/handleResponse";
 
 const config = {
-  apiUrl: "https://saverscardapi.azurewebsites.net/api"
-  // apiUrl: "http://localhost:4000/api"
+  // apiUrl: "https://saverscardapi.azurewebsites.net/api"
+  apiUrl: "http://localhost:4000/api"
 };
 
 export const userService = {

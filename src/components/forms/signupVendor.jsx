@@ -393,7 +393,7 @@ class SignupVendor extends Component {
       discountInPercent: values["discountOffer"],
       discountToAll: values["discountCheck"],
       discountExclusions: values["discountExclusion"],
-      pymentMethod: values["paymentMethod"],
+      paymentMethod: values["paymentMethod"],
       applicationStatus:
         values["paymentMethod"] === "Credit Card" ? "Approved" : "For Review",
       ccType: values["creditCardType"],

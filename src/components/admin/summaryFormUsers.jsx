@@ -13,10 +13,14 @@ import {
   Typography,
   Grid
 } from "@material-ui/core";
-import EditIcon from "@material-ui/icons/Edit";
+import {
+  Edit as EditIcon,
+  Attachment as AttachmentIcon
+} from "@material-ui/icons";
 import { withStyles } from "@material-ui/styles";
 import { getAppStatus } from "../../services/fakeCategoryService";
 import { userService } from "../../services/userService";
+import { fileService } from "../../services/fileService";
 
 const useStyles = theme => ({
   dialog: {
@@ -52,6 +56,7 @@ class SummaryFormUsers extends Component {
       zipCode: "",
       contactNumber: "",
       paymentMethod: "",
+      invoice: "",
       remarks: "",
       dateCreated: ""
     };
@@ -76,6 +81,7 @@ class SummaryFormUsers extends Component {
       zipCode: data.zip,
       contactNumber: data.contactNumber,
       paymentMethod: data.paymentMethod,
+      invoice: data.invoice,
       remarks: data.remarks
     });
   };
@@ -227,6 +233,14 @@ class SummaryFormUsers extends Component {
     this.setState({ isDialogOpen2: false });
   };
 
+  handleInvoiceDownload = async () => {
+    const { invoice } = this.state;
+    // const filename = invoice.substring(invoice.indexOf("\\") + 1);
+    console.log(invoice);
+
+    await fileService.download(invoice);
+  };
+
   render() {
     const { data, classes } = this.props;
     return (
@@ -371,6 +385,18 @@ class SummaryFormUsers extends Component {
                   value={this.state.paymentMethod}
                 />
               </Grid>
+              {this.state.paymentMethod == "Invoice" && (
+                <Grid item xs={12} sm={6}>
+                  <Button onClick={this.handleInvoiceDownload}>
+                    <AttachmentIcon className={classes.icons} />
+                    {this.state.invoice
+                      ? this.state.invoice.substring(
+                          this.state.invoice.indexOf("-") + 1
+                        )
+                      : ""}
+                  </Button>
+                </Grid>
+              )}
             </Grid>
           </DialogContent>
           <DialogActions>

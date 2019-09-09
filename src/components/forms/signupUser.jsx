@@ -88,7 +88,7 @@ class SignupUser extends Component {
     this.state = {
       values: { subscription: 0, paymentMethod: "Promo Code" },
       errors: {},
-      activeStep: 0
+      activeStep: 2
     };
   }
 
@@ -286,9 +286,8 @@ class SignupUser extends Component {
       if (activeStep === steps.length - 1) {
         console.log("no error congrats!"); //---------------------------DELETE THIS
         this.handleSubmit();
-      } else {
-        this.setState({ activeStep: this.state.activeStep + 1 });
       }
+      this.setState({ activeStep: this.state.activeStep + 1 });
     } else {
       console.log("errors!"); //---------------------------DELETE THIS
     }
@@ -336,7 +335,7 @@ class SignupUser extends Component {
       city: values["city"],
       state: "Texas",
       zip: values["zip"],
-      method: values["paymentMethod"],
+      paymentMethod: values["paymentMethod"],
       ccType: values["creditCardType"],
       subscription: values["subscription"],
       promoCode: values["promoCode"],
