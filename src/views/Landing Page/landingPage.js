@@ -30,7 +30,6 @@ const useStyles = makeStyles(styles);
 
 const LandingPage = props => {
   const classes = useStyles();
-  const { ...rest } = props;
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const bgImage = windowWidth >= 650 ? desktopImage : mobileImage;
@@ -59,7 +58,7 @@ const LandingPage = props => {
       />
       <Parallax filter image={bgImage}>
         <div className={classes.container}>
-          <GridContainer>
+          <GridContainer className={classes.grid}>
             <GridItem xs={12} sm={12} md={6}>
               <h1>A SMARTER WAY TO SAVE</h1>
               <h4>

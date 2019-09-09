@@ -213,11 +213,11 @@ class SignIn extends Component {
                 Sign In
               </Button>
               <Grid container>
-                <Grid item xs>
+                {/* <Grid item xs>
                   <Link href="#" variant="body2">
                     Forgot password?
                   </Link>
-                </Grid>
+                </Grid> */}
                 <Grid item>
                   <Link variant="body2" component={RouterLink} to="/signup">
                     {"Not a Saverscard member yet?"}
