@@ -548,7 +548,7 @@ class SummaryForm extends Component {
               </Button>
               <Button
                 variant="contained"
-                color="secondary"
+                color="primary"
                 onClick={this.handleClose2}
               >
                 Cancel

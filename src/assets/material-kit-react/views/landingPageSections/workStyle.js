@@ -1,5 +1,6 @@
 import { title, successColor } from "../../../js/material-kit-react";
 import { whileStatement } from "@babel/types";
+import { CenterFocusStrong } from "@material-ui/icons";
 
 const workStyle = {
   section: {
@@ -25,6 +26,11 @@ const workStyle = {
   textArea: {
     marginRight: "15px",
     marginLeft: "15px"
+  },
+  button: {
+    display: "block",
+    margin: "0 auto",
+    width: "150px"
   }
 };
 

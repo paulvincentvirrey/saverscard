@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 // nodejs library that concatenates classes
 import classNames from "classnames";
 // nodejs library to set properties for components
@@ -17,10 +17,66 @@ import Menu from "@material-ui/icons/Menu";
 import styles from "../../assets/material-kit-react/components/headerStyle.js";
 // react components for routing our app without refresh
 import { Link as RouterLink } from "react-router-dom";
+import { authenticationService } from "../../services/authenticationService";
+import { history } from "../../helpers/history";
 
 const useStyles = makeStyles(styles);
 
-export default function Header(props) {
+class Header extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      currentUser: null,
+      loginType: "user",
+      isAdmin: false,
+      color: "",
+      routes: "",
+      brand: "",
+      rightLinks: "",
+      fixed: true
+    };
+  }
+
+  componentDidMount() {
+    authenticationService.currentUser.subscribe(x => {
+      this.setState({
+        currentUser: x !== null ? x.account : null,
+        isAdmin: x !== null ? x.account.isAdmin : false,
+        loginType: x !== null ? x.loginType : "user",
+        color: this.props.color,
+        routes: this.props.routes,
+        brand: this.props.brand,
+        rightLinks: this.props.rightLinks,
+        fixed: this.props.fixed
+      });
+    });
+  }
+
+  handleLogout() {
+    console.log("LOG OUT!");
+    authenticationService.logout();
+    history.push("/");
+  }
+
+  render() {
+    return (
+      <HeaderNav
+        currentUser={this.state.currentUser}
+        loginType={this.state.loginType}
+        isAdmin={this.state.isAdmin}
+        handleLogout={this.handleLogout}
+        color={this.state.color}
+        routes={this.state.routes}
+        brand={this.state.brand}
+        rightLinks={this.state.rightLinks}
+        fixed={this.state.fixed}
+      />
+    );
+  }
+}
+
+function HeaderNav(props) {
   const classes = useStyles();
   const [mobileOpen, setMobileOpen] = React.useState(false);
   React.useEffect(() => {
@@ -55,15 +111,29 @@ export default function Header(props) {
         .classList.remove(classes[changeColorOnScroll.color]);
     }
   };
-  const { color, rightLinks, leftLinks, brand, fixed, absolute } = props;
+  const {
+    color,
+    rightLinks,
+    routes,
+    leftLinks,
+    brand,
+    fixed,
+    absolute,
+    currentUser
+  } = props;
   const appBarClasses = classNames({
     [classes.appBar]: true,
     [classes[color]]: color,
     [classes.absolute]: absolute,
     [classes.fixed]: fixed
   });
+
   const brandComponent = (
-    <Button component={RouterLink} to="/" className={classes.title}>
+    <Button
+      component={RouterLink}
+      to={currentUser ? "/vendors" : "/"}
+      className={classes.title}
+    >
       <b>{brand}</b>
     </Button>
   );
@@ -155,3 +225,5 @@ Header.propTypes = {
     ]).isRequired
   })
 };
+
+export default Header;

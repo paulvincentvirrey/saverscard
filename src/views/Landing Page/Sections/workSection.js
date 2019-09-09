@@ -23,15 +23,15 @@ export default function WorkSection() {
           <GridItem cs={12} sm={12} md={8}>
             <h3 className={classes.title}>WE WOULD LOVE TO HEAR FROM YOU!</h3>
             <h4 className={classes.description}>
-              Divide details about your product or agency work into parts. Write
-              a few lines about each one and contact us about any further
-              collaboration. We will responde get back to you in a couple of
-              hours.
+              Please feel free to get in touch by sending as an e-mail by
+              clicking the button below. We’d love to hear your thoughts and
+              answer any questions you may have!
             </h4>
             <form>
               <Button
+                className={classes.button}
                 color="primary"
-                href="mailto:carmelapatrice@gmail.com?Subject=SaversCard%20Inquiry"
+                href="mailto:saverscardllc@gmail.com?Subject=SaversCard%20Inquiry"
                 target="_top"
               >
                 Email us!

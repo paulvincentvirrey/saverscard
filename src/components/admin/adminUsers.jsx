@@ -137,7 +137,7 @@ class AdminUsers extends Component {
       },
       {
         name: "",
-        label: "",
+        label: "Edit Record",
         options: {
           filter: false,
           sort: false,

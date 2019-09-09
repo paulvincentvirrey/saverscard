@@ -30,7 +30,7 @@ export default function ProductSection() {
           <GridItem xs={12} sm={12} md={4}>
             <InfoArea
               title="Be our customer"
-              description="Register and be our cardholder to enjoy discounts from partner stores."
+              description="Register and be a SaversCard cardholder. Just present your card at any of our partner stores and enjoy your discount, hassle-free. "
               icon={ShoppingBasket}
               iconColor="primary"
               vertical
@@ -48,7 +48,7 @@ export default function ProductSection() {
           <GridItem xs={12} sm={12} md={4}>
             <InfoArea
               title="Join us now"
-              description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
+              description="SaversCard membership is only a few clicks away. Register now."
               icon={Check}
               iconColor="primary"
               vertical
