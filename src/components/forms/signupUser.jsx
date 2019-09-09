@@ -345,13 +345,16 @@ class SignupUser extends Component {
       invoice: values["invoice"]
     };
 
-    const paymentDetails = {
-      subscription_type: "user",
-      email: values["email"],
-      name: values["firstName"] + " " + values["lastName"],
-      token: values["paymentToken"]
-    };
-    const payment = await paymentService.chargePayment(paymentDetails);
+    if (values["paymentMethod"] == "Credit Card") {
+      const paymentDetails = {
+        subscription_type: "user",
+        email: values["email"],
+        name: values["firstName"] + " " + values["lastName"],
+        token: values["paymentToken"]
+      };
+      const payment = await paymentService.chargePayment(paymentDetails);
+    }
+
     const user = await userService.createUser(filledForm);
     console.log(user);
   };

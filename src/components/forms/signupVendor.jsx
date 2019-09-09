@@ -402,13 +402,16 @@ class SignupVendor extends Component {
       invoice: values["invoice"]
     };
 
-    const paymentDetails = {
-      subscription_type: "vendor",
-      email: values["email"],
-      name: values["businessName"],
-      token: values["paymentToken"]
-    };
-    const payment = await paymentService.chargePayment(paymentDetails);
+    if (values["paymentMethod"] == "Credit Card") {
+      const paymentDetails = {
+        subscription_type: "vendor",
+        email: values["email"],
+        name: values["businessName"],
+        token: values["paymentToken"]
+      };
+      const payment = await paymentService.chargePayment(paymentDetails);
+    }
+
     const vendor = await vendorService.createVendor(filledForm);
     console.log(vendor);
   };
