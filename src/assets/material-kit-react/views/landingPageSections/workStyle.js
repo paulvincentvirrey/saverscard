@@ -1,4 +1,5 @@
 import { title, successColor } from "../../../js/material-kit-react";
+import { whileStatement } from "@babel/types";
 
 const workStyle = {
   section: {
@@ -6,8 +7,8 @@ const workStyle = {
     background: "#293039"
   },
   title: {
-    color: successColor,
-    fontSize: "30px",
+    color: "#AAAAAA",
+    fontSize: "25px",
     marginBottom: "50px",
     marginTop: "20px",
     minHeight: "32px",

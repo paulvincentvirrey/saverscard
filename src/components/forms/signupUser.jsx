@@ -11,18 +11,28 @@ import {
 } from "../../services/fakeCategoryService";
 import { userService } from "../../services/userService";
 import { paymentService } from "../../services/paymentService";
-import { Button, CssBaseline, Grid, Typography } from "@material-ui/core";
+import {
+  Button,
+  CssBaseline,
+  Grid,
+  Typography,
+  withStyles
+} from "@material-ui/core";
 import Header from "../../components/landingPage/Header";
 import HeaderLinks from "../../components/landingPage/HeaderLinks";
-import { withStyles } from "@material-ui/core/styles";
 import { Elements, StripeProvider } from "react-stripe-elements";
+
+// @material-ui/icons
+import { Home as HomeIcon } from "@material-ui/icons";
+
+// react components for routing our app without refresh
+import { Link } from "react-router-dom";
 
 const dashboardRoutes = [];
 
 const useStyles = theme => ({
   root: {
-    padding: theme.spacing(3, 2),
-    marginTop: theme.spacing(8),
+    padding: theme.spacing(15, 2),
     display: "flex",
     flexWrap: "wrap",
     minWidth: 300,
@@ -56,7 +66,7 @@ const useStyles = theme => ({
     }
   },
   stepper: {
-    padding: theme.spacing(3, 0, 5)
+    padding: theme.spacing(5, 0, 5)
   },
 
   button: {
@@ -72,6 +82,11 @@ const useStyles = theme => ({
     boxShadow: "none",
     fontSize: "1.0em",
     width: 100
+  },
+  welcomeBanner: {
+    color: "#2e7d32",
+    marginTop: "5rem",
+    fontWeight: "50px"
   }
 });
 
@@ -88,7 +103,7 @@ class SignupUser extends Component {
     this.state = {
       values: { subscription: 0, paymentMethod: "Promo Code" },
       errors: {},
-      activeStep: 0
+      activeStep: 4
     };
   }
 
@@ -245,17 +260,6 @@ class SignupUser extends Component {
           errors["promoCode"] = "Invalid credit card";
         }
       }
-
-      // Promo Code
-      if (typeof promoCode !== "undefined" && paymentMethod === "Promo Code") {
-        if (promoCode !== "") {
-          if (!promoCode.toString().match(/^[0-9]{5,10}$/)) {
-            errors["promoCode"] = "Invalid promo code";
-          }
-        } else {
-          errors["promoCode"] = "Invalid promo code";
-        }
-      }
     }
 
     if (step === 4) {
@@ -286,9 +290,8 @@ class SignupUser extends Component {
       if (activeStep === steps.length - 1) {
         console.log("no error congrats!"); //---------------------------DELETE THIS
         this.handleSubmit();
-      } else {
-        this.setState({ activeStep: this.state.activeStep + 1 });
       }
+      this.setState({ activeStep: this.state.activeStep + 1 });
     } else {
       console.log("errors!"); //---------------------------DELETE THIS
     }
@@ -395,14 +398,28 @@ class SignupUser extends Component {
                 <React.Fragment>
                   {activeStep === steps.length ? (
                     <React.Fragment>
-                      <Typography variant="h5" gutterBottom>
-                        Welcome to Saverscard <b>{values["firstName"]}</b>
+                      <Typography
+                        className={classes.welcomeBanner}
+                        variant="h4"
+                        gutterBottom
+                        align="center"
+                      >
+                        WELCOME TO SAVERSCARD
                       </Typography>
-                      <Typography variant="subtitle1">
-                        Your registration number is #2001539. We have emailed
-                        your registration confirmation, and will send you an
-                        update once your membership has been approved.
+
+                      <Typography align="center" variant="subtitle1">
+                        Hey, {values["firstName"]}! Your SaversCard account has
+                        been created. We will send you an email once your
+                        membership has been approved.
                       </Typography>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        component={Link}
+                        to="/signin"
+                      >
+                        <HomeIcon />
+                      </Button>
                     </React.Fragment>
                   ) : (
                     <React.Fragment>

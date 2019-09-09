@@ -7,7 +7,6 @@ import { makeStyles } from "@material-ui/core/styles";
 // core components
 import GridContainer from "../../../components/landingPage/GridContainer.js";
 import GridItem from "../../../components/landingPage/GridItem.js";
-import CustomInput from "../../../components/landingPage/CustomInput.js";
 import Button from "../../../components/landingPage/Button";
 
 import styles from "../../../assets/material-kit-react/views/landingPageSections/workStyle.js";
@@ -30,11 +29,13 @@ export default function WorkSection() {
               hours.
             </h4>
             <form>
-              <GridContainer>
-                <Button color="success" href="carmelapatrice@gmail.com">
-                  Email us!
-                </Button>
-              </GridContainer>
+              <Button
+                color="primary"
+                href="mailto:carmelapatrice@gmail.com?Subject=SaversCard%20Inquiry"
+                target="_top"
+              >
+                Email us!
+              </Button>
             </form>
           </GridItem>
         </GridContainer>
