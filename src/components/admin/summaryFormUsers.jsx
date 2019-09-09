@@ -235,10 +235,10 @@ class SummaryFormUsers extends Component {
 
   handleInvoiceDownload = async () => {
     const { invoice } = this.state;
-    // const filename = invoice.substring(invoice.indexOf("\\") + 1);
+    const filename = invoice.substring(invoice.indexOf("-") + 1);
     console.log(invoice);
 
-    await fileService.download(invoice);
+    await fileService.download(invoice, filename);
   };
 
   render() {

@@ -3,8 +3,8 @@ import { handleResponse } from "../helpers/handleResponse";
 import axios from "axios";
 
 const config = {
-  //   apiUrl: "https://saverscardapi.azurewebsites.net/api"
-  apiUrl: "http://localhost:4000/api"
+  apiUrl: "https://saverscardapi.azurewebsites.net/api"
+  // apiUrl: "http://localhost:4000/api"
 };
 
 export const fileService = {
@@ -29,17 +29,32 @@ function upload(file) {
     });
 }
 
-function download(filename) {
-  axios
-    .get(`${config.apiUrl}/file/download`, {
-      params: {
-        file: filename
-      }
-    })
-    .then(function(response) {
-      console.log(response);
-    })
-    .catch(function(error) {
-      console.log(error);
-    });
+function download(filename, downloadname) {
+  axios({
+    url: `${config.apiUrl}/file/download?file=${filename}`,
+    method: "GET",
+    responseType: "blob" // important
+  }).then(response => {
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", downloadname);
+    document.body.appendChild(link);
+    link.click();
+  });
+  // axios
+  //   .get(, {
+  //     params: {
+  //       file: filename
+  //     },
+  //     headers: {
+
+  //     }
+  //   })
+  //   .then(function(response) {
+  //     console.log(response);
+  //   })
+  //   .catch(function(error) {
+  //     console.log(error);
+  //   });
 }
