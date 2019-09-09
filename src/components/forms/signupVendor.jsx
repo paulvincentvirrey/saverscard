@@ -18,6 +18,12 @@ import HeaderLinks from "../../components/landingPage/HeaderLinks";
 import { withStyles } from "@material-ui/core/styles";
 import { Elements, StripeProvider } from "react-stripe-elements";
 
+// @material-ui/icons
+import { Home as HomeIcon } from "@material-ui/icons";
+
+// react components for routing our app without refresh
+import { Link } from "react-router-dom";
+
 const dashboardRoutes = [];
 
 const useStyles = theme => ({
@@ -72,6 +78,11 @@ const useStyles = theme => ({
     boxShadow: "none",
     fontSize: "1.0em",
     width: 100
+  },
+  welcomeBanner: {
+    color: "#2e7d32",
+    marginTop: "5rem",
+    fontWeight: "50px"
   }
 });
 
@@ -89,7 +100,7 @@ class SignupVendor extends Component {
     this.state = {
       values: { subscription: 0, paymentMethod: "Promo Code" },
       errors: {},
-      activeStep: 0
+      activeStep: 5
     };
   }
 
@@ -445,13 +456,28 @@ class SignupVendor extends Component {
                 <React.Fragment>
                   {activeStep === steps.length ? (
                     <React.Fragment>
-                      <Typography variant="h5" gutterBottom>
-                        Welcome to Saverscard <b>{values["businessName"]}</b>
+                      <Typography
+                        className={classes.welcomeBanner}
+                        variant="h4"
+                        gutterBottom
+                        align="center"
+                      >
+                        WELCOME TO SAVERSCARD
                       </Typography>
-                      <Typography variant="subtitle1">
-                        You have successfully created your account! Refresh the
-                        page and sign in using your new credentials.
+
+                      <Typography align="center" variant="subtitle1">
+                        Hey, {values["firstName"]}! Your SaversCard account has
+                        been created. We will send you an email once your
+                        membership has been approved.
                       </Typography>
+                      <Button
+                        variant="contained"
+                        color="primary"
+                        component={Link}
+                        to="/signin"
+                      >
+                        <HomeIcon />
+                      </Button>
                     </React.Fragment>
                   ) : (
                     <React.Fragment>

@@ -103,7 +103,7 @@ class SignupUser extends Component {
     this.state = {
       values: { subscription: 0, paymentMethod: "Promo Code" },
       errors: {},
-      activeStep: 4
+      activeStep: 0
     };
   }
 
