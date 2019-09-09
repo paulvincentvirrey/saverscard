@@ -16,7 +16,6 @@ import Header from "../../components/landingPage/Header";
 import HeaderLinks from "../../components/landingPage/HeaderLinks";
 import { withStyles } from "@material-ui/core/styles";
 import { Elements, StripeProvider } from "react-stripe-elements";
-import Image from "../../assets/img/signup.png";
 
 const dashboardRoutes = [];
 
@@ -28,8 +27,7 @@ const useStyles = theme => ({
     flexWrap: "wrap",
     minWidth: 300,
     width: "100%",
-    height: "100vh",
-    backgroundImage: `url(${Image})`
+    height: "100vh"
   },
   appBar: {
     position: "relative"
@@ -120,159 +118,159 @@ class SignupUser extends Component {
     const agreementCheck = values["agreementCheck"];
     const esignature = values["esignature"];
 
-    // if (step === 1) {
-    //   // Username
-    //   console.log("username:" + typeof username);
-    //   if (typeof username !== "undefined") {
-    //     if (!username.match(/^\w+$/)) {
-    //       errors["username"] = "Invalid username";
-    //     }
-    //   } else {
-    //     errors["username"] = "Invalid username";
-    //   }
+    if (step === 1) {
+      // Username
+      console.log("username:" + typeof username);
+      if (typeof username !== "undefined") {
+        if (!username.match(/^\w+$/)) {
+          errors["username"] = "Invalid username";
+        }
+      } else {
+        errors["username"] = "Invalid username";
+      }
 
-    //   // Email Address
-    //   if (typeof email !== "undefined") {
-    //     if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
-    //       errors["email"] = "Invalid e-mail address";
-    //     }
-    //   } else {
-    //     errors["email"] = "Invalid e-mail address";
-    //   }
+      // Email Address
+      if (typeof email !== "undefined") {
+        if (!email.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) {
+          errors["email"] = "Invalid e-mail address";
+        }
+      } else {
+        errors["email"] = "Invalid e-mail address";
+      }
 
-    //   // Password
-    //   if (typeof password !== "undefined") {
-    //     if (!password.match(/^(?=.*\d).{8,16}$/)) {
-    //       errors["password"] = "Invalid password";
-    //     }
-    //   } else {
-    //     errors["password"] = "Invalid password";
-    //   }
+      // Password
+      if (typeof password !== "undefined") {
+        if (!password.match(/^(?=.*\d).{8,16}$/)) {
+          errors["password"] = "Invalid password";
+        }
+      } else {
+        errors["password"] = "Invalid password";
+      }
 
-    //   // Confirm Password
-    //   if (typeof confirmPassword !== "undefined") {
-    //     if (confirmPassword !== password) {
-    //       errors["confirmPassword"] = "Password did not match";
-    //     }
-    //   } else {
-    //     errors["confirmPassword"] = "Password did not match";
-    //   }
-    // }
+      // Confirm Password
+      if (typeof confirmPassword !== "undefined") {
+        if (confirmPassword !== password) {
+          errors["confirmPassword"] = "Password did not match";
+        }
+      } else {
+        errors["confirmPassword"] = "Password did not match";
+      }
+    }
 
-    // if (step === 2) {
-    //   //Last Name
-    //   if (typeof lastName !== "undefined") {
-    //     if (lastName === "") {
-    //       errors["lastName"] = "Invalid last name";
-    //     }
-    //   } else {
-    //     errors["lastName"] = "Invalid last name";
-    //   }
+    if (step === 2) {
+      //Last Name
+      if (typeof lastName !== "undefined") {
+        if (lastName === "") {
+          errors["lastName"] = "Invalid last name";
+        }
+      } else {
+        errors["lastName"] = "Invalid last name";
+      }
 
-    //   // First Name
-    //   if (typeof firstName !== "undefined") {
-    //     if (firstName === "") {
-    //       errors["firstName"] = "Invalid first name";
-    //     }
-    //   } else {
-    //     errors["firstName"] = "Invalid first name";
-    //   }
+      // First Name
+      if (typeof firstName !== "undefined") {
+        if (firstName === "") {
+          errors["firstName"] = "Invalid first name";
+        }
+      } else {
+        errors["firstName"] = "Invalid first name";
+      }
 
-    //   // Birthday
-    //   if (typeof birthday !== "undefined") {
-    //     if (birthday !== "") {
-    //       errors["birthday"] = "Invalid birthday";
-    //     }
-    //   }
+      // Birthday
+      if (typeof birthday !== "undefined") {
+        if (birthday !== "") {
+          errors["birthday"] = "Invalid birthday";
+        }
+      }
 
-    //   // Contact Number
-    //   if (typeof contactNumber !== "undefined" && contactNumber !== "") {
-    //     if (
-    //       !contactNumber.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)
-    //     ) {
-    //       errors["contactNumber"] = "Invalid contact number";
-    //     }
-    //   } else {
-    //     errors["contactNumber"] = "Invalid contact number";
-    //   }
+      // Contact Number
+      if (typeof contactNumber !== "undefined" && contactNumber !== "") {
+        if (
+          !contactNumber.match(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/)
+        ) {
+          errors["contactNumber"] = "Invalid contact number";
+        }
+      } else {
+        errors["contactNumber"] = "Invalid contact number";
+      }
 
-    //   // Address Line 1
-    //   if (typeof addressLine1 !== "undefined") {
-    //     if (addressLine1 === "") {
-    //       errors["addressLine1"] = "Invalid address line 1";
-    //     }
-    //   } else {
-    //     errors["addressLine1"] = "Invalid address line 1";
-    //   }
+      // Address Line 1
+      if (typeof addressLine1 !== "undefined") {
+        if (addressLine1 === "") {
+          errors["addressLine1"] = "Invalid address line 1";
+        }
+      } else {
+        errors["addressLine1"] = "Invalid address line 1";
+      }
 
-    //   // Address Line 2
-    //   if (typeof addressLine2 !== "undefined") {
-    //     if ((addressLine1 === "" || !addressLine1) && addressLine2 !== "") {
-    //       errors["addressLine2"] = "Please fill in address line 1";
-    //     }
-    //   }
+      // Address Line 2
+      if (typeof addressLine2 !== "undefined") {
+        if ((addressLine1 === "" || !addressLine1) && addressLine2 !== "") {
+          errors["addressLine2"] = "Please fill in address line 1";
+        }
+      }
 
-    //   // City
-    //   if (typeof city !== "undefined") {
-    //     if (city === "") {
-    //       errors["city"] = "Invalid city";
-    //     }
-    //   } else {
-    //     errors["city"] = "Invalid city";
-    //   }
+      // City
+      if (typeof city !== "undefined") {
+        if (city === "") {
+          errors["city"] = "Invalid city";
+        }
+      } else {
+        errors["city"] = "Invalid city";
+      }
 
-    //   // Zip Code
-    //   if (typeof zipCode !== "undefined" && zipCode !== "") {
-    //     if (!zipCode.toString().match(/^[7|8][0-9]{0,5}$/)) {
-    //       errors["zipCode"] = "Invalid zip code";
-    //     }
-    //   } else {
-    //     errors["zipCode"] = "Invalid zip code";
-    //   }
-    // }
+      // Zip Code
+      if (typeof zipCode !== "undefined" && zipCode !== "") {
+        if (!zipCode.toString().match(/^[7|8][0-9]{0,5}$/)) {
+          errors["zipCode"] = "Invalid zip code";
+        }
+      } else {
+        errors["zipCode"] = "Invalid zip code";
+      }
+    }
 
-    // if (step === 3) {
-    //   // Payment Method
-    //   if (typeof paymentMethod !== "undefined") {
-    //     if (paymentMethod === "") {
-    //       errors["paymentMethod"] = "Invalid payment method";
-    //     }
-    //   }
+    if (step === 3) {
+      // Payment Method
+      if (typeof paymentMethod !== "undefined") {
+        if (paymentMethod === "") {
+          errors["paymentMethod"] = "Invalid payment method";
+        }
+      }
 
-    //   // CC Type
-    //   if (typeof ccType !== "undefined" && paymentMethod === "Credit Card") {
-    //     if (ccType === "") {
-    //       errors["ccType"] = "Invalid credit card";
-    //     } else {
-    //       errors["promoCode"] = "Invalid credit card";
-    //     }
-    //   }
+      // CC Type
+      if (typeof ccType !== "undefined" && paymentMethod === "Credit Card") {
+        if (ccType === "") {
+          errors["ccType"] = "Invalid credit card";
+        } else {
+          errors["promoCode"] = "Invalid credit card";
+        }
+      }
 
-    //   // Promo Code
-    //   if (typeof promoCode !== "undefined" && paymentMethod === "Promo Code") {
-    //     if (promoCode !== "") {
-    //       if (!promoCode.toString().match(/^[0-9]{5,10}$/)) {
-    //         errors["promoCode"] = "Invalid promo code";
-    //       }
-    //     } else {
-    //       errors["promoCode"] = "Invalid promo code";
-    //     }
-    //   }
-    // }
+      // Promo Code
+      if (typeof promoCode !== "undefined" && paymentMethod === "Promo Code") {
+        if (promoCode !== "") {
+          if (!promoCode.toString().match(/^[0-9]{5,10}$/)) {
+            errors["promoCode"] = "Invalid promo code";
+          }
+        } else {
+          errors["promoCode"] = "Invalid promo code";
+        }
+      }
+    }
 
-    // if (step === 4) {
-    //   // Terms Agreement
-    //   if (typeof agreementCheck !== "undefined") {
-    //     if (!agreementCheck) {
-    //       errors["agreementCheck"] = "Please check box if you want to proceed";
-    //     }
-    //   }
+    if (step === 4) {
+      // Terms Agreement
+      if (typeof agreementCheck !== "undefined") {
+        if (!agreementCheck) {
+          errors["agreementCheck"] = "Please check box if you want to proceed";
+        }
+      }
 
-    //   // E-signature
-    //   if (typeof esignature === "undefined" || esignature === "") {
-    //     errors["esignature"] = "Invalid e-signature";
-    //   }
-    // }
+      // E-signature
+      if (typeof esignature === "undefined" || esignature === "") {
+        errors["esignature"] = "Invalid e-signature";
+      }
+    }
 
     console.log("number of errors: " + Object.keys(errors).length);
     if (Object.keys(errors).length > 0) {
@@ -286,13 +284,13 @@ class SignupUser extends Component {
     const { values, errors, activeStep } = this.state;
     if (this.handleValidation()) {
       if (activeStep === steps.length - 1) {
-        console.log("no error congrats!");
+        console.log("no error congrats!"); //---------------------------DELETE THIS
         this.handleSubmit();
       } else {
         this.setState({ activeStep: this.state.activeStep + 1 });
       }
     } else {
-      console.log("errors!");
+      console.log("errors!"); //---------------------------DELETE THIS
     }
   };
 
@@ -308,7 +306,7 @@ class SignupUser extends Component {
       value = checked;
     }
     const v = { ...this.state.values, [name]: value };
-    console.log(v);
+    console.log(v); //---------------------------DELETE THIS
     this.setState({
       values: { ...this.state.values, [name]: value }
     });
@@ -353,12 +351,12 @@ class SignupUser extends Component {
     };
     const payment = await paymentService.chargePayment(paymentDetails);
     const user = await userService.createUser(filledForm);
-    console.log(user);
+    console.log(user); //---------------------------DELETE THIS
   };
 
   handleDateChange = value => {
     let values = { ...this.state.values, ["birthdate"]: value };
-    console.log(values);
+    console.log(values); //---------------------------DELETE THIS
     this.setState({
       values: { ...this.state.values, ["birthdate"]: value }
     });
@@ -378,7 +376,6 @@ class SignupUser extends Component {
     const { values, errors, activeStep } = this.state;
 
     return (
-      // <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
       <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
         <Elements>
           <div className={classes.root}>
@@ -461,8 +458,6 @@ class SignupUser extends Component {
           </div>
         </Elements>
       </StripeProvider>
-
-      // </StripeProvider>
     );
   }
 }
@@ -489,8 +484,6 @@ function GetStepContent(props) {
       );
     case 2:
       return (
-        // <StripeProvider apiKey="pk_test_Ih8MSCvjVAgK6MgbFpo6YBio00J7ekV285">
-        //   <Elements>
         <PaymentForm
           handleChange={props.handleChange}
           handleCCPaymentChange={props.handleCCPaymentChange}
@@ -501,8 +494,6 @@ function GetStepContent(props) {
           subscriptions={props.subscriptions}
           errors={props.errors}
         />
-        //   </Elements>
-        // </StripeProvider>
       );
     case 3:
       return (

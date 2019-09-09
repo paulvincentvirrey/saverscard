@@ -1,8 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Link as RouterLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import {
-  Button,
   ButtonBase,
   CssBaseline,
   Typography,
@@ -14,8 +13,6 @@ import HeaderLinks from "./landingPage/HeaderLinks";
 import SignupVendor from "./forms/signupVendor";
 import SignupUser from "./forms/signupUser";
 import { Elements, StripeProvider } from "react-stripe-elements";
-import desktopImage from "../assets/img/cool-background.png";
-import mobileImage from "../assets/img/signup.png";
 
 const dashboardRoutes = [];
 
@@ -118,20 +115,6 @@ const SignUp = props => {
   const classes = useStyles();
   const [signup, setSignup] = React.useState(<div />);
   const [isSigningUp, setIsSigningUp] = React.useState(false);
-  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
-  const bgImage = windowWidth >= 650 ? desktopImage : mobileImage;
-
-  const handleWindowResize = () => {
-    setWindowWidth(window.innerWidth);
-  };
-
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowResize);
-
-    return () => {
-      window.removeEventListener("resize", handleWindowResize);
-    };
-  });
 
   function handleClick(component) {
     if (component === "SignUpUser")
@@ -156,13 +139,7 @@ const SignUp = props => {
 
   return (
     <CssBaseline>
-      <Container
-        maxWidth="md"
-        className={classes.container}
-        style={{
-          backgroundImage: "url(" + bgImage + ")"
-        }}
-      >
+      <Container maxWidth="md" className={classes.container}>
         <Header
           color="dark"
           routes={dashboardRoutes}

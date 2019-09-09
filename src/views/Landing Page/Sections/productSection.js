@@ -32,7 +32,7 @@ export default function ProductSection() {
               title="Be our customer"
               description="Register and be our cardholder to enjoy discounts from partner stores."
               icon={ShoppingBasket}
-              iconColor="success"
+              iconColor="primary"
               vertical
             />
           </GridItem>{" "}
@@ -41,7 +41,7 @@ export default function ProductSection() {
               title="Partner with us"
               description="We help your business compete and increase profitability. When you agree to give our card holders a set amount of discount when they shop or avail services from your business, this increases revenue for your business.We are the most affordable advertising for your business, we guarantee instant customer base, and run your ad campaign including email advertising."
               icon={SupervisorAccount}
-              iconColor="success"
+              iconColor="primary"
               vertical
             />
           </GridItem>
@@ -50,7 +50,7 @@ export default function ProductSection() {
               title="Join us now"
               description="Divide details about your product or agency work into parts. Write a few lines about each one. A paragraph describing a feature will be enough."
               icon={Check}
-              iconColor="success"
+              iconColor="primary"
               vertical
             />
           </GridItem>
