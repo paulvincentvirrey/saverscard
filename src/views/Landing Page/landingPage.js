@@ -70,7 +70,7 @@ const LandingPage = props => {
               </h4>
               <br />
               <Button
-                color="success"
+                color="primary"
                 size="lg"
                 component={RouterLink}
                 to="/signup"
